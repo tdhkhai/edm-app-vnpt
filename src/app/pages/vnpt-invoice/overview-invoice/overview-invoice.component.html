@@ -1,0 +1,73 @@
+<nz-breadcrumb nz-page-header-breadcrumb [nzAutoGenerate]="true">
+  <nz-breadcrumb-item>
+    <i nz-icon nzType="home"></i>
+  </nz-breadcrumb-item>
+</nz-breadcrumb>
+<br>
+<nz-form-item>
+  <nz-form-label nzFor="filter">Chọn tháng để xem</nz-form-label>
+  <nz-form-control nzHasFeedback>
+    <nz-date-picker nzMode="month" [(ngModel)]="dateSelected" (ngModelChange)="onChange($event)" nzFormat="MM/yyyy">
+    </nz-date-picker>
+  </nz-form-control>
+</nz-form-item>
+
+<!-- Hóa đơn điện tử -->
+<div nz-row [nzGutter]="24">
+  <div nz-col class="gutter-row" [nzSpan]="24">
+    <nz-card>
+      <div nz-row [nzGutter]="24">
+        <div nz-col class="gutter-row" [nzSpan]="6">
+          <nz-statistic [nzValue]="allCusDemoInvoice" [nzTitle]="'Khách hàng Demo'" [nzPrefix]="prefixTplOne"
+            [nzSuffix]="'khách hàng'" [nzValueStyle]="{ color: '#3F8600' }">
+          </nz-statistic>
+          <nz-statistic [nzValue]="allCusGoliveInvoice" [nzTitle]="'Khách hàng Golive'" [nzPrefix]="prefixTplOne"
+            [nzSuffix]="'khách hàng'" [nzValueStyle]="{ color: '#3F8600' }">
+          </nz-statistic>
+          <ng-template #prefixTplOne><i nz-icon nzType="arrow-up"></i></ng-template>
+          <nz-statistic [nzValue]="allCusExtendInvoice" [nzTitle]="'Khách hàng Gia hạn'" [nzPrefix]="prefixTplTwo"
+            [nzSuffix]="'khách hàng'" [nzValueStyle]="{ color: 'red' }">
+          </nz-statistic>
+          <ng-template #prefixTplTwo><i nz-icon nzType="arrow-down"></i></ng-template>
+        </div>
+        <div nz-col class="gutter-row" [nzSpan]="18">
+          <nz-table [nzTemplateMode]="true" nzBordered>
+            <thead>
+              <tr>
+                <th nzAlign="center">STT</th>
+                <th nzAlign="center">Năm</th>
+                <th nzAlign="center">Demo</th>
+                <th nzAlign="center">Golive</th>
+                <th nzAlign="center">Gia hạn</th>
+                <th nzAlign="center">Xóa</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let data of countInvoices; index as i">
+                <td nzAlign="center">{{ i+1 }}</td>
+                <td nzAlign="center">{{data._id.year}}</td>
+                <td nzAlign="center"><span nz-tooltip nzTooltipTitle="Chọn để xem chi tiết"><a (click)="viewListByStatus(data._id.year, 'Demo')">{{data.countDemo}}</a></span></td>
+                <td nzAlign="center"><span nz-tooltip nzTooltipTitle="Chọn để xem chi tiết"><a (click)="viewListByStatus(data._id.year, 'Golive')">{{data.countGolive}}</a></span></td>
+                <td nzAlign="center"><span nz-tooltip nzTooltipTitle="Chọn để xem chi tiết"><a (click)="viewListByStatus(data._id.year, 'Bo sung')">{{data.countExtend}}</a></span></td>
+                <td nzAlign="center"><span nz-tooltip nzTooltipTitle="Chọn để xem chi tiết"><a (click)="viewListByStatus(data._id.year, 'Delete')">{{data.countDelete}}</a></span></td>
+              </tr>
+            </tbody>
+          </nz-table>
+        </div>
+      </div>
+    </nz-card>
+  </div>
+</div>
+<br>
+
+<div nz-row [nzGutter]="16">
+  <div nz-col class="gutter-row" [nzSpan]="12">
+    <p-chart type="line" [data]="dataLineChart"></p-chart>
+
+  </div>
+  <div nz-col class="gutter-row" [nzSpan]="12">
+    <p-chart type="bar" [data]="dataBarChart"></p-chart>
+  </div>
+</div>
+
+

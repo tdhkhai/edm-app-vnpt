@@ -1,0 +1,124 @@
+<form nz-form [formGroup]="webhostingForm" (ngSubmit)="submitForm()">
+  <nz-divider nzText="Thông tin Khách hàng" nzOrientation="center"></nz-divider>
+  <div nz-row>
+    <div nz-col nzSpan="12">
+      <nz-form-item>
+        <nz-form-label nzRequired nzFor="ComTaxCode">Mã số thuế</nz-form-label>
+        <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng nhập mã số thuế khách hàng'">
+          <nz-input-group nzSearch [nzSuffix]="suffixIconSearch">
+            <input type="text" nz-input formControlName="comTaxCode" id="ComTaxCode" required />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+  <div nz-row>
+    <div nz-col nzSpan="24">
+      <nz-form-item>
+        <nz-form-label nzRequired nzFor="ComName">Tên khách hàng</nz-form-label>
+        <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng nhập tên Khách hàng'">
+          <nz-input-group nzSearch [nzSuffix]="suffixIconSearch">
+            <input type="text" nz-input formControlName="comName" id="ComName" required />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+  <nz-divider nzText="Thông tin đăng ký" nzOrientation="center"></nz-divider>
+  <div nz-row>
+    <div nz-col nzSpan="12">
+      <nz-form-item>
+        <nz-form-label nzRequired nzFor="Bundle">Gói cước</nz-form-label>
+        <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng chọn gói cước'">
+          <nz-select nzAllowClear nzPlaceHolder="Chọn gói cước đăng ký" formControlName="bundle" id="Bundle">
+            <nz-option [nzValue]="item.bundle" *ngFor="let item of listOfBundle" [nzLabel]="item.bundle"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col nzSpan="12">
+      <nz-form-item>
+        <nz-form-label nzRequired nzFor="Domain">Tên miền</nz-form-label>
+        <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng nhập tên miền đăng ký'">
+          <nz-input-group nzSearch>
+            <input type="text" nz-input formControlName="domain" id="Domain" required />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+  <div nz-row>
+    <div nz-col nzSpan="11">
+      <nz-form-item>
+        <nz-form-label nzFor="RegistrationDate">Ngày đăng ký</nz-form-label>
+        <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng chọn Ngày đăng ký'">
+          <nz-date-picker formControlName="registrationDate" style="width: 100%;" nzFormat="dd/MM/yyyy"
+            [(ngModel)]="registrationDate" id="RegistrationDate"></nz-date-picker>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col nzSpan="2"></div>
+    <div nz-col nzSpan="11">
+      <nz-form-item>
+        <nz-form-label nzFor="ExpirationDate">Ngày hết hạn</nz-form-label>
+        <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng chọn ngày hết hạn'">
+          <nz-date-picker formControlName="expirationDate" style="width: 100%;" nzFormat="dd/MM/yyyy"
+            [(ngModel)]="expirationDate" id="ExpirationDate"></nz-date-picker>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+  <div nz-row>
+    <div nz-col nzSpan="11">
+      <nz-form-item>
+        <nz-form-label nzFor="IncomeDate">Tháng ghi doanh thu</nz-form-label>
+        <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng chọn ngày hết hạn'">
+          <nz-date-picker formControlName="incomeDate" style="width: 100%;" nzFormat="dd/MM/yyyy"
+            [(ngModel)]="incomeDate" id="IncomeDate"></nz-date-picker>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col nzSpan="2"></div>
+    <div nz-col nzSpan="11">
+      <nz-form-item>
+        <nz-form-label nzRequired nzFor="Income">Doanh thu</nz-form-label>
+        <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng nhập Doanh thu'">
+          <nz-input-group nzSearch nzAddOnAfter="VNĐ">
+            <input type="text" nz-input formControlName="income" id="Income" required style="text-align: right;"/>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+  <div nz-row>
+    <div nz-col nzSpan="12">
+      <nz-form-item>
+        <nz-form-label nzRequired nzFor="UserName">AM</nz-form-label>
+        <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng chọn AM phát triển'">
+          <nz-select nzAllowClear nzPlaceHolder="Chọn AM phát triển" formControlName="am" id="UserName">
+            <nz-option [nzValue]="item" *ngFor="let item of listOfUser" [nzLabel]="item.userName"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+  <div nz-row>
+    <div nz-col nzSpan="24">
+      <nz-form-item>
+        <nz-form-label nzFor="remark">Ghi chú</nz-form-label>
+        <nz-form-control>
+          <nz-textarea-count>
+            <textarea rows="4" formControlName="remark" nz-input></textarea>
+          </nz-textarea-count>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+</form>
+<div *nzModalFooter>
+  <button nz-button nzType="default" (click)="close()">Hủy</button>
+  <button nz-button nzType="primary" (click)="submitForm()">Thêm</button>
+</div>
+<ng-template #suffixIconSearch>
+  <i nz-icon nzType="search"></i>
+</ng-template>

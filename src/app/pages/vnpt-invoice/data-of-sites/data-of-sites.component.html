@@ -1,0 +1,117 @@
+<nz-breadcrumb nz-page-header-breadcrumb [nzAutoGenerate]="true">
+  <nz-breadcrumb-item>
+    <i nz-icon nzType="home"></i>
+  </nz-breadcrumb-item>
+</nz-breadcrumb>
+<br />
+<div nz-row nzJustify="center">
+  <nz-date-picker nzAllowClear="false" [nzSize]="'large'" nzMode="month" [nzFormat]="'MM/yyyy'" [(ngModel)]="date"
+    nzPlaceHolder="Chọn tháng cần xem" (ngModelChange)="getData($event)" style="width: 200px;"></nz-date-picker>
+</div>
+<br>
+<nz-divider nzText="1. THEO ĐƠN VỊ" nzOrientation="left" style="color: red;"></nz-divider>
+<div nz-col nzSpan="24">
+  <nz-table #basicTable nzShowPagination='false' nzBordered [nzLoading]=loading [nzData]="listOfDataDonvi">
+    <thead>
+      <tr>
+        <th nzAlign="center" rowspan="3">STT</th>
+        <th nzAlign="center" rowspan="3">Đơn vị</th>
+        <th nzAlign="center" colspan="4">Lũy kế</th>
+        <th nzAlign="center" colspan="5">Tháng {{ date | date: "MM/yyyy" }}</th>
+      </tr>
+      <tr>
+        <th nzAlign="center" rowspan="2">Tổng</th>
+        <th nzAlign="center" rowspan="2">Demo</th>
+        <th nzAlign="center" rowspan="2">Golive</th>
+        <th nzAlign="center" rowspan="2">Delete</th>
+        <th nzAlign="center" rowspan="2">Tổng</th>
+        <th nzAlign="center" colspan="3">Trong tháng</th>
+        <th nzAlign="center">Hiện hữu</th>
+      </tr>
+      <tr>
+        <th nzAlign="center">Tổng</th>
+        <th nzAlign="center">Demo</th>
+        <th nzAlign="center">Golive</th>
+        <th nzAlign="center">Golive</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngIf="listOfDataDonvi!=null || listOfDataDonvi!=''" style="font-weight: bold;color: red;">
+        <td colSpan="2" nzAlign="center">Tổng cộng</td>
+        <td nzAlign="center">{{summaryAccumulatedbyUnit}}</td>
+        <td nzAlign="center">{{sumCountDemoAccumulatedbyUnit}}</td>
+        <td nzAlign="center">{{sumCountGoliveAccumulatedbyUnit}}</td>
+        <td nzAlign="center">{{sumCountDeleteAccumulatedbyUnit}}</td>
+        <td nzAlign="center">{{sumaryMonth}}</td>
+        <td nzAlign="center">{{summaryInMonthbyUnit}}</td>
+        <td nzAlign="center">{{sumCountDemoInMonthbyUnit}}</td>
+        <td nzAlign="center">{{sumCountGoliveInMonthbyUnit}}</td>
+        <td nzAlign="center">{{sumCountGoliveInPastbyUnit}}</td>
+      </tr>
+      <tr *ngFor="let data of basicTable.data; index as i">
+        <td nzAlign="center">{{ i+1 }}</td>
+        <td nzAlign="center">{{data._id.unitCode}}</td>
+        <td nzAlign="center" style="font-weight: bold;">{{data.countDemoAccumulated + data.countGoliveAccumulated +
+          data.countDeleteAccumulated}}
+        </td>
+        <td nzAlign="center">{{data.countDemoAccumulated}}</td>
+        <td nzAlign="center">{{data.countGoliveAccumulated}}</td>
+        <td nzAlign="center">{{data.countDeleteAccumulated}}</td>
+        <td nzAlign="center" style="font-weight: bold;">{{data.countDemoInMonth + data.countGoliveInMonth +
+          data.countGoliveInPast}}</td>
+        <td nzAlign="center" style="font-weight: bold;">{{data.countDemoInMonth + data.countGoliveInMonth}}</td>
+        <td nzAlign="center">{{data.countDemoInMonth}}</td>
+        <td nzAlign="center">{{data.countGoliveInMonth}}</td>
+        <td nzAlign="center">{{data.countGoliveInPast}}</td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>
+
+
+
+<nz-divider nzText="2. THEO AM" nzOrientation="left" style="color: red;"></nz-divider>
+<div nz-col nzSpan="24">
+  <nz-table #basicTable2 nzShowPagination='false' nzTotal nzShowTotal nzBordered [nzLoading]=loading
+    [nzData]="listOfDataAM">
+    <thead>
+      <tr>
+        <th nzAlign="center" rowspan="3">STT</th>
+        <th nzAlign="center" rowspan="3">Đơn vị</th>
+        <th nzAlign="center" rowspan="3">AM</th>
+        <th nzAlign="center" colspan="5">Tháng {{ date | date: "MM/yyyy" }}</th>
+      </tr>
+      <tr>
+        <th nzAlign="center" rowspan="2">Tổng</th>
+        <th nzAlign="center" colspan="3">Trong tháng</th>
+        <th nzAlign="center" colspan="1">Hiện hữu</th>
+      </tr>
+      <tr>
+        <th nzAlign="center" nzWidth="15%">Tổng</th>
+        <th nzAlign="center" nzWidth="15%">Demo</th>
+        <th nzAlign="center" nzWidth="15%">Chính thức</th>
+        <th nzAlign="center" nzWidth="15%">Chính thức</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngIf="listOfDataAM!=''" style="font-weight: bold;color: red;">
+        <td colSpan="3" nzAlign="center">Tổng cộng</td>
+        <td nzAlign="center">{{sumCountDemoInMonthbyAM + sumCountGoliveInMonthbyAM + sumCountGoliveInPastbyAM}}</td>
+        <td nzAlign="center">{{sumCountDemoInMonthbyAM + sumCountGoliveInMonthbyAM}}</td>
+        <td nzAlign="center">{{sumCountDemoInMonthbyAM}}</td>
+        <td nzAlign="center">{{sumCountGoliveInMonthbyAM}}</td>
+        <td nzAlign="center">{{sumCountGoliveInPastbyAM}}</td>
+      </tr>
+      <tr *ngFor="let data of basicTable2.data ; index as i">
+        <td nzAlign="center">{{ i+1 }}</td>
+        <td nzAlign="center">{{data._id.unitCode}}</td>
+        <td nzAlign="left">{{data._id.userName}}</td>
+        <td nzAlign="center">{{data.countDemoInMonth + data.countGoliveInMonth + data.countGoliveInPast}}</td>
+        <td nzAlign="center">{{data.countDemoInMonth + data.countGoliveInMonth}}</td>
+        <td nzAlign="center">{{data.countDemoInMonth}}</td>
+        <td nzAlign="center">{{data.countGoliveInMonth}}</td>
+        <td nzAlign="center">{{data.countGoliveInPast}}</td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>

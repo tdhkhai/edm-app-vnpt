@@ -1,0 +1,11 @@
+<nz-upload [(nzFileList)]="fileList" [nzBeforeUpload]="beforeUpload">
+  <button nz-button><i nz-icon nzType="upload"></i>Chọn file import</button>
+</nz-upload>
+
+<div *nzModalFooter>
+  <button nz-button nzType="default" (click)="close()">Hủy</button>
+  <button nz-button [nzType]="'primary'" [nzLoading]="uploading" (click)="handleUpload()"
+    [disabled]="fileList.length == 0" style="margin-top: 16px">
+    {{ uploading ? 'Uploading' : 'Start Upload' }}
+  </button>
+</div>

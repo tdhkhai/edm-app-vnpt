@@ -1,0 +1,44 @@
+<h2 mat-dialog-title>THÊM DỊCH VỤ</h2>
+<mat-dialog-content>
+<form [formGroup]="serviceForm" (ngSubmit)="submitForm()">
+  <nz-form-item>
+    <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng nhập mã dịch vụ'">
+      <nz-input-group [nzPrefix]="prefixTemplateWriter">
+        <input type="text" nz-input placeholder="Nhập mã dịch vụ" formControlName="serviceCode" required/>
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng nhập tên dịch vụ'">
+      <nz-input-group [nzPrefix]="prefixTemplateWriter">
+        <input type="text" nz-input placeholder="Nhập tên dịch vụ" formControlName="serviceName" required/>
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng nhập thương hiệu dịch vụ'">
+      <nz-input-group [nzPrefix]="prefixTemplateWriter">
+        <input type="text" nz-input placeholder="Nhập thương hiệu dịch vụ" formControlName="serviceBrand" required/>
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng chọn loại dịch vụ'">
+      <nz-select nzAllowClear nzPlaceHolder="Chọn loại dịch vụ">
+        <nz-option [nzValue]="item.typeOfServiceName" *ngFor="let item of listOfData" [nzLabel]="item.typeOfServiceName"></nz-option>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-radio-group formControlName="status">
+      <label nz-radio nzValue="true">Kích hoạt</label>
+      <label nz-radio nzValue="false">Không kích hoạt</label>
+    </nz-radio-group>
+  </nz-form-item>
+</form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button [mat-dialog-close]="true">Hủy</button>
+  <button mat-button mat-raised-button color="primary" mat-dialog-close (click)="submitForm()" cdkFocusInitial>OK</button>
+</mat-dialog-actions>
+<ng-template #prefixTemplateWriter><i nz-icon nzType="edit" [nzTheme]="'fill'"></i></ng-template>

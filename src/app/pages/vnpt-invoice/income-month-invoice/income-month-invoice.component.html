@@ -1,0 +1,141 @@
+<nz-breadcrumb nz-page-header-breadcrumb [nzAutoGenerate]="true">
+  <nz-breadcrumb-item>
+    <i nz-icon nzType="home"></i>
+  </nz-breadcrumb-item>
+</nz-breadcrumb>
+<br />
+<div nz-row nzJustify="center">
+  <nz-date-picker  nzAllowClear="false" [nzSize]="'large'" nzMode="month" [nzFormat]="'MM/yyyy'" [(ngModel)]="date" nzPlaceHolder="Chọn tháng cần xem"
+    (ngModelChange)="sumaryTheoThang($event)" style="width: 200px;"></nz-date-picker>
+</div>
+<br>
+
+<nz-divider nzText="1. THEO ĐƠN VỊ" nzOrientation="left" style="color: red;"></nz-divider>
+<div nz-row>
+  <div nz-col nzSpan="12">
+    <nz-table #basicTable nzTotal nzShowTotal nzBordered [nzLoading]=loading [nzData]="listDTMoi.msg">
+      <thead>
+        <tr>
+
+          <th nzAlign="center" colspan="4">Mới</th>
+          <!-- <th>Thao tác</th> -->
+        </tr>
+        <tr>
+          <th nzAlign="center">STT</th>
+          <th nzAlign="center">Đơn vị</th>
+          <th nzAlign="center">Số lượng khách hàng</th>
+          <th nzAlign="center">Doanh thu</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngIf="listDTMoi!=''" style="font-weight: bold; color: red;">
+          <td colSpan="2" nzAlign="center">Tổng</td>
+          <td nzAlign="right" >{{sumSLKHMoi | currency: 'VND' : ''}}</td>
+          <td nzAlign="right">{{sumDTMoi| currency: 'VND' : ''}}</td>
+        </tr>
+        <tr *ngFor="let data of listDTMoi.msg ; index as i">
+          <td nzAlign="center">{{ i+1 }}</td>
+          <td>{{data._id}}</td>
+          <td nzAlign="right">{{data.count | currency: 'VND' : ''}}</td>
+          <td nzAlign="right">{{data.totalIncome | currency: 'VND' : ''}}</td>
+        </tr>
+      </tbody>
+    </nz-table>
+  </div>
+  <div nz-col nzSpan="12">
+    <nz-table #basicTable nzTotal nzShowTotal nzBordered [nzLoading]=loading [nzData]="listDTGH.msg">
+      <thead>
+        <tr>
+          <th nzAlign="center" colspan="4">Gia hạn</th>
+        </tr>
+        <tr>
+          <th nzAlign="center">STT</th>
+          <th nzAlign="center">Đơn vị</th>
+          <th nzAlign="center">Số lượng khách hàng</th>
+          <th nzAlign="center">Doanh thu</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngIf="listDTGH!=''" style="font-weight: bold; color: red">
+          <td colSpan="2" nzAlign="center">Tổng</td>
+          <td nzAlign="right" >{{sumSLKHGH | currency: 'VND' : ''}}</td>
+          <td nzAlign="right">{{sumDTGH| currency: 'VND' : ''}}</td>
+        </tr>
+        <tr *ngFor="let data of listDTGH.msg ; index as i">
+          <td nzAlign="center">{{ i+1 }}</td>
+          <td>{{data._id}}</td>
+          <td nzAlign="right">{{data.count | currency: 'VND' : ''}}</td>
+          <td nzAlign="right">{{data.totalIncome | currency: 'VND' : ''}}</td>
+        </tr>
+      </tbody>
+    </nz-table>
+  </div>
+</div>
+
+<nz-divider nzText="2. THEO AM" nzOrientation="left" style="color: red;"></nz-divider>
+<div nz-row>
+  <div nz-col nzSpan="12">
+    <nz-table nzTotal nzShowTotal nzBordered [nzLoading]=loading [nzData]="listDTMoiAM.msg">
+      <thead>
+        <tr>
+
+          <th nzAlign="center" colspan="5">Mới</th>
+          <!-- <th>Thao tác</th> -->
+        </tr>
+        <tr>
+          <th nzAlign="center">STT</th>
+          <th nzAlign="center">Đơn vị</th>
+          <th nzAlign="center">AM</th>
+          <th nzAlign="center">Số lượng khách hàng</th>
+          <th nzAlign="center">Doanh thu</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngIf="listDTMoiAM!=''" style="font-weight: bold; color: red">
+          <td colSpan="3" nzAlign="center">Tổng</td>
+          <td nzAlign="right" >{{sumSLKHMoiAM | currency: 'VND' : ''}}</td>
+          <td nzAlign="right">{{sumDTMoiAM | currency: 'VND' : ''}}</td>
+        </tr>
+        <tr *ngFor="let data of listDTMoiAM.msg ; index as i">
+          <td nzAlign="center">{{ i+1 }}</td>
+          <td>{{data._id.unitCode}}</td>
+          <td>{{data._id.userName}}</td>
+          <td nzAlign="right">{{data.count | currency: 'VND' : ''}}</td>
+          <td nzAlign="right">{{data.totalIncome | currency: 'VND' : ''}}</td>
+        </tr>
+
+      </tbody>
+    </nz-table>
+  </div>
+  <div nz-col nzSpan="12">
+    <nz-table nzTotal nzShowTotal nzBordered [nzLoading]=loading [nzData]="listDTGHAM.msg">
+      <thead>
+        <tr>
+          <th nzAlign="center" colspan="5">Gia hạn</th>
+        </tr>
+        <tr>
+          <th nzAlign="center">STT</th>
+          <th nzAlign="center">Đơn vị</th>
+          <th nzAlign="center">AM</th>
+          <th nzAlign="center">Số lượng khách hàng</th>
+          <th nzAlign="center">Doanh thu</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngIf="listDTGHAM!=''" style="font-weight: bold; color: red">
+          <td colSpan="3" nzAlign="center">Tổng</td>
+          <td nzAlign="right" >{{sumSLKHGHAM | currency: 'VND' : ''}}</td>
+          <td nzAlign="right">{{sumDTGHAM | currency: 'VND' : ''}}</td>
+        </tr>
+        <tr *ngFor="let data of listDTGHAM.msg ; index as i">
+          <td nzAlign="center">{{ i+1 }}</td>
+          <td>{{data._id.unitCode}}</td>
+          <td>{{data._id.userName}}</td>
+          <td nzAlign="right">{{data.count | currency: 'VND' : ''}}</td>
+          <td nzAlign="right">{{data.totalIncome | currency: 'VND' : ''}}</td>
+        </tr>
+
+      </tbody>
+    </nz-table>
+  </div>
+</div>

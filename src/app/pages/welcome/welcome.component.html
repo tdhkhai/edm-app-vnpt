@@ -1,0 +1,231 @@
+<nz-breadcrumb nz-page-header-breadcrumb [nzAutoGenerate]="true">
+  <nz-breadcrumb-item>
+    <i nz-icon nzType="home"></i>
+  </nz-breadcrumb-item>
+</nz-breadcrumb>
+<br />
+
+<!-- Hóa đơn điện tử -->
+<div nz-row [nzGutter]="24">
+  <div nz-col class="gutter-row" [nzSpan]="24">
+    <nz-card nzTitle="Dịch vụ Hóa đơn điện tử" >
+      <div nz-row [nzGutter]="24">
+        <div nz-col class="gutter-row" [nzSpan]="6">
+          <nz-statistic [nzValue]="allCusDemoInvoice" [nzTitle]="'Khách hàng Demo'" [nzPrefix]="prefixTplOne"
+            [nzSuffix]="'khách hàng'" [nzValueStyle]="{ color: '#3F8600' }">
+          </nz-statistic>
+          <nz-statistic [nzValue]="allCusGoliveInvoice" [nzTitle]="'Khách hàng Golive'" [nzPrefix]="prefixTplOne"
+            [nzSuffix]="'khách hàng'" [nzValueStyle]="{ color: '#3F8600' }">
+          </nz-statistic>
+          <ng-template #prefixTplOne><i nz-icon nzType="arrow-up"></i></ng-template>
+          <nz-statistic [nzValue]="allCusExtendInvoice" [nzTitle]="'Khách hàng Gia hạn'" [nzPrefix]="prefixTplTwo"
+            [nzSuffix]="'khách hàng'" [nzValueStyle]="{ color: 'red' }">
+          </nz-statistic>
+          <ng-template #prefixTplTwo><i nz-icon nzType="arrow-down"></i></ng-template>
+        </div>
+        <div nz-col class="gutter-row" [nzSpan]="18">
+          <nz-table [nzTemplateMode]="true" nzBordered>
+            <thead>
+              <tr>
+                <th nzAlign="center">STT</th>
+                <th nzAlign="center">Năm</th>
+                <th nzAlign="center">Demo</th>
+                <th nzAlign="center">Golive</th>
+                <th nzAlign="center">Gia hạn</th>
+                <th nzAlign="center">Xóa</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let data of countInvoices; index as i">
+                <td nzAlign="center">{{ i+1 }}</td>
+                <td nzAlign="center">{{data._id.year}}</td>
+                <td nzAlign="center">{{data.countDemo}}</td>
+                <td nzAlign="center">{{data.countGolive}}</td>
+                <td nzAlign="center">{{data.countExtend}}</td>
+                <td nzAlign="center">{{data.countDelete}}</td>
+              </tr>
+            </tbody>
+          </nz-table>
+        </div>
+      </div>
+    </nz-card>
+  </div>
+</div>
+<br>
+
+<!-- Đầu số 1800 - 1900 -->
+<div nz-row [nzGutter]="24">
+  <div nz-col class="gutter-row" [nzSpan]="24">
+    <nz-card nzTitle="Dịch vụ 1800 - 1900" >
+      <div nz-row [nzGutter]="24">
+        <div nz-col class="gutter-row" [nzSpan]="6">
+          <nz-statistic [nzValue]="allCusActivedDauso" [nzTitle]="'Tổng số khách hàng'" [nzPrefix]="prefixTplOne"
+            [nzSuffix]="'khách hàng'" [nzValueStyle]="{ color: '#3F8600' }">
+          </nz-statistic>
+          <ng-template #prefixTplOne><i nz-icon nzType="arrow-up"></i></ng-template>
+          <nz-statistic [nzValue]="allCusCanceledDauso" [nzTitle]="'Số khách hàng hủy'" [nzPrefix]="prefixTplTwo"
+            [nzSuffix]="'khách hàng'" [nzValueStyle]="{ color: 'red' }">
+          </nz-statistic>
+          <ng-template #prefixTplTwo><i nz-icon nzType="arrow-down"></i></ng-template>
+        </div>
+        <div nz-col class="gutter-row" [nzSpan]="18">
+          <nz-table [nzTemplateMode]="true" nzBordered>
+            <thead>
+              <tr>
+                <th nzAlign="center">STT</th>
+                <th nzAlign="center">Năm</th>
+                <th nzAlign="center">Tổng số khách hàng</th>
+                <th nzAlign="center">Số khách hàng PTM</th>
+                <th nzAlign="center">Số khách hàng Hủy</th>
+                <th nzAlign="center">Số khách hàng Cần gia hạn</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let data of countDauso; index as i">
+                <td nzAlign="center">{{ i+1 }}</td>
+                <td nzAlign="center">{{data._id.year}}</td>
+                <td nzAlign="center">{{data.countAll}}</td>
+                <td nzAlign="center">{{data.countActived}}</td>
+                <td nzAlign="center">{{data.countCanceled}}</td>
+                <td nzAlign="center"></td>
+              </tr>
+            </tbody>
+          </nz-table>
+        </div>
+      </div>
+    </nz-card>
+  </div>
+</div>
+<br>
+<!-- IDC -->
+<div nz-row [nzGutter]="24">
+  <div nz-col class="gutter-row" [nzSpan]="24">
+    <nz-card nzTitle="Dịch vụ Hạ tầng lưu trữ">
+      <div nz-row [nzGutter]="24">
+        <div nz-col class="gutter-row" [nzSpan]="6">
+          <nz-statistic [nzValue]="allCusIDC" [nzTitle]="'Tổng số khách hàng'" [nzPrefix]="prefixTplOne"
+            [nzSuffix]="'khách hàng'" [nzValueStyle]="{ color: '#3F8600' }">
+          </nz-statistic>
+          <ng-template #prefixTplOne><i nz-icon nzType="arrow-up"></i></ng-template>
+          <nz-statistic [nzValue]="allCusCanceledIDC" [nzTitle]="'Số khách hàng hủy'" [nzPrefix]="prefixTplTwo"
+            [nzSuffix]="'khách hàng'" [nzValueStyle]="{ color: 'red' }">
+          </nz-statistic>
+          <ng-template #prefixTplTwo><i nz-icon nzType="arrow-down"></i></ng-template>
+        </div>
+        <div nz-col class="gutter-row" [nzSpan]="18">
+          <nz-table [nzTemplateMode]="true" nzBordered>
+            <thead>
+              <tr>
+                <th nzAlign="center">STT</th>
+                <th nzAlign="center">Năm</th>
+                <th nzAlign="center">Tổng số khách hàng</th>
+                <th nzAlign="center">Số khách hàng PTM</th>
+                <th nzAlign="center">Số khách hàng Hủy</th>
+                <th nzAlign="center">Số khách hàng Cần gia hạn</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let data of countIDC; index as i">
+                <td nzAlign="center">{{ i+1 }}</td>
+                <td nzAlign="center">{{data._id.year}}</td>
+                <td nzAlign="center">{{data.countAll}}</td>
+                <td nzAlign="center">{{data.countActived}}</td>
+                <td nzAlign="center">{{data.countCanceled}}</td>
+                <td nzAlign="center"></td>
+              </tr>
+            </tbody>
+          </nz-table>
+        </div>
+      </div>
+    </nz-card>
+  </div>
+</div>
+<br>
+<!-- Domain -->
+<div nz-row [nzGutter]="24">
+  <div nz-col class="gutter-row" [nzSpan]="24">
+    <nz-card nzTitle="Dịch vụ Tên miền Việt Nam - Tên miền Quốc tế">
+      <div nz-row [nzGutter]="24">
+        <div nz-col class="gutter-row" [nzSpan]="6">
+          <nz-statistic [nzValue]="allCusActivedDomain" [nzTitle]="'Tổng số khách hàng'" [nzPrefix]="prefixTplOne"
+            [nzSuffix]="'khách hàng'" [nzValueStyle]="{ color: '#3F8600' }">
+          </nz-statistic>
+          <ng-template #prefixTplOne><i nz-icon nzType="arrow-up"></i></ng-template>
+          <nz-statistic [nzValue]="allCusCanceledDomain" [nzTitle]="'Số khách hàng hủy'" [nzPrefix]="prefixTplTwo"
+            [nzSuffix]="'khách hàng'" [nzValueStyle]="{ color: 'red' }">
+          </nz-statistic>
+          <ng-template #prefixTplTwo><i nz-icon nzType="arrow-down"></i></ng-template>
+        </div>
+        <div nz-col class="gutter-row" [nzSpan]="18">
+          <nz-table [nzTemplateMode]="true" nzBordered>
+            <thead>
+              <tr>
+                <th nzAlign="center">STT</th>
+                <th nzAlign="center">Năm</th>
+                <th nzAlign="center">Tổng số khách hàng</th>
+                <th nzAlign="center">Số khách hàng PTM</th>
+                <th nzAlign="center">Số khách hàng Hủy</th>
+                <th nzAlign="center">Số khách hàng Cần gia hạn</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let data of countDomain; index as i">
+                <td nzAlign="center">{{ i+1 }}</td>
+                <td nzAlign="center">{{data._id.year}}</td>
+                <td nzAlign="center">{{data.countAll}}</td>
+                <td nzAlign="center">{{data.countActived}}</td>
+                <td nzAlign="center">{{data.countCanceled}}</td>
+                <td nzAlign="center">{{data.countCusExpired}}</td>
+              </tr>
+            </tbody>
+          </nz-table>
+        </div>
+      </div>
+    </nz-card>
+  </div>
+</div>
+<br>
+<!-- Webhosting -->
+<div nz-row [nzGutter]="24">
+  <div nz-col class="gutter-row" [nzSpan]="24">
+    <nz-card nzTitle="Dịch vụ Webhosting">
+      <div nz-row [nzGutter]="24">
+        <div nz-col class="gutter-row" [nzSpan]="6">
+          <nz-statistic [nzValue]="allCusActivedWebhosting" [nzTitle]="'Tổng số khách hàng'" [nzPrefix]="prefixTplOne"
+            [nzSuffix]="'khách hàng'" [nzValueStyle]="{ color: '#3F8600' }">
+          </nz-statistic>
+          <ng-template #prefixTplOne><i nz-icon nzType="arrow-up"></i></ng-template>
+          <nz-statistic [nzValue]="allCusCanceledWebhosting" [nzTitle]="'Số khách hàng hủy'" [nzPrefix]="prefixTplTwo"
+            [nzSuffix]="'khách hàng'" [nzValueStyle]="{ color: 'red' }">
+          </nz-statistic>
+          <ng-template #prefixTplTwo><i nz-icon nzType="arrow-down"></i></ng-template>
+        </div>
+        <div nz-col class="gutter-row" [nzSpan]="18">
+          <nz-table [nzTemplateMode]="true" nzBordered>
+            <thead>
+              <tr>
+                <th nzAlign="center">STT</th>
+                <th nzAlign="center">Năm</th>
+                <th nzAlign="center">Tổng số khách hàng</th>
+                <th nzAlign="center">Số khách hàng PTM</th>
+                <th nzAlign="center">Số khách hàng Hủy</th>
+                <th nzAlign="center">Số khách hàng Cần gia hạn</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let data of countWebhosting; index as i">
+                <td nzAlign="center">{{ i+1 }}</td>
+                <td nzAlign="center">{{data._id.year}}</td>
+                <td nzAlign="center">{{data.countAll}}</td>
+                <td nzAlign="center">{{data.countActived}}</td>
+                <td nzAlign="center">{{data.countCanceled}}</td>
+                <td nzAlign="center"></td>
+              </tr>
+            </tbody>
+          </nz-table>
+        </div>
+      </div>
+    </nz-card>
+  </div>
+</div>
+

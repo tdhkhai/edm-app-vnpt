@@ -1,0 +1,33 @@
+<h2 mat-dialog-title>CHỈNH SỬA PHÒNG - BAN</h2>
+<mat-dialog-content>
+  <form [formGroup]="unitForm" (ngSubmit)="submitUnitForm()">
+    <nz-form-item>
+      <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng nhập mã Phòng - Ban'">
+        <nz-input-group [nzPrefix]="prefixTemplateWriter">
+          <input required type="text" nz-input placeholder="Nhập mã Phòng - Ban" formControlName="unitCode"
+            [(ngModel)]="this.unit.unitCode" />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng nhập tên Phòng - Ban'">
+        <nz-input-group [nzPrefix]="prefixTemplateWriter">
+          <input required type="text" nz-input placeholder="Nhập tên Phòng - Ban" formControlName="unitName"
+            [(ngModel)]="this.unit.unitName" />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-radio-group formControlName="status" [(ngModel)]="this.unit.status">
+        <label nz-radio [nzValue]="true">Kích hoạt</label>
+        <label nz-radio [nzValue]="false">Không kích hoạt</label>
+      </nz-radio-group>
+    </nz-form-item>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button [mat-dialog-close]="true">Hủy</button>
+  <button mat-button mat-raised-button color="primary" mat-dialog-close (click)="submitUnitForm()"
+    cdkFocusInitial>OK</button>
+</mat-dialog-actions>
+<ng-template #prefixTemplateWriter><i nz-icon nzType="edit" [nzTheme]="'fill'"></i></ng-template>

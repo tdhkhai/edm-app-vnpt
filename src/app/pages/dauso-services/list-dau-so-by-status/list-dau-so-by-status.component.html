@@ -1,0 +1,50 @@
+<nz-page-header class="site-page-header">
+  <nz-page-header-extra>
+    <button nz-button nzType="primary" nzType="dashed" (click)="exportExcel()">
+      <i nz-icon [nzType]="'download'" [nzTheme]="'outline'"></i>Export
+    </button>
+  </nz-page-header-extra>
+</nz-page-header>
+<ng-template #totalTemplate>Tổng cộng {{ listOfData.length }}</ng-template>
+
+<nz-table #basicTable [nzData]="listOfData" nzBordered [nzShowTotal]="totalTemplate" nzShowSizeChanger [nzPageSize]="10"
+  [nzPageIndex]="1" [nzTotal]="listOfData.length" [nzPaginationPosition]="'bottom'" nzHideOnSinglePage="true" [nzLoading]="loading">
+  <!-- <ng-template pTemplate="header"> -->
+  <thead>
+    <tr>
+      <th nzAlign="center" style="width: 4%;">STT</th>
+      <th nzAlign="center" style="width: 10%;">Trạng thái</th>
+      <th nzAlign="center" style="width: 15%;">AM</th>
+      <th nzAlign="center" style="width: 15%;">MST</th>
+      <th nzAlign="center">Tên KH</th>
+    </tr>
+  </thead>
+  <!-- </ng-template> -->
+  <tbody>
+    <!-- <ng-template pTemplate="body" let-data let-i="rowIndex"> -->
+    <tr *ngFor="let data of basicTable.data; index as i">
+      <td nzAlign="center">{{ i + 1}}</td>
+      <td nzAlign="center">
+        <span [ngSwitch]="data.status">
+          <p *ngSwitchCase="'1'">
+            <span style="color: green;">ĐANG SỬ DỤNG</span>
+          </p>
+          <p *ngSwitchCase="'3'">
+            <span style="color: green;">Hủy</span>
+          </p>
+          <p *ngSwitchDefault>
+            <span class="p-tag">Null</span>
+          </p>
+        </span>
+      </td>
+      <td nzAlign="center">
+        <span nz-tooltip nzTooltipTitle="{{ data.am.unitCode }}">{{
+          data.am.userName
+          }}</span>
+      </td>
+      <td nzAlign="center">{{ data.comTaxCode }}</td>
+      <td>{{ data.comName }}</td>
+    </tr>
+    <!-- </ng-template> -->
+  </tbody>
+</nz-table>

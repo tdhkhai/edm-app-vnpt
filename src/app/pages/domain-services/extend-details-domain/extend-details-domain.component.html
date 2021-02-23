@@ -1,0 +1,76 @@
+<form nz-form [formGroup]="extendForm" (ngSubmit)="submitForm()">
+  <div nz-row>
+    <div nz-col nzSpan="12">
+      <nz-form-item>
+        <nz-form-label nzRequired nzFor="NumberOfExtend">Lần gia hạn</nz-form-label>
+        <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng nhập lần thứ gia hạn'">
+          <nz-input-group>
+            <input type="text" nz-input formControlName="numberOfExtend" id="NumberOfExtend" required />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+  <div nz-row>
+    <div nz-col nzSpan="11">
+      <nz-form-item>
+        <nz-form-label nzRequired nzFor="FromDate">Ngày gia hạn</nz-form-label>
+        <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng chọn Ngày gia hạn'">
+          <nz-date-picker formControlName="fromDate" style="width: 100%;" nzFormat="dd/MM/yyyy" [(ngModel)]="fromDate"
+            id="FromDate"></nz-date-picker>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col nzSpan="2"></div>
+    <div nz-col nzSpan="11">
+      <nz-form-item>
+        <nz-form-label nzRequired nzFor="ToDate">Ngày hết hạn</nz-form-label>
+        <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng chọn ngày hết hạn'">
+          <nz-date-picker formControlName="toDate" style="width: 100%;" nzFormat="dd/MM/yyyy" [(ngModel)]="toDate"
+            id="ToDate"></nz-date-picker>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+  <div nz-row>
+    <div nz-col nzSpan="11">
+      <nz-form-item>
+        <nz-form-label nzRequired nzFor="IncomeDate">Tháng ghi doanh thu</nz-form-label>
+        <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng chọn ngày hết hạn'">
+          <nz-date-picker formControlName="incomeDate" style="width: 100%;" nzFormat="dd/MM/yyyy"
+            [(ngModel)]="incomeDate" id="IncomeDate"></nz-date-picker>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col nzSpan="2"></div>
+    <div nz-col nzSpan="11">
+      <nz-form-item>
+        <nz-form-label nzRequired nzFor="Income">Doanh thu</nz-form-label>
+        <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng nhập Doanh thu'">
+          <nz-input-group nzSearch nzAddOnAfter="VNĐ">
+            <input type="text" nz-input formControlName="income" id="Income" required style="text-align: right;" />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+  <div nz-row>
+    <div nz-col nzSpan="24">
+      <nz-form-item>
+        <nz-form-label nzFor="remark">Ghi chú</nz-form-label>
+        <nz-form-control>
+          <nz-textarea-count>
+            <textarea rows="4" formControlName="remark" nz-input></textarea>
+          </nz-textarea-count>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+</form>
+<div *nzModalFooter>
+  <button nz-button nzType="default" (click)="close()">Hủy</button>
+  <button nz-button nzType="primary" (click)="submitForm()">Thêm</button>
+</div>
+<ng-template #suffixIconSearch>
+  <i nz-icon nzType="search"></i>
+</ng-template>

@@ -1,0 +1,190 @@
+<nz-page-header class="site-page-header">
+  <nz-page-header-title>TOOL MẪU HÓA ĐƠN ĐIỆN TỬ</nz-page-header-title>
+
+  <nz-breadcrumb nz-page-header-breadcrumb [nzAutoGenerate]="true">
+    <nz-breadcrumb-item>
+      <i nz-icon nzType="home"></i>
+    </nz-breadcrumb-item>
+  </nz-breadcrumb>
+
+  <nz-page-header-extra>
+    <button nz-button nzType="danger" nzType="dashed" (click)="importExcel()"><i nz-icon [nzType]="'upload'"
+        [nzTheme]="'outline'"></i>Import</button>
+    <button nz-button nzType="primary" nzType="dashed" (click)="exportExcel()"><i nz-icon [nzType]="'download'"
+        [nzTheme]="'outline'"></i>Export</button>
+    <button nz-button nzType="primary" (click)="showCreate()"><i nz-icon nzType="plus"
+        nzTheme="outline"></i>Thêm</button>
+  </nz-page-header-extra>
+</nz-page-header>
+
+<div nz-row>
+  <!-- <nz-divider nzText="MẪU HÓA ĐƠN GIÁ TRỊ GIA TĂNG (GTGT)"></nz-divider> -->
+  <nz-collapse style="width: 100%;">
+    <nz-collapse-panel [nzHeader]="'MẪU HÓA ĐƠN GIÁ TRỊ GIA TĂNG (GTGT)'">
+      <div style="background: #ECECEC;padding:30px;">
+        <div nz-row>
+          <div nz-col [nzSpan]="8">
+            <nz-card nzHoverable [nzCover]="coverTemplate">
+              <nz-card-meta nzTitle="Mẫu 1 (1 Thuế suất)"></nz-card-meta>
+              <div nz-row nzJustify="space-around" nzAlign="middle">
+                <nz-page-header-extra>
+                  <button nz-button nzType="primary" (click)="showCreate()"><i nz-icon nzType="setting"
+                      nzTheme="outline"></i>Cấu hình</button>
+                  <button nz-button nzType="primary" (click)="showCreate()"><i nz-icon nzType="download"
+                      nzTheme="outline"></i>Tải mẫu</button>
+                </nz-page-header-extra>
+              </div>
+              <div nz-row nzJustify="space-around" nzAlign="middle">
+                <nz-page-header-extra>
+                  <button nz-button nzType="primary" (click)="showCreate()"><i nz-icon nzType="search"
+                      nzTheme="outline"></i>Xem mẫu</button>
+                </nz-page-header-extra>
+              </div>
+            </nz-card>
+            <ng-template #coverTemplate>
+              <img alt="example" src="../../../../assets/images/invoice-example/Mau 1.jpg" height="425px" />
+            </ng-template>
+          </div>
+          <div nz-col [nzSpan]="8">
+            <nz-card nzHoverable [nzCover]="coverTemplate2">
+              <nz-card-meta nzTitle="Mẫu 2 (1 Thuế suất)"></nz-card-meta>
+              <div nz-row nzJustify="space-around" nzAlign="middle">
+                <nz-page-header-extra>
+                  <button nz-button nzType="primary" (click)="showCreate()"><i nz-icon nzType="setting"
+                      nzTheme="outline"></i>Cấu hình</button>
+                  <button nz-button nzType="primary" (click)="showCreate()"><i nz-icon nzType="download"
+                      nzTheme="outline"></i>Tải mẫu</button>
+                </nz-page-header-extra>
+              </div>
+              <div nz-row nzJustify="space-around" nzAlign="middle">
+                <nz-page-header-extra>
+                  <button nz-button nzType="primary" (click)="showCreate()"><i nz-icon nzType="search"
+                      nzTheme="outline"></i>Xem mẫu</button>
+                </nz-page-header-extra>
+              </div>
+            </nz-card>
+            <ng-template #coverTemplate2>
+              <img alt="example" src="../../../../assets/images/invoice-example/Mau 2.png" height="425px" />
+            </ng-template>
+          </div>
+          <div nz-col [nzSpan]="8">
+            <nz-card nzHoverable [nzCover]="coverTemplate3">
+              <nz-card-meta nzTitle="Mẫu 3 (1 Thuế suất)"></nz-card-meta>
+              <div nz-row nzJustify="space-around" nzAlign="middle">
+                <nz-page-header-extra>
+                  <button nz-button nzType="primary" (click)="showCreate()"><i nz-icon nzType="setting"
+                      nzTheme="outline"></i>Cấu hình</button>
+                  <button nz-button nzType="primary" (click)="showCreate()"><i nz-icon nzType="download"
+                      nzTheme="outline"></i>Tải mẫu</button>
+                </nz-page-header-extra>
+              </div>
+              <div nz-row nzJustify="space-around" nzAlign="middle">
+                <nz-page-header-extra>
+                  <button nz-button nzType="primary" (click)="showCreate()"><i nz-icon nzType="search"
+                      nzTheme="outline"></i>Xem mẫu</button>
+                </nz-page-header-extra>
+              </div>
+            </nz-card>
+            <ng-template #coverTemplate3>
+              <img alt="example" src="../../../../assets/images/invoice-example/Mau 3.jpg" height="425px" />
+            </ng-template>
+          </div>
+        </div>
+      </div>
+    </nz-collapse-panel>
+
+    <nz-collapse-panel [nzHeader]="'MẪU HÓA ĐƠN BÁN HÀNG'">
+      <div style="background: #ECECEC;padding:30px;width: 100%;">
+        <div nz-row>
+          <div nz-col [nzSpan]="8">
+            <nz-card nzHoverable [nzCover]="coverTemplate">
+              <nz-card-meta nzTitle="Europe Street beat" nzDescription="www.instagram.com"></nz-card-meta>
+            </nz-card>
+            <ng-template #coverTemplate>
+              <img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />
+            </ng-template>
+          </div>
+          <div nz-col [nzSpan]="8">
+            <nz-card nzHoverable [nzCover]="coverTemplate">
+              <nz-card-meta nzTitle="Europe Street beat" nzDescription="www.instagram.com"></nz-card-meta>
+            </nz-card>
+            <ng-template #coverTemplate>
+              <img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />
+            </ng-template>
+          </div>
+          <div nz-col [nzSpan]="8">
+            <nz-card nzHoverable [nzCover]="coverTemplate">
+              <nz-card-meta nzTitle="Europe Street beat" nzDescription="www.instagram.com"></nz-card-meta>
+            </nz-card>
+            <ng-template #coverTemplate>
+              <img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />
+            </ng-template>
+          </div>
+        </div>
+      </div>
+    </nz-collapse-panel>
+
+    <nz-collapse-panel [nzHeader]="'MẪU PHIẾU XUẤT KHO KIÊM VẬN CHUYỂN NỘI BỘ'">
+      <div style="background: #ECECEC;padding:30px;width: 100%;">
+        <div nz-row>
+          <div nz-col [nzSpan]="8">
+            <nz-card nzHoverable [nzCover]="coverTemplate">
+              <nz-card-meta nzTitle="Europe Street beat" nzDescription="www.instagram.com"></nz-card-meta>
+            </nz-card>
+            <ng-template #coverTemplate>
+              <img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />
+            </ng-template>
+          </div>
+          <div nz-col [nzSpan]="8">
+            <nz-card nzHoverable [nzCover]="coverTemplate">
+              <nz-card-meta nzTitle="Europe Street beat" nzDescription="www.instagram.com"></nz-card-meta>
+            </nz-card>
+            <ng-template #coverTemplate>
+              <img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />
+            </ng-template>
+          </div>
+          <div nz-col [nzSpan]="8">
+            <nz-card nzHoverable [nzCover]="coverTemplate">
+              <nz-card-meta nzTitle="Europe Street beat" nzDescription="www.instagram.com"></nz-card-meta>
+            </nz-card>
+            <ng-template #coverTemplate>
+              <img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />
+            </ng-template>
+          </div>
+        </div>
+      </div>
+    </nz-collapse-panel>
+
+    <nz-collapse-panel [nzHeader]="'MẪU VÉ/ TEM ĐIỆN TỬ'">
+      <div style="background: #ECECEC;padding:30px;width: 100%;">
+        <div nz-row>
+          <div nz-col [nzSpan]="8">
+            <nz-card nzHoverable [nzCover]="coverTemplate">
+              <nz-card-meta nzTitle="Europe Street beat" nzDescription="www.instagram.com"></nz-card-meta>
+            </nz-card>
+            <ng-template #coverTemplate>
+              <img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />
+            </ng-template>
+          </div>
+          <div nz-col [nzSpan]="8">
+            <nz-card nzHoverable [nzCover]="coverTemplate">
+              <nz-card-meta nzTitle="Europe Street beat" nzDescription="www.instagram.com"></nz-card-meta>
+            </nz-card>
+            <ng-template #coverTemplate>
+              <img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />
+            </ng-template>
+          </div>
+          <div nz-col [nzSpan]="8">
+            <nz-card nzHoverable [nzCover]="coverTemplate">
+              <nz-card-meta nzTitle="Europe Street beat" nzDescription="www.instagram.com"></nz-card-meta>
+            </nz-card>
+            <ng-template #coverTemplate>
+              <img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />
+            </ng-template>
+          </div>
+        </div>
+      </div>
+    </nz-collapse-panel>
+  </nz-collapse>
+
+</div>

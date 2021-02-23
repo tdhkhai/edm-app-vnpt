@@ -1,0 +1,48 @@
+<nz-page-header class="site-page-header">
+  <nz-page-header-title>DANH SÁCH DỊCH VỤ</nz-page-header-title>
+
+  <nz-breadcrumb nz-page-header-breadcrumb [nzAutoGenerate]="true">
+    <nz-breadcrumb-item>
+      <i nz-icon nzType="home"></i>
+    </nz-breadcrumb-item>
+  </nz-breadcrumb>
+
+  <nz-page-header-extra>
+    <button nz-button nzType="primary" (click)="showCreate()"><i nz-icon nzType="plus"
+        nzTheme="outline"></i>Thêm</button>
+  </nz-page-header-extra>
+</nz-page-header>
+
+<nz-table #basicTable [nzData]="listOfData">
+  <thead>
+    <tr>
+      <th>STT</th>
+      <th>Viết tắt</th>
+      <th>Tên dịch vụ</th>
+      <th>Tên loại Dịch vụ</th>
+      <th>Trạng thái</th>
+      <th>Thao tác</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of basicTable.data ; index as i">
+      <td>{{ i+1 }}</td>
+      <td>{{ data.serviceBrand }}</td>
+      <td>{{ data.serviceName }}</td>
+      <td>{{ data.typeOfServiceName }}</td>
+      <ng-container *ngIf="data.status; else elseTemplate">
+        <td><i nz-icon nzType="unlock" nzTheme="fill"></i></td>
+      </ng-container>
+      <ng-template #elseTemplate>
+        <td><i nz-icon nzType="lock" nzTheme="fill"></i></td>
+      </ng-template>
+      <td>
+        <a><i nz-icon nzType="edit" nzTheme="twotone" (click)="showUpdate(data)"></i></a>
+        <nz-divider nzType="vertical"></nz-divider>
+        <a nz-popconfirm nzPopconfirmTitle="Bạn thật sự muốn xóa?" nzPopconfirmPlacement="topRight"
+          (nzOnConfirm)="confirmDelete(data)" (nzOnCancel)="cancel()"><i nz-icon nzType="delete" [nzTheme]="'twotone'"
+            [nzTwotoneColor]="'#eb2f96'"></i></a>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>

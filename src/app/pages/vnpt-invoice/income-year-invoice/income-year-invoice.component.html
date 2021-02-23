@@ -1,0 +1,112 @@
+<nz-breadcrumb nz-page-header-breadcrumb [nzAutoGenerate]="true">
+  <nz-breadcrumb-item>
+    <i nz-icon nzType="home"></i>
+  </nz-breadcrumb-item>
+</nz-breadcrumb>
+<nz-divider nzText="THEO ĐƠN VỊ" nzOrientation="center"></nz-divider>
+
+<nz-table #basicTable [nzData]="listOfData">
+  <thead>
+    <tr>
+      <th nzAlign="center">STT</th>
+      <th nzAlign="center">Đơn vị</th>
+      <th nzAlign="center">Tháng 01</th>
+      <th nzAlign="center">Tháng 02</th>
+      <th nzAlign="center">Tháng 03</th>
+      <th nzAlign="center">Tháng 04</th>
+      <th nzAlign="center">Tháng 05</th>
+      <th nzAlign="center">Tháng 06</th>
+      <th nzAlign="center">Tháng 07</th>
+      <th nzAlign="center">Tháng 08</th>
+      <th nzAlign="center">Tháng 09</th>
+      <th nzAlign="center">Tháng 10</th>
+      <th nzAlign="center">Tháng 11</th>
+      <th nzAlign="center">Tháng 12</th>
+      <!-- <th>Thao tác</th> -->
+    </tr>
+  </thead>
+  <tbody>
+    <!-- <tr *ngFor="let data of listOfData ; index as i"> -->
+      <!-- <td>{{ i+1 }}</td>
+      <td>{{data.status}}</td>
+      <td>{{data.monthAction |  date:'MM/yyyy'}}</td>
+      <td><span nz-tooltip nzTooltipTitle="{{data.unitCode}}">{{data.userName}}</span></td>
+      <td>{{data.comTaxCode}}</td>
+      <td>{{data.comName}}</td>
+      <td>{{data.dateDemo |  date:'dd/MM/yyyy'}}</td>
+      <td>{{data.dateGolive |  date:'dd/MM/yyyy'}}</td>
+      <td style="text-align: left;">{{data.amount}}</td>
+      <td>
+        <ng-container *ngIf="data.incomeDate !== ''; else elseTemplate">
+          <span nz-tooltip nzTooltipTitle="Tháng {{data.incomeDate |  date:'MM/yyyy'}} - {{data.typeOfIncome}}">
+            <i nz-icon nzType="money-collect" nzTheme="twotone" nzTwotoneColor="#008000"></i>
+          </span>
+        </ng-container>
+        <ng-template #elseTemplate>
+          <i nz-icon nzType="close-circle" nzTheme="twotone" nzTwotoneColor="#FF0000"></i>
+        </ng-template>
+      </td>
+      <td>
+        <a><i nz-icon nzType="edit" nzTheme="twotone"></i></a>
+        <nz-divider nzType="vertical"></nz-divider>
+        <a nz-popconfirm nzPopconfirmTitle="Bạn thật sự muốn xóa?" nzPopconfirmPlacement="topRight"
+          (nzOnConfirm)="confirmDelete(data)" (nzOnCancel)="cancel()"><i nz-icon nzType="delete" [nzTheme]="'twotone'"
+            [nzTwotoneColor]="'#eb2f96'"></i></a>
+      </td> -->
+    <!-- </tr> -->
+  </tbody>
+</nz-table>
+<nz-divider nzText="THEO AM" nzOrientation="center"></nz-divider>
+
+<nz-table #basicTable2 [nzData]="listOfData">
+  <thead>
+    <tr>
+      <th nzAlign="center">STT</th>
+      <th nzAlign="center">AM</th>
+      <th nzAlign="center">Tháng 01</th>
+      <th nzAlign="center">Tháng 02</th>
+      <th nzAlign="center">Tháng 03</th>
+      <th nzAlign="center">Tháng 04</th>
+      <th nzAlign="center">Tháng 05</th>
+      <th nzAlign="center">Tháng 06</th>
+      <th nzAlign="center">Tháng 07</th>
+      <th nzAlign="center">Tháng 08</th>
+      <th nzAlign="center">Tháng 09</th>
+      <th nzAlign="center">Tháng 10</th>
+      <th nzAlign="center">Tháng 11</th>
+      <th nzAlign="center">Tháng 12</th>
+      <!-- <th>Thao tác</th> -->
+    </tr>
+  </thead>
+
+  <tbody>
+    <!-- <tr *ngFor="let data of listOfData ; index as i"> -->
+      <!-- <td>{{ i+1 }}</td>
+      <td>{{data.status}}</td>
+      <td>{{data.monthAction |  date:'MM/yyyy'}}</td>
+      <td><span nz-tooltip nzTooltipTitle="{{data.unitCode}}">{{data.userName}}</span></td>
+      <td>{{data.comTaxCode}}</td>
+      <td>{{data.comName}}</td>
+      <td>{{data.dateDemo |  date:'dd/MM/yyyy'}}</td>
+      <td>{{data.dateGolive |  date:'dd/MM/yyyy'}}</td>
+      <td style="text-align: left;">{{data.amount}}</td>
+      <td>
+        <ng-container *ngIf="data.incomeDate !== ''; else elseTemplate">
+          <span nz-tooltip nzTooltipTitle="Tháng {{data.incomeDate |  date:'MM/yyyy'}} - {{data.typeOfIncome}}">
+            <i nz-icon nzType="money-collect" nzTheme="twotone" nzTwotoneColor="#008000"></i>
+          </span>
+        </ng-container>
+        <ng-template #elseTemplate>
+          <i nz-icon nzType="close-circle" nzTheme="twotone" nzTwotoneColor="#FF0000"></i>
+        </ng-template>
+      </td>
+      <td>
+        <a><i nz-icon nzType="edit" nzTheme="twotone"></i></a>
+        <nz-divider nzType="vertical"></nz-divider>
+        <a nz-popconfirm nzPopconfirmTitle="Bạn thật sự muốn xóa?" nzPopconfirmPlacement="topRight"
+          (nzOnConfirm)="confirmDelete(data)" (nzOnCancel)="cancel()"><i nz-icon nzType="delete" [nzTheme]="'twotone'"
+            [nzTwotoneColor]="'#eb2f96'"></i></a>
+      </td> -->
+    <!-- </tr> -->
+  </tbody>
+</nz-table>
