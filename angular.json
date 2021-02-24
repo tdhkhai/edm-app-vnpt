@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "JIRA": {
+    "jira-agg": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -23,7 +23,7 @@
             "allowedCommonJsDependencies": [
               "lodash"
             ],
-            "outputPath": "dist/JIRA",
+            "outputPath": "dist/jira-agg",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -84,18 +84,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "JIRA:build"
+            "browserTarget": "jira-agg:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "JIRA:build:production"
+              "browserTarget": "jira-agg:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "JIRA:build"
+            "browserTarget": "jira-agg:build"
           }
         },
         "test": {
@@ -133,18 +133,18 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "JIRA:serve"
+            "devServerTarget": "jira-agg:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "JIRA:serve:production"
+              "devServerTarget": "jira-agg:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "JIRA",
+  "defaultProject": "jira-agg",
   "cli": {
     "analytics": "c1643bd8-e8d1-45c7-838a-f4e3a681413e"
   }
