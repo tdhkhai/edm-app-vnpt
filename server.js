@@ -3,7 +3,7 @@ let express = require('express'),
    mongoose = require('mongoose'),
    cors = require('cors'),
    bodyParser = require('body-parser'),
-   dbConfig = require('./database/db');
+   dbConfig = require('../database/db');
 createError = require('http-errors');
 // Connecting with mongo db
 mongoose.Promise = global.Promise;
@@ -19,15 +19,15 @@ mongoose.connect(dbConfig.db, {
 )
 
 // Setting up port with express js
-const unitRoute = require('./routes/unit.route')
-const userRoute = require('./routes/user.route')
-const typeOfServiceRoute = require('./routes/typeofservice.route')
-const serviceRoute = require('./routes/service.route')
-const invoiceRoute = require('./routes/invoice.route')
-const dausoRoute = require('./routes/dauso.route')
-const idcRoute = require('./routes/idc.route')
-const domainRoute = require('./routes/domain.route')
-const webhostingRoute = require('./routes/webhosting.route')
+const unitRoute = require('../routes/unit.route')
+const userRoute = require('../routes/user.route')
+const typeOfServiceRoute = require('../routes/typeofservice.route')
+const serviceRoute = require('../routes/service.route')
+const invoiceRoute = require('../routes/invoice.route')
+const dausoRoute = require('../routes/dauso.route')
+const idcRoute = require('../routes/idc.route')
+const domainRoute = require('../routes/domain.route')
+const webhostingRoute = require('../routes/webhosting.route')
 
 const app = express();
 app.use(bodyParser.json());
