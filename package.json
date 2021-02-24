@@ -1,9 +1,9 @@
 {
-  "name": "jira-v2",
+  "name": "jira-agg",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "node server.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -62,3 +62,4 @@
     "npm": "6.14.5"
   }
 }
+
