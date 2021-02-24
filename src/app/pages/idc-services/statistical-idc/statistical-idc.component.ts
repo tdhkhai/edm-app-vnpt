@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
-import { IDC } from 'src/app/core/models/IDC';
-import { ExcelToFileService } from 'src/app/core/services/exceltofile.service';
-import { IDCService } from 'src/app/core/services/idc.service';
+import { IDC } from '../../../core/models/idc';
+import { ExcelToFileService } from '../../../core/services/exceltofile.service';
+import { IDCService } from '../../../core/services/idc.service';
 import * as XLSX from 'xlsx';
 import { UploadComponent } from '../../shared/upload/upload.component';
 import { AddIdcComponent } from '../add-idc/add-idc.component';
