@@ -9,7 +9,7 @@ import { Dauso } from '../models/dauso';
   providedIn: 'root'
 })
 export class DausoService {
-  endpoint = environment.db_url + '/api/dau-so';
+  endpoint = environment.db_url + 'api/dau-so';
   // endpoint = 'api/dau-so';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   constructor(private http: HttpClient) { }

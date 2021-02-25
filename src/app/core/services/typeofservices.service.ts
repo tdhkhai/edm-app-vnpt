@@ -11,7 +11,7 @@ import { environment } from '../../../environments/environment';
 
 export class TypeOfServicesService {
 
-  endpoint = environment.db_url + '/api/typeofservices';
+  endpoint = environment.db_url + 'api/typeofservices';
   // endpoint = 'api/typeofservices';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
 

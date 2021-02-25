@@ -9,7 +9,7 @@ import { environment } from '../../../environments/environment';
   providedIn: 'root'
 })
 export class DomainService {
-  endpoint = environment.db_url + '/api/domain';
+  endpoint = environment.db_url + 'api/domain';
   // endpoint = 'api/dau-so';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   constructor(private http: HttpClient) { }

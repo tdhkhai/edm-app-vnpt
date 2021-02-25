@@ -9,7 +9,7 @@ import { environment } from '../../../environments/environment';
   providedIn: 'root'
 })
 export class WebhostingService {
-  endpoint = environment.db_url + '/api/webhosting';
+  endpoint = environment.db_url + 'api/webhosting';
   // endpoint = 'api/dau-so';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   constructor(private http: HttpClient) { }

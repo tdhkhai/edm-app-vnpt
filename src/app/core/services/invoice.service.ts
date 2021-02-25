@@ -10,7 +10,7 @@ import { environment } from '../../../environments/environment';
 })
 export class InvoiceService {
 
-  endpoint = environment.db_url + '/api/invoices';
+  endpoint = environment.db_url + 'api/invoices';
   // endpoint = 'api/invoices';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
 

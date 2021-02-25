@@ -11,7 +11,7 @@ import { environment } from '../../../environments/environment';
 
 export class UnitService {
 
-  endpoint = environment.db_url + '/api/units';
+  endpoint = environment.db_url + 'api/units';
   // endpoint = 'api/units';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
 

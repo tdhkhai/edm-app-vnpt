@@ -11,7 +11,7 @@ import { environment } from '../../../environments/environment';
 
 export class UserService {
 
-  endpoint = environment.db_url + '/api/users';
+  endpoint = environment.db_url + 'api/users';
   // endpoint = 'api/users';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
 
