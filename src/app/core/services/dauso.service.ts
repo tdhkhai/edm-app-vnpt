@@ -2,13 +2,14 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { environment } from '../../../environments/environment';
 import { Dauso } from '../models/dauso';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DausoService {
-  endpoint = 'http://localhost:4000/api/dau-so';
+  endpoint = environment.db_url + '/api/dau-so';
   // endpoint = 'api/dau-so';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   constructor(private http: HttpClient) { }

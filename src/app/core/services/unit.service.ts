@@ -3,6 +3,7 @@ import { Unit } from '../models/unit';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 
 export class UnitService {
 
-  endpoint = 'http://localhost:4000/api/units';
+  endpoint = environment.db_url + '/api/units';
   // endpoint = 'api/units';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
 

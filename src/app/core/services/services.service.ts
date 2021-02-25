@@ -3,6 +3,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Service } from '../models/service';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ import { Service } from '../models/service';
 
 export class ServicesService {
 
-  endpoint = 'http://localhost:4000/api/services';
+  endpoint = environment.db_url + '/api/services';
   // endpoint = 'api/services';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
 

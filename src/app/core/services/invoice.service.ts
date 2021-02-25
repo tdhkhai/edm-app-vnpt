@@ -3,13 +3,14 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Invoice } from '../models/vnpt-invoice';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class InvoiceService {
 
-  endpoint = 'http://localhost:4000/api/invoices';
+  endpoint = environment.db_url + '/api/invoices';
   // endpoint = 'api/invoices';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
 

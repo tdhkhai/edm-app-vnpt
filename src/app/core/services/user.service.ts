@@ -3,6 +3,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { User } from '../models/user';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ import { User } from '../models/user';
 
 export class UserService {
 
-  endpoint = 'http://localhost:4000/api/users';
+  endpoint = environment.db_url + '/api/users';
   // endpoint = 'api/users';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
 
