@@ -1,12 +1,10 @@
 import { NgModule } from '@angular/core';
-
 import { AntDesignModule } from 'src/app/antDesign.module';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatModule } from 'src/app/mat.module';
 import { BuildInvoiceExamplesComponent } from './build-invoice-examples/build-invoice-examples.component';
 import { VNPTInvoiceRoutingModule } from './vnpt-invoice-routing.module';
-import { HighlightModule } from 'ngx-highlightjs';
 import { ConfigInvoiceExampleComponent } from './config-invoice-example/config-invoice-example.component';
 import { StatisticalInvoiceComponent } from './statistical-invoice/statistical-invoice.component';
 import { AddStatisticalInvoiceComponent } from './add-statistical-invoice/add-statistical-invoice.component';

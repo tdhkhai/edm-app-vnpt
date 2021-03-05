@@ -5,6 +5,7 @@ import { Domain } from 'src/app/core/models/domain';
 import { DomainService } from 'src/app/core/services/domain.service';
 import { ExcelToFileService } from 'src/app/core/services/exceltofile.service';
 import * as XLSX from 'xlsx';
+import * as moment from 'moment';
 import { UploadComponent } from '../../shared/upload/upload.component';
 import { AddDomainComponent } from '../add-domain/add-domain.component';
 import { EditDomainComponent } from '../edit-domain/edit-domain.component';
@@ -23,6 +24,7 @@ export class StatisticalDomainComponent implements OnInit {
   searchValue = '';
   visible = false;
   expandSet = new Set<string>();
+  domain: Domain;
   listOfCurrentPageData: any = [];
   constructor(
     private excelToFile: ExcelToFileService,
@@ -87,7 +89,7 @@ export class StatisticalDomainComponent implements OnInit {
   }
 
   deleteExtend(id: string, data: string) {
-    this.domainAPI.pullExtendDomain(id, {_id: data}).subscribe(
+    this.domainAPI.pullExtendDomain(id, { _id: data }).subscribe(
       (res) => {
         this.getAllDomains();
         this.notification.create('success', 'Thành công', 'Bạn đã xóa gia hạn thành công!');
@@ -135,27 +137,27 @@ export class StatisticalDomainComponent implements OnInit {
       // tslint:disable-next-line: max-line-length
       const data = XLSX.utils.sheet_to_json(ws, { raw: false });
       // to get 2d array pass 2nd parameter as object {header: 1}
-      // console.log(data); // Data will be logged in array format containing objects
+      //console.log(data); // Data will be logged in array format containing objects
       // console.log(typeof(data));
-      // this.importDataImport(data);
+      this.importDataImport(data);
     };
   }
 
-  // importDataImport(data: any) {
-  //   data.forEach(element => {
+  importDataImport(data: any) {
+    data.forEach(element => {
 
-  //     element.incomeDate = moment(element.incomeDate).toISOString();
-  //     element.comName = element.comName.toUpperCase();
+      element.registrationDate = moment(element.registrationDate).toISOString();
+      element.expirationDate = moment(element.expirationDate).toISOString();
 
-  //     this.invoiceAPI.AddInvoice(element).subscribe(res => {
-  //       this.getAllInvoices();
-  //       this.notification.create('success', 'Thành công', 'Bạn đã lưu thành công!');
-  //     }, (error) => {
-  //       console.log(error);
-  //       this.notification.create('error', 'Lỗi', 'Đã xảy ra lỗi, vui lòng thử lại!');
-  //     });
-  //   });
-  // }
+      // this.domainAPI.AddDomain(element).subscribe(res => {
+      //   this.notification.create('success', 'Thành công', 'Bạn đã lưu thành công!');
+      // }, (error) => {
+      //   console.log(error);
+      //   this.notification.create('error', 'Lỗi', 'Đã xảy ra lỗi, vui lòng thử lại!');
+      // });
+    });
+    this.getAllDomains();
+  }
 
   showCreate() {
     const modal = this.modalService.create({

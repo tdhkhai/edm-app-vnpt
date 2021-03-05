@@ -28,19 +28,19 @@
       <td nzAlign="center">
         <span [ngSwitch]="data.status">
           <p *ngSwitchCase="'Golive'">
-            <span class="p-tag p-tag-success">{{ data.status }}</span>
+            <span style="color: green; font-weight: bold;">{{ data.status }}</span>
           </p>
           <p *ngSwitchCase="'Demo'">
-            <span class="p-tag">{{ data.status }}</span>
+            <span style="color: blue; font-weight: bold;">{{ data.status }}</span>
           </p>
           <!-- <p *ngSwitchCase="'Extend'">
               <span class="p-tag p-tag-warning">{{ data.status }}</span>
             </p> -->
           <p *ngSwitchCase="'Bo sung'">
-            <span class="p-tag p-tag-info">Bổ sung</span>
+            <span style="color: orange; font-weight: bold;">Bổ sung</span>
           </p>
           <p *ngSwitchCase="'Delete'">
-            <span class="p-tag p-tag-danger">{{ data.status }}</span>
+            <span style="color: red; font-weight: bold;">{{ data.status }}</span>
           </p>
           <p *ngSwitchDefault>
             <span class="p-tag">{{ data.status }}</span>
