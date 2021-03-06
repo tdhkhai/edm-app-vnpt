@@ -13,8 +13,6 @@ import { IncomeYearInvoiceComponent } from './income-year-invoice/income-year-in
 import { DataOfSitesComponent } from './data-of-sites/data-of-sites.component';
 import { EditStaticticalInvoiceComponent } from './edit-statictical-invoice/edit-statictical-invoice.component';
 import { OverviewInvoiceComponent } from './overview-invoice/overview-invoice.component';
-import { PrimengModule } from 'src/app/primeng.module';
-import { ChartsModule } from 'ng2-charts';
 import { ListInvoiceByStatusComponent } from './list-invoice-by-status/list-invoice-by-status.component';
 import { ListInvoiceByCusTaxCodeComponent } from './list-invoice-by-com-tax-code/list-invoice-by-com-tax-code';
 
@@ -23,7 +21,6 @@ import { ListInvoiceByCusTaxCodeComponent } from './list-invoice-by-com-tax-code
   imports: [
     CommonModule,
     AntDesignModule,
-    PrimengModule,
     VNPTInvoiceRoutingModule,
     FormsModule,
     ReactiveFormsModule,

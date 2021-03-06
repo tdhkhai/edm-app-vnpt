@@ -22,22 +22,22 @@
   </thead>
   <!-- </ng-template> -->
   <tbody>
-    <!-- <ng-template pTemplate="body" let-data let-i="rowIndex"> -->
+    <!-- <ng-template pTemplate="body"  let-i="rowIndex"> -->
     <tr *ngFor="let data of basicTable.data; index as i">
       <td nzAlign="center">{{ i + 1}}</td>
       <td nzAlign="center">
         <span [ngSwitch]="data.status">
-          <p *ngSwitchCase="'1'">
-            <span class="p-tag p-tag-success">Golive</span>
+          <p *ngSwitchCase="1">
+            <span style="color: green; font-weight: bold;">{{ data.status }}</span>
           </p>
-          <p *ngSwitchCase="'2'">
-            <span class="p-tag">Gia hạn</span>
+          <p *ngSwitchCase="2">
+            <span style="color: blue; font-weight: bold;">{{ data.status }}</span>
           </p>
-          <p *ngSwitchCase="'3'">
-            <span class="p-tag p-tag-info">Hủy</span>
+          <p *ngSwitchCase="3">
+            <span style="color: red; font-weight: bold;">{{ data.status }}</span>
           </p>
           <p *ngSwitchDefault>
-            <span class="p-tag">Null</span>
+            <span >{{ data.status }}</span>
           </p>
         </span>
       </td>

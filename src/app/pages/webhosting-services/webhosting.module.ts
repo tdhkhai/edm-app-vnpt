@@ -10,7 +10,6 @@ import { StatisticalWebhostingComponent } from './statistical-webhosting/statist
 import { AddWebhostingComponent } from './add-webhosting/add-webhosting.component';
 import { EditWebhostingComponent } from './edit-webhosting/edit-webhosting.component';
 import { ExtendDetailsWebhostingComponent } from './extend-details-webhosting/extend-details-webhosting.component';
-import { PrimengModule } from 'src/app/primeng.module';
 
 @NgModule({
   imports: [
@@ -20,7 +19,6 @@ import { PrimengModule } from 'src/app/primeng.module';
     ReactiveFormsModule,
     MatModule,
     WebhostingRoutingModule,
-    PrimengModule
   ],
   declarations: [
     OverviewWebhostingComponent,

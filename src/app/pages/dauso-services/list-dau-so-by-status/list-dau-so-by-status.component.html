@@ -8,7 +8,8 @@
 <ng-template #totalTemplate>Tổng cộng {{ listOfData.length }}</ng-template>
 
 <nz-table #basicTable [nzData]="listOfData" nzBordered [nzShowTotal]="totalTemplate" nzShowSizeChanger [nzPageSize]="10"
-  [nzPageIndex]="1" [nzTotal]="listOfData.length" [nzPaginationPosition]="'bottom'" nzHideOnSinglePage="true" [nzLoading]="loading">
+  [nzPageIndex]="1" [nzTotal]="listOfData.length" [nzPaginationPosition]="'bottom'" nzHideOnSinglePage="true"
+  [nzLoading]="loading">
   <!-- <ng-template pTemplate="header"> -->
   <thead>
     <tr>
@@ -21,19 +22,19 @@
   </thead>
   <!-- </ng-template> -->
   <tbody>
-    <!-- <ng-template pTemplate="body" let-data let-i="rowIndex"> -->
+    <!-- <ng-template pTemplate="body"  let-i="rowIndex"> -->
     <tr *ngFor="let data of basicTable.data; index as i">
       <td nzAlign="center">{{ i + 1}}</td>
       <td nzAlign="center">
         <span [ngSwitch]="data.status">
-          <p *ngSwitchCase="'1'">
-            <span style="color: green;">ĐANG SỬ DỤNG</span>
+          <p *ngSwitchCase="1">
+            <span style="color: green; font-weight: bold;">{{ data.status }}</span>
           </p>
-          <p *ngSwitchCase="'3'">
-            <span style="color: green;">Hủy</span>
+          <p *ngSwitchCase="3">
+            <span style="color: red; font-weight: bold;">{{ data.status }}</span>
           </p>
           <p *ngSwitchDefault>
-            <span class="p-tag">Null</span>
+            <span>{{ data.status }}</span>
           </p>
         </span>
       </td>

@@ -3,14 +3,13 @@ import { DausoService } from 'src/app/core/services/dauso.service';
 import { DomainService } from 'src/app/core/services/domain.service';
 import { IDCService } from 'src/app/core/services/idc.service';
 import { WebhostingService } from 'src/app/core/services/webhosting.service';
-import { MessageService } from 'primeng/api';
 import { InvoiceService } from 'src/app/core/services/invoice.service';
 
 @Component({
   selector: 'app-welcome',
   templateUrl: './welcome.component.html',
   styleUrls: ['./welcome.component.scss'],
-  providers: [MessageService]
+  providers: []
 })
 export class WelcomeComponent implements OnInit {
   gridStyle = {
@@ -44,7 +43,6 @@ export class WelcomeComponent implements OnInit {
     private domainAPI: DomainService,
     private webhostingAPI: WebhostingService,
     private invoiceAPI: InvoiceService,
-    private messageService: MessageService
   ) {
 
     this.getCountDauso();

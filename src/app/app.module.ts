@@ -15,7 +15,6 @@ import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import { AntDesignModule } from './antDesign.module';
 import { MatModule } from './mat.module';
-import { PrimengModule } from './primeng.module';
 
 registerLocaleData(en);
 
@@ -34,7 +33,6 @@ registerLocaleData(en);
     BrowserAnimationsModule,
     AntDesignModule,
     MatModule,
-    PrimengModule,
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US },

@@ -65,7 +65,6 @@
   </thead>
   <!-- </ng-template> -->
   <tbody>
-    <!-- <ng-template pTemplate="body" let-data let-i="rowIndex"> -->
     <tr *ngFor="let data of basicTable.data; index as i">
       <td nzAlign="center">{{ i + 1}}</td>
       <td nzAlign="center">
@@ -76,9 +75,6 @@
           <p *ngSwitchCase="'Demo'">
             <span style="color: blue; font-weight: bold;">{{ data.status }}</span>
           </p>
-          <!-- <p *ngSwitchCase="'Extend'">
-              <span class="p-tag p-tag-warning">{{ data.status }}</span>
-            </p> -->
           <p *ngSwitchCase="'Bo sung'">
             <span style="color: orange; font-weight: bold;">Bổ sung</span>
           </p>
@@ -86,7 +82,7 @@
             <span style="color: red; font-weight: bold;">{{ data.status }}</span>
           </p>
           <p *ngSwitchDefault>
-            <span class="p-tag">{{ data.status }}</span>
+            <span >{{ data.status }}</span>
           </p>
         </span>
       </td>

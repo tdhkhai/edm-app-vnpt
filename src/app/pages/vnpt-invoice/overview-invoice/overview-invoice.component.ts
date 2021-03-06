@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { MessageService } from 'primeng/api';
 import { InvoiceService } from 'src/app/core/services/invoice.service';
 import * as moment from 'moment';
 import { NzModalService } from 'ng-zorro-antd/modal';
@@ -16,7 +15,7 @@ interface Person {
   selector: 'app-overview-invoice',
   templateUrl: './overview-invoice.component.html',
   styleUrls: ['./overview-invoice.component.scss'],
-  providers: [MessageService]
+  providers: []
 })
 export class OverviewInvoiceComponent implements OnInit {
 
@@ -34,7 +33,6 @@ export class OverviewInvoiceComponent implements OnInit {
 
   constructor(
     private invoiceAPI: InvoiceService,
-    private messageService: MessageService,
     private modalService: NzModalService,
   ) {
     this.dateSelected = new Date();
