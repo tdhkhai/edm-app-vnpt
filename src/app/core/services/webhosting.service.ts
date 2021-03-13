@@ -52,6 +52,30 @@ export class WebhostingService {
       );
   }
 
+  // List Expired
+  GetListExpired(): Observable<any> {
+    const API_URL = `${this.endpoint}/list-expired`;
+    return this.http.get(API_URL)
+      .pipe(
+        map((res: Response) => {
+          return res || {};
+        }),
+        catchError(this.errorMgmt)
+      );
+  }
+
+  // List by Status
+  GetListbyStatus(data): Observable<any> {
+    const API_URL = `${this.endpoint}/list-by-status`;
+    return this.http.post(API_URL, data)
+      .pipe(
+        map((res: Response) => {
+          return res || {};
+        }),
+        catchError(this.errorMgmt)
+      );
+  }
+
   // Push Extend Webhosting
   pushExtendWebhosting(id, data): Observable<any> {
     const API_URL = `${this.endpoint}/pushextendwebhosting/${id}`;

@@ -13,6 +13,7 @@ import { ExtendDetailsComponent } from './extend-details/extend-details.componen
 import { ListIdcByStatusComponent } from './list-idc-by-status/list-idc-by-status.component';
 import { IdcListExpiredComponent } from './idc-list-expired/idc-list-expired.component';
 
+
 @NgModule({
   imports: [
     CommonModule,

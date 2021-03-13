@@ -5,10 +5,10 @@
     </button>
   </nz-page-header-extra>
 </nz-page-header>
-<ng-template #totalTemplate>Tổng cộng {{ listOfData.length }}</ng-template>
+<ng-template #totalTemplate>Tổng cộng {{ listExpired.length }}</ng-template>
 
-<nz-table #basicTable [nzData]="listOfData" nzBordered [nzShowTotal]="totalTemplate" nzShowSizeChanger [nzPageSize]="10"
-  [nzPageIndex]="1" [nzTotal]="listOfData.length" [nzPaginationPosition]="'bottom'" nzHideOnSinglePage="true" [nzLoading]="loading">
+<nz-table #basicTable [nzData]="listExpired" nzBordered [nzShowTotal]="totalTemplate" nzShowSizeChanger [nzPageSize]="10"
+  [nzPageIndex]="1" [nzTotal]="listExpired.length" [nzPaginationPosition]="'bottom'" nzHideOnSinglePage="true">
   <!-- <ng-template pTemplate="header"> -->
   <thead>
     <tr>
@@ -17,7 +17,9 @@
       <th nzAlign="center" style="width: 15%;">AM</th>
       <th nzAlign="center" style="width: 8%;">MST</th>
       <th nzAlign="center">Tên KH</th>
+      <th nzAlign="center">Tên miền</th>
       <th nzAlign="center" style="width: 8%;">Ngày hết hạn</th>
+      <th nzAlign="center" style="width: 8%;">Gia hạn</th>
     </tr>
   </thead>
   <!-- </ng-template> -->
@@ -48,7 +50,10 @@
       </td>
       <td nzAlign="center">{{ data.comTaxCode }}</td>
       <td>{{ data.comName }}</td>
-      <td nzAlign="center" style="color: red;font-weight: bold;">{{ data.dateExpired | date: "dd/MM/yyyy" }}</td>
+      <td nzAlign="left">{{ data.domain }}</td>
+      <td nzAlign="center" style="color: red;font-weight: bold;">{{ data.dayExpired | date: "dd/MM/yyyy" }}</td>
+      <td nzAlign="center"><a (click)="openExtendDetails(data._id)" nz-tooltip nzTooltipTitle="Gia hạn"><i nz-icon nzType="up-circle"
+        nzTheme="fill"></i></a></td>
     </tr>
     <!-- </ng-template> -->
   </tbody>

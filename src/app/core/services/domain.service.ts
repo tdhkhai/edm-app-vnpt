@@ -52,6 +52,30 @@ export class DomainService {
       );
   }
 
+  // List Expired
+  GetListExpired(): Observable<any> {
+    const API_URL = `${this.endpoint}/list-expired`;
+    return this.http.get(API_URL)
+      .pipe(
+        map((res: Response) => {
+          return res || {};
+        }),
+        catchError(this.errorMgmt)
+      );
+  }
+
+  // List by Status
+  GetListbyStatus(data): Observable<any> {
+    const API_URL = `${this.endpoint}/list-by-status`;
+    return this.http.post(API_URL, data)
+      .pipe(
+        map((res: Response) => {
+          return res || {};
+        }),
+        catchError(this.errorMgmt)
+      );
+  }
+
   // Push Extend Domain
   pushExtendDomain(id, data): Observable<any> {
     const API_URL = `${this.endpoint}/pushextenddomain/${id}`;

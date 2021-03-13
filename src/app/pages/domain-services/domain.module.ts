@@ -10,6 +10,8 @@ import { OverviewDomainComponent } from './overview-domain/overview-domain.compo
 import { AddDomainComponent } from './add-domain/add-domain.component';
 import { EditDomainComponent } from './edit-domain/edit-domain.component';
 import { ExtendDetailsDomainComponent } from './extend-details-domain/extend-details-domain.component';
+import { DomainListExpiredComponent } from './domain-list-expired/domain-list-expired.component';
+import { ListDomainByStatusComponent } from './list-domain-by-status/list-domain-by-status.component';
 
 @NgModule({
   imports: [
@@ -25,14 +27,18 @@ import { ExtendDetailsDomainComponent } from './extend-details-domain/extend-det
     OverviewDomainComponent,
     AddDomainComponent,
     EditDomainComponent,
-    ExtendDetailsDomainComponent
+    ExtendDetailsDomainComponent,
+    DomainListExpiredComponent,
+    ListDomainByStatusComponent,
   ],
   exports: [
     StatisticalDomainComponent,
     OverviewDomainComponent,
     AddDomainComponent,
     EditDomainComponent,
-    ExtendDetailsDomainComponent
+    ExtendDetailsDomainComponent,
+    DomainListExpiredComponent,
+    ListDomainByStatusComponent,
   ],
   providers: [
   ]

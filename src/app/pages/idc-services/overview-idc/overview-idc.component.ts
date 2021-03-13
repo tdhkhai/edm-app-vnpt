@@ -28,7 +28,6 @@ export class OverviewIdcComponent implements OnInit {
 
   constructor(
     private idcAPI: IDCService,
-    private messageService: NzMessageService,
     private modalService: NzModalService,
   ) {
     this.dateSelected = new Date();

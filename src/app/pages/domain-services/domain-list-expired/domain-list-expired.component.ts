@@ -1,16 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { ExcelToFileService } from 'src/app/core/services/exceltofile.service';
-import { IDCService } from 'src/app/core/services/idc.service';
-import { ExtendDetailsComponent } from '../extend-details/extend-details.component';
+import { ExtendDetailsComponent } from '../../idc-services/extend-details/extend-details.component';
 
 @Component({
-  selector: 'app-idc-list-expired',
-  templateUrl: './idc-list-expired.component.html',
-  styleUrls: ['./idc-list-expired.component.scss']
+  selector: 'app-domain-list-expired',
+  templateUrl: './domain-list-expired.component.html',
+  styleUrls: ['./domain-list-expired.component.scss']
 })
-export class IdcListExpiredComponent implements OnInit {
+export class DomainListExpiredComponent implements OnInit {
   listExpired: any;
   loading = true;
   constructor(

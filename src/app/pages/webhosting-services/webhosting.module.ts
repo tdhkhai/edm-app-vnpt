@@ -10,6 +10,8 @@ import { StatisticalWebhostingComponent } from './statistical-webhosting/statist
 import { AddWebhostingComponent } from './add-webhosting/add-webhosting.component';
 import { EditWebhostingComponent } from './edit-webhosting/edit-webhosting.component';
 import { ExtendDetailsWebhostingComponent } from './extend-details-webhosting/extend-details-webhosting.component';
+import { WebhostingListExpiredComponent } from './webhosting-list-expired/webhosting-list-expired.component';
+import { ListWebhostingByStatusComponent } from './list-webhosting-by-status/list-webhosting-by-status.component';
 
 @NgModule({
   imports: [
@@ -25,14 +27,18 @@ import { ExtendDetailsWebhostingComponent } from './extend-details-webhosting/ex
     StatisticalWebhostingComponent,
     AddWebhostingComponent,
     EditWebhostingComponent,
-    ExtendDetailsWebhostingComponent
+    ExtendDetailsWebhostingComponent,
+    WebhostingListExpiredComponent,
+    ListWebhostingByStatusComponent,
   ],
   exports: [
     OverviewWebhostingComponent,
     StatisticalWebhostingComponent,
     AddWebhostingComponent,
     EditWebhostingComponent,
-    ExtendDetailsWebhostingComponent
+    ExtendDetailsWebhostingComponent,
+    WebhostingListExpiredComponent,
+    ListWebhostingByStatusComponent,
   ],
   providers: [
   ]

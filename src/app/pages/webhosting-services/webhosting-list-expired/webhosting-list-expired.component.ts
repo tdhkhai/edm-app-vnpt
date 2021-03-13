@@ -1,16 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { ExcelToFileService } from 'src/app/core/services/exceltofile.service';
-import { IDCService } from 'src/app/core/services/idc.service';
-import { ExtendDetailsComponent } from '../extend-details/extend-details.component';
+import { ExtendDetailsWebhostingComponent } from '../extend-details-webhosting/extend-details-webhosting.component';
 
 @Component({
-  selector: 'app-idc-list-expired',
-  templateUrl: './idc-list-expired.component.html',
-  styleUrls: ['./idc-list-expired.component.scss']
+  selector: 'app-webhosting-list-expired',
+  templateUrl: './webhosting-list-expired.component.html',
+  styleUrls: ['./webhosting-list-expired.component.scss']
 })
-export class IdcListExpiredComponent implements OnInit {
+export class WebhostingListExpiredComponent implements OnInit {
   listExpired: any;
   loading = true;
   constructor(
@@ -22,13 +20,13 @@ export class IdcListExpiredComponent implements OnInit {
   }
 
   exportExcel() {
-    this.excelToFile.exportExcel(this.listExpired, 'danh-sach-idc-het-han');
+    this.excelToFile.exportExcel(this.listExpired, 'danh-sach-webhosting-het-han');
   }
 
   openExtendDetails(selectedId: any) {
     const modal = this.modalService.create({
       nzTitle: 'THÔNG TIN GIA HẠN DỊCH VỤ',
-      nzContent: ExtendDetailsComponent,
+      nzContent: ExtendDetailsWebhostingComponent,
       nzWidth: 800,
       nzBodyStyle: {
         height: '320px'
