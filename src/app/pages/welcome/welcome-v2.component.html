@@ -1,0 +1,117 @@
+<nz-breadcrumb nz-page-header-breadcrumb [nzAutoGenerate]="true">
+  <nz-breadcrumb-item>
+    <i nz-icon nzType="home"></i>
+  </nz-breadcrumb-item>
+</nz-breadcrumb>
+<br />
+
+<nz-card style="width:100%;" nzTitle="QUẢN TRỊ DOANH NGHIỆP">
+  <div nz-row [nzGutter]="8">
+    <div nz-col [nzSpan]="6">
+      <nz-card [nzCover]="coverVNPTInvoice"
+        [nzActions]="[actionAddInvoice, actionViewDetailInvoice, actionOverviewInvoice]">
+        <nz-card-meta nzTitle="Hóa đơn điện tử" nzDescription="VNPT Invoice"></nz-card-meta>
+      </nz-card>
+    </div>
+    <ng-template #coverVNPTInvoice>
+      <img style="height: 258.69px;" src="../../../assets/images/panels/Invoice.jpg" alt="">
+    </ng-template>
+
+    <ng-template #actionAddInvoice>
+      <i nz-tooltip nzTooltipTitle="Thêm mới" nz-icon nzType="plus" nzTheme="outline" style="color: green;"
+        (click)="showAddAction('invoice')"></i>
+    </ng-template>
+    <ng-template #actionViewDetailInvoice>
+      <i nz-tooltip nzTooltipTitle="Xem Chi tiết" nz-icon nzType="eye" nzTheme="outline" style="color: blue;"
+        (click)="showViewDetailAction('invoice')"></i>
+    </ng-template>
+    <ng-template #actionOverviewInvoice>
+      <i nz-tooltip nzTooltipTitle="Xem Overview" nz-icon nzType="exclamation-circle" nzTheme="outline"
+        (click)="showOverviewAction('invoice')"></i>
+    </ng-template>
+
+
+    <div nz-col [nzSpan]="6">
+      <nz-card [nzCover]="coverTenmien"
+        [nzActions]="[actionAddTenmien, actionViewDetailTenmien, actionOverviewTenmien]">
+        <nz-card-meta nzTitle="Tên miền" nzDescription="Domain"></nz-card-meta>
+      </nz-card>
+    </div>
+    <ng-template #coverTenmien>
+      <img style="height: 258.69px;" src="../../../assets/images/panels/tenmien.jpg" alt="">
+    </ng-template>
+    <ng-template #actionAddTenmien>
+      <i nz-tooltip nzTooltipTitle="Thêm mới" nz-icon nzType="plus" nzTheme="outline" style="color: green;"
+        (click)="showAddAction('domain')"></i>
+    </ng-template>
+    <ng-template #actionViewDetailTenmien>
+      <i nz-tooltip nzTooltipTitle="Xem Chi tiết" nz-icon nzType="eye" nzTheme="outline" style="color: blue;" (click)="showViewDetailAction('domain')"></i>
+    </ng-template>
+    <ng-template #actionOverviewTenmien>
+      <i nz-tooltip nzTooltipTitle="Xem Overview" nz-icon nzType="exclamation-circle" nzTheme="outline" (click)="showOverviewAction('domain')"></i>
+    </ng-template>
+
+    <div nz-col [nzSpan]="6">
+      <nz-card [nzCover]="coverIDC" [nzActions]="[actionAddIDC, actionViewDetailIDC, actionOverviewIDC]">
+        <nz-card-meta nzTitle="Hạ tầng lưu trữ" nzDescription="SM + Cloud + VPS"></nz-card-meta>
+      </nz-card>
+    </div>
+    <ng-template #coverIDC>
+      <img style="height: 258.69px;" src="../../../assets/images/panels/smartcloud.png" alt="">
+    </ng-template>
+    <ng-template #actionAddIDC>
+      <i nz-tooltip nzTooltipTitle="Thêm mới" nz-icon nzType="plus" nzTheme="outline" style="color: green;"
+        (click)="showAddAction('idc')"></i>
+    </ng-template>
+    <ng-template #actionViewDetailIDC>
+      <i nz-tooltip nzTooltipTitle="Xem Chi tiết" nz-icon nzType="eye" nzTheme="outline" style="color: blue;" (click)="showViewDetailAction('idc')"></i>
+    </ng-template>
+    <ng-template #actionOverviewIDC>
+      <i nz-tooltip nzTooltipTitle="Xem Overview" nz-icon nzType="exclamation-circle" nzTheme="outline" (click)="showOverviewAction('idc')"></i>
+    </ng-template>
+
+    <div nz-col [nzSpan]="6">
+      <nz-card [nzCover]="coverWebhosting"
+        [nzActions]="[actionAddWebhosting, actionViewDetailWebhosting, actionOverviewWebhosting]">
+        <nz-card-meta nzTitle="Lưu trữ Website" nzDescription="Webhosting"></nz-card-meta>
+      </nz-card>
+    </div>
+    <ng-template #coverWebhosting>
+      <img style="height: 258.69px;" src="../../../assets/images/panels/Webhosting.jpg" alt="">
+    </ng-template>
+    <ng-template #actionAddWebhosting>
+      <i nz-tooltip nzTooltipTitle="Thêm mới" nz-icon nzType="plus" nzTheme="outline" style="color: green;"
+        (click)="showAddAction('webhosting')"></i>
+    </ng-template>
+    <ng-template #actionViewDetailWebhosting>
+      <i nz-tooltip nzTooltipTitle="Xem Chi tiết" nz-icon nzType="eye" nzTheme="outline" style="color: blue;" (click)="showViewDetailAction('webhosting')"></i>
+    </ng-template>
+    <ng-template #actionOverviewWebhosting>
+      <i nz-tooltip nzTooltipTitle="Xem Overview" nz-icon nzType="exclamation-circle" nzTheme="outline" (click)="showOverviewAction('webhosting')"></i>
+    </ng-template>
+
+  </div>
+  <br>
+  <!-- Row 2 -->
+  <div nz-row [nzGutter]="8">
+    <div nz-col [nzSpan]="6">
+      <nz-card [nzCover]="coverDauSo" [nzActions]="[actionAddDauSo, actionViewDetailDauso, actionOverviewDauso]">
+        <nz-card-meta nzTitle="1800 - 1900" nzDescription="1800 - 1900"></nz-card-meta>
+      </nz-card>
+    </div>
+    <ng-template #coverDauSo>
+      <img style="height: 258.69px;" src="../../../assets/images/panels/1900.jpg" alt="">
+    </ng-template>
+    <ng-template #actionAddDauSo>
+      <i nz-tooltip nzTooltipTitle="Thêm mới" nz-icon nzType="plus" nzTheme="outline" style="color: green;"
+        (click)="showAddAction('dauso')"></i>
+    </ng-template>
+    <ng-template #actionViewDetailDauso>
+      <i nz-icon nzType="eye" nzTheme="outline" style="color: blue;" (click)="showViewDetailAction('dauso')"></i>
+    </ng-template>
+    <ng-template #actionOverviewDauso>
+      <i nz-icon nzType="exclamation-circle" nzTheme="outline" (click)="showOverviewAction('dauso')"></i>
+    </ng-template>
+
+  </div>
+</nz-card>

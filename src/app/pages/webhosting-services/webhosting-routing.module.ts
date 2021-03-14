@@ -6,7 +6,8 @@ import { StatisticalWebhostingComponent } from './statistical-webhosting/statist
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'tong-quan-webhosting'
+    pathMatch: 'full',
+    redirectTo: '/tong-quan-webhosting'
   },
   {
     path: 'so-lieu-webhosting', component: StatisticalWebhostingComponent,

@@ -8,13 +8,17 @@
       </a>
     </div>
     <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
-      <li nz-submenu nzOpen nzTitle="Dashboard" nzIcon="dashboard">
-        <ul>
-          <li nz-menu-item nzMatchRouter nzIcon="dashboard">
-            <a routerLink="/welcome">Tổng quan</a>
-          </li>
-        </ul>
-      </li>
+      <a routerLink="/welcome">
+        <li nz-menu-item>
+          <!-- <ul>
+          <li nz-menu-item nzMatchRouter nzIcon="dashboard"> -->
+          <!-- <a routerLink="/welcome">Tổng quan</a> -->
+          <!-- </li>
+        </ul> -->
+          <i nz-icon nzType="dashboard"></i>
+          <span>Dashboard</span>
+        </li>
+      </a>
       <li nz-submenu nzOpen nzTitle="Dịch vụ Đầu số" nzIcon="ordered-list">
         <ul>
           <li nz-menu-item nzMatchRouter nzIcon="dashboard">
@@ -80,6 +84,13 @@
           </li>
           <li nz-menu-item nzMatchRouter nzIcon="appstore">
             <a routerLink="/vnpt-invoice/build-invoice-examples">Dựng mẫu HDDT</a>
+          </li>
+        </ul>
+      </li>
+      <li nz-submenu nzOpen nzTitle="Lịch công tác" nzIcon="form">
+        <ul>
+          <li nz-menu-item nzMatchRouter nzIcon="control">
+            <a routerLink="/lich-cong-tac">QL lịch công tác</a>
           </li>
         </ul>
       </li>

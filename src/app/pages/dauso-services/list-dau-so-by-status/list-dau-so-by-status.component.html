@@ -18,6 +18,7 @@
       <th nzAlign="center" style="width: 15%;">AM</th>
       <th nzAlign="center" style="width: 15%;">MST</th>
       <th nzAlign="center">Tên KH</th>
+      <th nzAlign="center">Thuê bao đầu số</th>
     </tr>
   </thead>
   <!-- </ng-template> -->
@@ -28,13 +29,16 @@
       <td nzAlign="center">
         <span [ngSwitch]="data.status">
           <p *ngSwitchCase="1">
-            <span style="color: green; font-weight: bold;">{{ data.status }}</span>
+            <span style="color: green; font-weight: bold;">Đang sử dụng</span>
+          </p>
+          <p *ngSwitchCase="2">
+            <span style="color: blue; font-weight: bold;">Cần gia hạn</span>
           </p>
           <p *ngSwitchCase="3">
-            <span style="color: red; font-weight: bold;">{{ data.status }}</span>
+            <span style="color: red; font-weight: bold;">Hủy</span>
           </p>
           <p *ngSwitchDefault>
-            <span>{{ data.status }}</span>
+            <span >{{ data.status }}</span>
           </p>
         </span>
       </td>
@@ -45,6 +49,7 @@
       </td>
       <td nzAlign="center">{{ data.comTaxCode }}</td>
       <td>{{ data.comName }}</td>
+      <td>{{ data.dauso }}</td>
     </tr>
     <!-- </ng-template> -->
   </tbody>

@@ -22,7 +22,8 @@ export class ListUnitsComponent implements OnInit {
     public dialog: MatDialog,
     private unitAPI: UnitService,
     private notification: NzNotificationService,
-    private excelToFile: ExcelToFileService
+    private excelToFile: ExcelToFileService,
+    private modalService: NzModalService,
   ) { }
 
   ngOnInit(): void {
@@ -78,15 +79,17 @@ export class ListUnitsComponent implements OnInit {
   }
 
   importExcel() {
-    const dialogRef = this.dialog.open(UploadComponent, {
-      height: '250px',
-      width: '400px',
+    const modal = this.modalService.create({
+      nzTitle: 'Import dữ liệu',
+      nzContent: UploadComponent,
+      nzWidth: 400,
+      nzBodyStyle: {
+        height: '70px'
+      },
     });
-    dialogRef.afterClosed().subscribe(result => {
-      // console.log(result);
-      if (result !== 'undefined') {
-        this.handleImport(result);
-      }
+
+    modal.afterClose.subscribe(result => {
+      this.handleImport(result);
     });
   }
 

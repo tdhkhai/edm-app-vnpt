@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateUnitComponent } from './create-unit/create-unit.component';
 import { MatModule } from 'src/app/mat.module';
 import { UpdateUnitComponent } from './update-unit/update-unit.component';
+import { UploadComponent } from '../shared/upload/upload.component';
 
 
 @NgModule({
@@ -15,7 +16,7 @@ import { UpdateUnitComponent } from './update-unit/update-unit.component';
   declarations: [
     ListUnitsComponent,
     CreateUnitComponent,
-    UpdateUnitComponent
+    UpdateUnitComponent,
   ],
   exports: [
     ListUnitsComponent,

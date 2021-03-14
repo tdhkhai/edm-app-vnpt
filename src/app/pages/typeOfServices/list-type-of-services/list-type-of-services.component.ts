@@ -8,6 +8,7 @@ import { UploadComponent } from '../../shared/upload/upload.component';
 import { CreateTypeOfServicesComponent } from '../create-type-of-services/create-type-of-services.component';
 import { UpdateTypeOfServicesComponent } from '../update-type-of-services/update-type-of-services.component';
 import * as XLSX from 'xlsx';
+import { NzModalService } from 'ng-zorro-antd/modal';
 
 @Component({
   selector: 'app-list-type-of-services',
@@ -21,7 +22,8 @@ export class ListTypeOfServicesComponent implements OnInit {
     public dialog: MatDialog,
     private TypeOfServiceAPI: TypeOfServicesService,
     private notification: NzNotificationService,
-    private excelToFile: ExcelToFileService
+    private excelToFile: ExcelToFileService,
+    private modalService: NzModalService,
   ) { }
 
   ngOnInit(): void {
@@ -77,15 +79,17 @@ export class ListTypeOfServicesComponent implements OnInit {
   }
 
   importExcel() {
-    const dialogRef = this.dialog.open(UploadComponent, {
-      height: '250px',
-      width: '400px',
+    const modal = this.modalService.create({
+      nzTitle: 'Import dữ liệu',
+      nzContent: UploadComponent,
+      nzWidth: 400,
+      nzBodyStyle: {
+        height: '70px'
+      },
     });
-    dialogRef.afterClosed().subscribe(result => {
-      // console.log(result);
-      if (result !== 'undefined') {
-        this.handleImport(result);
-      }
+
+    modal.afterClose.subscribe(result => {
+      this.handleImport(result);
     });
   }
 

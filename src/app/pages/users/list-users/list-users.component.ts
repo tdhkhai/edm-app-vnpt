@@ -8,6 +8,7 @@ import { UploadComponent } from '../../shared/upload/upload.component';
 import { CreatUserComponent } from '../create-user/create-user.component';
 import * as XLSX from 'xlsx';
 import { User } from 'src/app/core/models/user';
+import { NzModalService } from 'ng-zorro-antd/modal';
 
 @Component({
   selector: 'app-list-users',
@@ -23,7 +24,8 @@ export class ListUsersComponent implements OnInit {
     private unitAPI: UnitService,
     private userAPI: UserService,
     private notification: NzNotificationService,
-    private excelToFile: ExcelToFileService
+    private excelToFile: ExcelToFileService,
+    private modalService: NzModalService,
   ) { }
 
   ngOnInit(): void {
@@ -43,15 +45,17 @@ export class ListUsersComponent implements OnInit {
   }
 
   importExcel() {
-    const dialogRef = this.dialog.open(UploadComponent, {
-      height: '250px',
-      width: '400px',
+    const modal = this.modalService.create({
+      nzTitle: 'Import dữ liệu',
+      nzContent: UploadComponent,
+      nzWidth: 400,
+      nzBodyStyle: {
+        height: '70px'
+      },
     });
-    dialogRef.afterClosed().subscribe(result => {
-      // console.log(result);
-      if (result !== 'undefined') {
-        this.handleImport(result);
-      }
+
+    modal.afterClose.subscribe(result => {
+      this.handleImport(result);
     });
   }
 

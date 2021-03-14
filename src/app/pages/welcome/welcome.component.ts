@@ -4,10 +4,17 @@ import { DomainService } from 'src/app/core/services/domain.service';
 import { IDCService } from 'src/app/core/services/idc.service';
 import { WebhostingService } from 'src/app/core/services/webhosting.service';
 import { InvoiceService } from 'src/app/core/services/invoice.service';
+import { NzModalService } from 'ng-zorro-antd/modal';
+import { AddStatisticalInvoiceComponent } from '../vnpt-invoice/add-statistical-invoice/add-statistical-invoice.component';
+import { Router } from '@angular/router';
+import { AddDomainComponent } from '../domain-services/add-domain/add-domain.component';
+import { AddIdcComponent } from '../idc-services/add-idc/add-idc.component';
+import { AddWebhostingComponent } from '../webhosting-services/add-webhosting/add-webhosting.component';
+import { AddDausoComponent } from '../dauso-services/add-dauso/add-dauso.component';
 
 @Component({
-  selector: 'app-welcome',
-  templateUrl: './welcome.component.html',
+  selector: 'app-welcome-v2',
+  templateUrl: './welcome-v2.component.html',
   styleUrls: ['./welcome.component.scss'],
   providers: []
 })
@@ -43,6 +50,8 @@ export class WelcomeComponent implements OnInit {
     private domainAPI: DomainService,
     private webhostingAPI: WebhostingService,
     private invoiceAPI: InvoiceService,
+    private modalService: NzModalService,
+    private router: Router
   ) {
 
     this.getCountDauso();
@@ -104,6 +113,148 @@ export class WelcomeComponent implements OnInit {
         this.allCusCanceledWebhosting += element.countCanceled;
       });
     });
+  }
+
+  showAddAction(service: string) {
+    switch (service) {
+      case 'invoice': {
+        const modal = this.modalService.create({
+          nzTitle: 'KHÁCH HÀNG HÓA ĐƠN ĐIỆN TỬ MỚI',
+          nzContent: AddStatisticalInvoiceComponent,
+          nzWidth: 800,
+          nzBodyStyle: {
+            height: '640px'
+          },
+        });
+
+        modal.afterClose.subscribe(res => {
+          this.router.navigateByUrl('/vnpt-invoice/tong-quan-hddt');
+        });
+        break;
+      }
+      case 'domain': {
+        const modal = this.modalService.create({
+          nzTitle: 'KHÁCH HÀNG ĐĂNG KÝ DỊCH VỤ TÊN MIỀN',
+          nzContent: AddDomainComponent,
+          nzWidth: 800,
+          nzBodyStyle: {
+            height: '590px'
+          },
+        });
+
+        modal.afterClose.subscribe(res => {
+          this.router.navigateByUrl('/domain/tong-quan-domain');
+        });
+        break;
+      }
+
+      case 'idc': {
+        const modal = this.modalService.create({
+          nzTitle: 'KHÁCH HÀNG ĐĂNG KÝ DỊCH VỤ HẠ TẦNG LƯU TRỮ',
+          nzContent: AddIdcComponent,
+          nzWidth: 800,
+          nzBodyStyle: {
+            height: '590px'
+          },
+        });
+
+        modal.afterClose.subscribe(res => {
+          this.router.navigateByUrl('/idc/tong-quan-idc');
+        });
+        break;
+      }
+
+      case 'webhosting': {
+        const modal = this.modalService.create({
+          nzTitle: 'KHÁCH HÀNG ĐĂNG KÝ DỊCH VỤ WEBHOSTING',
+          nzContent: AddWebhostingComponent,
+          nzWidth: 800,
+          nzBodyStyle: {
+            height: '590px'
+          },
+        });
+
+        modal.afterClose.subscribe(res => {
+          this.router.navigateByUrl('/webhosting/tong-quan-webhosting');
+        });
+        break;
+      }
+
+      case 'dauso': {
+        const modal = this.modalService.create({
+          nzTitle: 'KHÁCH HÀNG ĐĂNG KÝ ĐẦU SỐ 1800 - 1900 MỚI',
+          nzContent: AddDausoComponent,
+          nzWidth: 800,
+          nzBodyStyle: {
+            height: '590px'
+          },
+        });
+
+        modal.afterClose.subscribe(res => {
+          this.router.navigateByUrl('/dau-so/tong-quan-dau-so');
+        });
+        break;
+      }
+      default: break;
+    }
+  }
+
+  showViewDetailAction(service: string) {
+    switch (service) {
+      case 'invoice': {
+        this.router.navigateByUrl('/vnpt-invoice/chi-tiet-hddt');
+        break;
+      }
+      case 'domain': {
+        this.router.navigateByUrl('/domain/so-lieu-domain');
+        break;
+      }
+
+      case 'idc': {
+        this.router.navigateByUrl('/idc/so-lieu-idc');
+        break;
+      }
+
+      case 'webhosting': {
+        this.router.navigateByUrl('/webhosting/so-lieu-webhosting');
+        break;
+      }
+
+      case 'dauso': {
+        this.router.navigateByUrl('/dau-so/so-lieu-dau-so');
+        break;
+      }
+      default: break;
+    }
+  }
+
+  showOverviewAction(service: string) {
+    switch (service) {
+      case 'invoice': {
+        this.router.navigateByUrl('/vnpt-invoice/tong-quan-hddt');
+        break;
+      }
+      case 'domain': {
+        this.router.navigateByUrl('/domain/tong-quan-domain');
+        break;
+      }
+
+      case 'idc': {
+        this.router.navigateByUrl('/idc/tong-quan-idc');
+        break;
+      }
+
+      case 'webhosting': {
+        this.router.navigateByUrl('/webhosting/tong-quan-webhosting');
+        break;
+      }
+
+      case 'dauso': {
+        this.router.navigateByUrl('/dau-so/tong-quan-dau-so');
+        break;
+      }
+      default: break;
+    }
   }
 
 }
