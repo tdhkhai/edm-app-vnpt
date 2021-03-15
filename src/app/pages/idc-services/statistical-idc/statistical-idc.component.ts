@@ -9,6 +9,7 @@ import { UploadComponent } from '../../shared/upload/upload.component';
 import { AddIdcComponent } from '../add-idc/add-idc.component';
 import { EditIdcComponent } from '../edit-idc/edit-idc.component';
 import { ExtendDetailsComponent } from '../extend-details/extend-details.component';
+
 @Component({
   selector: 'app-statistical-idc',
   templateUrl: './statistical-idc.component.html',
@@ -175,7 +176,7 @@ export class StatisticalIdcComponent implements OnInit {
       nzContent: EditIdcComponent,
       nzWidth: 800,
       nzBodyStyle: {
-        height: '590px'
+        height: '670px'
       },
     });
     modal.componentInstance.selectedId = selectedId;

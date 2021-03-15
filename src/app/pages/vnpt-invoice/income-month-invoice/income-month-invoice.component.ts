@@ -1,8 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { NzI18nService } from 'ng-zorro-antd/i18n';
-import { NzNotificationService } from 'ng-zorro-antd/notification';
-import { ExcelToFileService } from 'src/app/core/services/exceltofile.service';
 import { InvoiceService } from 'src/app/core/services/invoice.service';
 import * as moment from 'moment';
 
@@ -13,80 +9,60 @@ import * as moment from 'moment';
 })
 export class IncomeMonthInvoiceComponent implements OnInit {
   date = new Date();
-  listDTMoiAM: any = [];
-  listDTGHAM: any = [];
-  listDTMoi: any = [];
-  listDTGH: any = [];
-  loading: boolean;
-  sumSLKHMoi = 0;
-  sumDTMoi = 0;
-  sumSLKHGH = 0;
-  sumDTGH = 0;
 
-  sumSLKHMoiAM = 0;
-  sumDTMoiAM = 0;
-  sumSLKHGHAM = 0;
-  sumDTGHAM = 0;
+  listOfDataUnit: any = [];
+  loading: boolean;
+  sumCusNewUnit = 0;
+  sumCusExtUnit = 0;
+  sumIncomeNewUnit = 0;
+  sumIncomeExtUnit = 0;
+  sumCusUnit = 0;
+  sumIncomeUnit = 0;
+
+  listOfDataAM: any = [];
+  sumCusNewAM = 0;
+  sumCusExtAM = 0;
+  sumIncomeNewAM = 0;
+  sumIncomeExtAM = 0;
+  sumCusAM = 0;
+  sumIncomeAM = 0;
+
 
   constructor(
-    public dialog: MatDialog,
-    private invoiceAPI: InvoiceService,
-    private notification: NzNotificationService,) { }
+    private invoiceAPI: InvoiceService
+    ) { }
 
   ngOnInit(): void {
+
   }
 
   sumaryTheoThang(result: Date) {
+
     this.loading = true;
-    const month = moment(result).startOf('month').toISOString();
     // tslint:disable-next-line: object-literal-shorthand
-    const payload1 = { month: month, toi: 'Mới' };
-    // tslint:disable-next-line: object-literal-shorthand
-    const payload2 = { month: month, toi: 'GH' };
+    const payload = { month: moment(result).month().toString(), year: moment(result).year().toString() };
+    this.invoiceAPI.GetMonthlyIncome(payload).subscribe(res => {
+      this.loading = false;
+      this.listOfDataUnit = res;
+      this.sumCusNewUnit = this.listOfDataUnit.reduce((sum, curr) => sum + curr.countNewIncome, 0);
+      this.sumCusExtUnit = this.listOfDataUnit.reduce((sum, curr) => sum + curr.countExtIncome, 0);
+      this.sumIncomeNewUnit = this.listOfDataUnit.reduce((sum, curr) => sum + curr.newIncome, 0);
+      this.sumIncomeExtUnit = this.listOfDataUnit.reduce((sum, curr) => sum + curr.extIncome, 0);
+      this.sumCusUnit = this.sumCusNewUnit + this.sumCusExtUnit;
+      this.sumIncomeUnit = this.sumIncomeNewUnit + this.sumIncomeExtUnit;
+    })
 
-    this.invoiceAPI.sumaryTheoThang(payload1).subscribe(
-      (data) => {
-        this.listDTMoi = data;
-        this.sumSLKHMoi = this.listDTMoi.msg.reduce((sum, curr) => sum + curr.count, 0);
-        this.sumDTMoi = this.listDTMoi.msg.reduce((sum, curr) => sum + curr.totalIncome, 0);
-        this.loading = false;
-      }, (error) => {
-        console.log(error);
-        this.notification.create('error', 'Lỗi', 'Đã xảy ra lỗi, vui lòng thử lại!');
-      });
+    this.invoiceAPI.GetMonthlyIncomebyAM(payload).subscribe(res => {
+      this.loading = false;
+      this.listOfDataAM = res;
+      this.sumCusNewAM = this.listOfDataAM.reduce((sum, curr) => sum + curr.countNewIncome, 0);
+      this.sumCusExtAM = this.listOfDataAM.reduce((sum, curr) => sum + curr.countExtIncome, 0);
+      this.sumIncomeNewAM = this.listOfDataAM.reduce((sum, curr) => sum + curr.newIncome, 0);
+      this.sumIncomeExtAM = this.listOfDataAM.reduce((sum, curr) => sum + curr.extIncome, 0);
+      this.sumCusAM = this.sumCusNewAM + this.sumCusExtAM;
+      this.sumIncomeAM = this.sumIncomeNewAM + this.sumIncomeExtAM;
+    })
 
-    this.invoiceAPI.sumaryTheoThang(payload2).subscribe(
-      (data) => {
-        this.listDTGH = data;
-        this.sumSLKHGH = this.listDTGH.msg.reduce((sum, curr) => sum + curr.count, 0);
-        this.sumDTGH = this.listDTGH.msg.reduce((sum, curr) => sum + curr.totalIncome, 0);
-        this.loading = false;
-      }, (error) => {
-        console.log(error);
-        this.notification.create('error', 'Lỗi', 'Đã xảy ra lỗi, vui lòng thử lại!');
-      });
-
-    this.invoiceAPI.sumaryTheoThangAM(payload1).subscribe(
-      (data) => {
-        this.listDTMoiAM = data;
-        this.sumSLKHMoiAM = this.listDTMoiAM.msg.reduce((sum, curr) => sum + curr.count, 0);
-        this.sumDTMoiAM = this.listDTMoiAM.msg.reduce((sum, curr) => sum + curr.totalIncome, 0);
-        this.loading = false;
-      }, (error) => {
-        console.log(error);
-        this.notification.create('error', 'Lỗi', 'Đã xảy ra lỗi, vui lòng thử lại!');
-      });
-
-    this.invoiceAPI.sumaryTheoThangAM(payload2).subscribe(
-      (data) => {
-        this.listDTGHAM = data;
-        this.sumSLKHGHAM = this.listDTGHAM.msg.reduce((sum, curr) => sum + curr.count, 0);
-        this.sumDTGHAM = this.listDTGHAM.msg.reduce((sum, curr) => sum + curr.totalIncome, 0);
-        this.loading = false;
-      }, (error) => {
-        console.log(error);
-        this.notification.create('error', 'Lỗi', 'Đã xảy ra lỗi, vui lòng thử lại!');
-      });
   }
 
 }

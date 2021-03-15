@@ -64,9 +64,34 @@ export class InvoiceService {
       );
   }
 
-  // Doanh thu hàng tháng
+  // Doanh thu hàng tháng theo đơn vị
   GetMonthlyIncome(data): Observable<any> {
-    const API_URL = `${this.endpoint}/monthly-revenue`;
+    const API_URL = `${this.endpoint}/income-by-month`;
+    return this.http.post(API_URL, data)
+      .pipe(
+        map((res: Response) => {
+          return res || {};
+        }),
+        catchError(this.errorMgmt)
+      );
+  }
+
+    // Doanh thu hàng tháng theo đơn vị
+    GetMonthlyIncomebyAM(data): Observable<any> {
+      const API_URL = `${this.endpoint}/income-by-month-am`;
+      return this.http.post(API_URL, data)
+        .pipe(
+          map((res: Response) => {
+            return res || {};
+          }),
+          catchError(this.errorMgmt)
+        );
+    }
+
+
+  // Doanh thu năm
+  GetIncomeByYear(data): Observable<any> {
+    const API_URL = `${this.endpoint}/income-by-year`;
     return this.http.post(API_URL, data)
       .pipe(
         map((res: Response) => {

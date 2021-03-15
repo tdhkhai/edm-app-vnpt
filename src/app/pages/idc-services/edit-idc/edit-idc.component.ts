@@ -90,7 +90,10 @@ export class EditIdcComponent implements OnInit {
 
   submitForm() {
     // console.log(this.dausoForm.value);
-    this.idcForm.value.status = '1';
+    if(this.idcForm.value.cancelDate !== '' || this.idcForm.value.cancelDate !== null) {
+      this.idcForm.value.status = "3";
+    }
+
     this.idcAPI.UpdateIDC(this.selectedId, this.idcForm.value).subscribe(res => {
       this.notification.create('success', 'Thành công', 'Bạn đã cập nhật thành công!');
       this.modal.destroy();

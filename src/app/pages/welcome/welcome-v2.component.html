@@ -16,7 +16,6 @@
     <ng-template #coverVNPTInvoice>
       <img style="height: 258.69px;" src="../../../assets/images/panels/Invoice.jpg" alt="">
     </ng-template>
-
     <ng-template #actionAddInvoice>
       <i nz-tooltip nzTooltipTitle="Thêm mới" nz-icon nzType="plus" nzTheme="outline" style="color: green;"
         (click)="showAddAction('invoice')"></i>
@@ -45,15 +44,17 @@
         (click)="showAddAction('domain')"></i>
     </ng-template>
     <ng-template #actionViewDetailTenmien>
-      <i nz-tooltip nzTooltipTitle="Xem Chi tiết" nz-icon nzType="eye" nzTheme="outline" style="color: blue;" (click)="showViewDetailAction('domain')"></i>
+      <i nz-tooltip nzTooltipTitle="Xem Chi tiết" nz-icon nzType="eye" nzTheme="outline" style="color: blue;"
+        (click)="showViewDetailAction('domain')"></i>
     </ng-template>
     <ng-template #actionOverviewTenmien>
-      <i nz-tooltip nzTooltipTitle="Xem Overview" nz-icon nzType="exclamation-circle" nzTheme="outline" (click)="showOverviewAction('domain')"></i>
+      <i nz-tooltip nzTooltipTitle="Xem Overview" nz-icon nzType="exclamation-circle" nzTheme="outline"
+        (click)="showOverviewAction('domain')"></i>
     </ng-template>
 
     <div nz-col [nzSpan]="6">
       <nz-card [nzCover]="coverIDC" [nzActions]="[actionAddIDC, actionViewDetailIDC, actionOverviewIDC]">
-        <nz-card-meta nzTitle="Hạ tầng lưu trữ" nzDescription="SM + Cloud + VPS"></nz-card-meta>
+        <nz-card-meta nzTitle="Hạ tầng lưu trữ" nzDescription="Smart Cloud + Cloud + VPS"></nz-card-meta>
       </nz-card>
     </div>
     <ng-template #coverIDC>
@@ -64,10 +65,12 @@
         (click)="showAddAction('idc')"></i>
     </ng-template>
     <ng-template #actionViewDetailIDC>
-      <i nz-tooltip nzTooltipTitle="Xem Chi tiết" nz-icon nzType="eye" nzTheme="outline" style="color: blue;" (click)="showViewDetailAction('idc')"></i>
+      <i nz-tooltip nzTooltipTitle="Xem Chi tiết" nz-icon nzType="eye" nzTheme="outline" style="color: blue;"
+        (click)="showViewDetailAction('idc')"></i>
     </ng-template>
     <ng-template #actionOverviewIDC>
-      <i nz-tooltip nzTooltipTitle="Xem Overview" nz-icon nzType="exclamation-circle" nzTheme="outline" (click)="showOverviewAction('idc')"></i>
+      <i nz-tooltip nzTooltipTitle="Xem Overview" nz-icon nzType="exclamation-circle" nzTheme="outline"
+        (click)="showOverviewAction('idc')"></i>
     </ng-template>
 
     <div nz-col [nzSpan]="6">
@@ -84,12 +87,13 @@
         (click)="showAddAction('webhosting')"></i>
     </ng-template>
     <ng-template #actionViewDetailWebhosting>
-      <i nz-tooltip nzTooltipTitle="Xem Chi tiết" nz-icon nzType="eye" nzTheme="outline" style="color: blue;" (click)="showViewDetailAction('webhosting')"></i>
+      <i nz-tooltip nzTooltipTitle="Xem Chi tiết" nz-icon nzType="eye" nzTheme="outline" style="color: blue;"
+        (click)="showViewDetailAction('webhosting')"></i>
     </ng-template>
     <ng-template #actionOverviewWebhosting>
-      <i nz-tooltip nzTooltipTitle="Xem Overview" nz-icon nzType="exclamation-circle" nzTheme="outline" (click)="showOverviewAction('webhosting')"></i>
+      <i nz-tooltip nzTooltipTitle="Xem Overview" nz-icon nzType="exclamation-circle" nzTheme="outline"
+        (click)="showOverviewAction('webhosting')"></i>
     </ng-template>
-
   </div>
   <br>
   <!-- Row 2 -->

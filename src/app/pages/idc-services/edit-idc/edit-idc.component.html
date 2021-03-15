@@ -118,6 +118,17 @@
         </nz-form-item>
       </div>
     </div>
+    <div nz-row>
+      <div nz-col nzSpan="11">
+        <nz-form-item>
+          <nz-form-label nzFor="cancelDate">Ngày thanh lý</nz-form-label>
+          <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng chọn ngày thanh lý'">
+            <nz-date-picker formControlName="cancelDate" style="width: 100%;" nzFormat="dd/MM/yyyy"
+              id="CancelDate"></nz-date-picker>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
   </form>
   <div *nzModalFooter>
     <button nz-button nzType="default" (click)="close()">Hủy</button>
