@@ -102,7 +102,7 @@
         {{ data.amount | currency: "VND":"" }}
       </td>
       <td nzAlign="center">
-        <ng-container *ngIf="data.incomeDate !== null; else elseTemplate">
+        <ng-container *ngIf="data.incomeDate !== null || data.incomeDate !== ''; else elseTemplate">
           <span nz-tooltip nzTooltipTitle="Tháng {{ data.incomeDate | date: 'MM/yyyy' }} - {{
               data.typeOfIncome
             }}">

@@ -30,7 +30,7 @@ export class IncomeMonthInvoiceComponent implements OnInit {
 
   constructor(
     private invoiceAPI: InvoiceService
-    ) { }
+  ) { }
 
   ngOnInit(): void {
 
@@ -39,8 +39,8 @@ export class IncomeMonthInvoiceComponent implements OnInit {
   sumaryTheoThang(result: Date) {
 
     this.loading = true;
-    // tslint:disable-next-line: object-literal-shorthand
-    const payload = { month: moment(result).month().toString(), year: moment(result).year().toString() };
+    const dateIncome = moment(result).startOf('month').toISOString();
+    const payload = { dateIncome: dateIncome };
     this.invoiceAPI.GetMonthlyIncome(payload).subscribe(res => {
       this.loading = false;
       this.listOfDataUnit = res;

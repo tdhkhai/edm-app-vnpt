@@ -5,7 +5,7 @@
 </nz-breadcrumb>
 
 <div nz-row nzJustify="center">
-  <nz-date-picker nzAllowClear="false" [nzSize]="'large'" nzMode="month" [nzFormat]="'yyyy'" [(ngModel)]="date"
+  <nz-date-picker nzAllowClear="false" [nzSize]="'large'" nzMode="year" [nzFormat]="'yyyy'" [(ngModel)]="date"
     nzPlaceHolder="Chọn tháng cần xem" (ngModelChange)="sumaryTheoThang($event)" style="width: 200px;"></nz-date-picker>
 </div>
 <br>
@@ -36,7 +36,11 @@
     <tr *ngFor="let data of basicTable.data; index as i">
       <td>{{ i+1 }}</td>
       <td>{{data._id.unitCode}}</td>
-      <td *ngIf="data.income.month === '01'">{{data.income.sum}}</td>
+      <ng-template>
+        <td *ngIf="data.income.month === '01'">{{data.income.sum}}</td>
+      </ng-template>
+
+
     </tr>
   </tbody>
 </nz-table>

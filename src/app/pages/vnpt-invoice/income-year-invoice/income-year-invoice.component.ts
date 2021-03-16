@@ -9,28 +9,17 @@ import * as moment from 'moment';
 })
 export class IncomeYearInvoiceComponent implements OnInit {
   listOfDataUnit: any = [];
-  date = new Date();
+  date: Date;
   loading: boolean;
-  unitArr = [
-    { "id": "APU" },
-    { "id": "CDC" },
-    { "id": "CMI" },
-    { "id": "CPU" },
-    { "id": "CTH" },
-    { "id": "PTN" },
-    { "id": "TBN" },
-    { "id": "TCDN" },
-    { "id": "TSN" },
-    { "id": "TTN" },
-  ]
-
+  tmp1: any = [];
+  tmp2: any = [];
   constructor(
     private invoiceAPI: InvoiceService
-  ) { }
+  ) {
+    this.date = new Date();
+  }
 
   ngOnInit(): void {
-    console.log(this.unitArr);
-
   }
 
   sumaryTheoThang(result: Date) {
@@ -41,6 +30,7 @@ export class IncomeYearInvoiceComponent implements OnInit {
     this.invoiceAPI.GetIncomeByYear(payload).subscribe(res => {
       this.loading = false;
       this.listOfDataUnit = res;
+
     })
 
   }

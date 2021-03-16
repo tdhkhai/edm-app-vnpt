@@ -59,7 +59,7 @@
       </td>
       <td style="text-align: right">{{ data.income | currency: 'VND':'' }} VND</td>
       <td nzAlign="center">
-        <ng-container *ngIf="data.incomeDate !== ''; else elseTemplate">
+        <ng-container *ngIf="data.incomeDate !== '' || data.incomeDate !== null; else elseTemplate">
           Tháng {{ data.incomeDate | date: 'MM/yyyy' }}
         </ng-container>
         <ng-template #elseTemplate>

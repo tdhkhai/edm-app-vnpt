@@ -34,15 +34,15 @@ export class StatisticalInvoiceComponent implements OnInit {
   listOfCurrentPageData: any = [];
   isSpinning = false;
 
-  dateSelected = new Date();
-  today = new Date();
+  dateSelected: Date;
+  today: Date;
   constructor(
     private excelToFile: ExcelToFileService,
     private notification: NzNotificationService,
     private invoiceAPI: InvoiceService,
     private modalService: NzModalService,
   ) {
-    // this.dateSelected = new Date();
+    this.dateSelected = new Date();
     this.getAllInvoices();
 
   }
@@ -53,7 +53,6 @@ export class StatisticalInvoiceComponent implements OnInit {
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
-    // let filterValueLower = filterValue.toLowerCase();
 
     if (filterValue === '') {
       this.listOfData = this.listOfAllData;
@@ -86,11 +85,7 @@ export class StatisticalInvoiceComponent implements OnInit {
       nzWidth: 1300,
 
     });
-    this.invoiceAPI.GetListInvoiceByComTaxCode({ selectedComTaxCode }).subscribe((data) => {
-      this.listInvoiceByComTaxCode = data;
-    });
-
-    modal.componentInstance.listOfData = this.listInvoiceByComTaxCode;
+    modal.componentInstance.selectedComTaxCode = selectedComTaxCode;
   }
 
   exportExcel() {
@@ -130,6 +125,7 @@ export class StatisticalInvoiceComponent implements OnInit {
       const data = XLSX.utils.sheet_to_json(ws, { raw: false });
       // to get 2d array pass 2nd parameter as object {header: 1}
       // console.log(data); // Data will be logged in array format containing objects
+
       // console.log(typeof(data));
       this.importDataImport(data);
     };
@@ -138,9 +134,7 @@ export class StatisticalInvoiceComponent implements OnInit {
   importDataImport(data: any) {
     data.forEach(element => {
 
-      element.incomeDate = moment(element.incomeDate).toISOString();
       element.comName = element.comName.toUpperCase();
-
       element.am = {
         unitCode: element.unitCode,
         userName: element.userName

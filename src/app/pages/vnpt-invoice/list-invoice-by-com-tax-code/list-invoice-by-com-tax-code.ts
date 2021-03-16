@@ -9,8 +9,8 @@ import { InvoiceService } from 'src/app/core/services/invoice.service';
 })
 export class ListInvoiceByCusTaxCodeComponent implements OnInit {
   loading = true;
-  listOfData: any;
-  selectedComTaxCode: string;
+  listOfData: any = [];
+  selectedComTaxCode: any;
   sumIncome = 0;
   constructor(
     private invoiceAPI: InvoiceService,
@@ -19,13 +19,14 @@ export class ListInvoiceByCusTaxCodeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.listOfData !== '' || this.listOfData != null) {
-      this.listOfData.forEach(element => {
-        if (element.incomeDate !== '' || element.incomeDate != null) {
-          this.sumIncome += element.income;
-        }
-      });
-    }
+    this.loading = true;
+    this.invoiceAPI.GetListInvoiceByComTaxCode({ selectedComTaxCode: this.selectedComTaxCode }).subscribe((data) => {
+      this.loading = false;
+      this.listOfData = data;
+      this.sumIncome = this.listOfData.reduce((sum, curr) => sum + curr.income, 0);
+      console.log(this.sumIncome);
+
+    })
   }
 
   exportExcel() {
