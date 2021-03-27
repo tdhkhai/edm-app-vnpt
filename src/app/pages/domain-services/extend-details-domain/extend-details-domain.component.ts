@@ -51,6 +51,8 @@ export class ExtendDetailsDomainComponent implements OnInit {
       extend: this.extendForm.value
     };
 
+    console.log(tmp);
+
     this.domainAPI.pushExtendDomain(this.selectedId, tmp).subscribe(
       (res) => {
         this.close();

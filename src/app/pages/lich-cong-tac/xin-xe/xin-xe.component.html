@@ -1,0 +1,57 @@
+<nz-page-header class="site-page-header">
+  <nz-page-header-title>XIN XE</nz-page-header-title>
+
+  <nz-breadcrumb nz-page-header-breadcrumb [nzAutoGenerate]="true">
+    <nz-breadcrumb-item>
+      <i nz-icon nzType="home"></i>
+    </nz-breadcrumb-item>
+  </nz-breadcrumb>
+
+  <nz-page-header-extra>
+    <button nz-button nzType="primary" (click)="showCreate()"><i nz-icon nzType="plus"
+        nzTheme="outline"></i>Thêm</button>
+  </nz-page-header-extra>
+
+</nz-page-header>
+<nz-table nzBordered #headerTable [nzLoading]="loading" [nzData]="listOfData">
+  <thead>
+    <tr>
+      <th nzAlign="center" style="width: 5%;">STT</th>
+      <th nzAlign="center" style="width: 10%;"> Ngày công tác</th>
+      <th nzAlign="center" style="width: 10%;">Nơi đến</th>
+      <th nzAlign="center">Nội dung công tác</th>
+      <th nzAlign="center" style="width: 10%;">Km đi</th>
+      <th nzAlign="center" style="width: 10%;">Km đến</th>
+      <th nzAlign="center" style="width: 10%;">Số Km</th>
+      <th nzAlign="center" style="width: 10%;">Số lít</th>
+      <th nzAlign="center">Thao tác</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of headerTable.data ; index as i">
+      <td nzAlign="center">{{ i + 1 }}</td>
+      <ng-container *ngIf="data.ngaydi_ve[0] === data.ngaydi_ve[1]; else elseTemplate">
+        <td nzAlign="center">{{ data.ngaydi_ve[0] | date:'dd/MM/yyyy' }}</td>
+      </ng-container>
+      <ng-template #elseTemplate>
+        <td nzAlign="center">{{ data.ngaydi_ve[0] | date:'dd/MM/yyyy' }} - {{data.ngaydi_ve[1] | date:'dd/MM/yyyy' }}
+        </td>
+      </ng-template>
+      <td nzAlign="center">{{ data.noiden }}</td>
+      <td nzAlign="left">{{ data.noidung }}</td>
+      <td nzAlign="right">{{ data.km_di | number }}</td>
+      <td nzAlign="right">{{ data.km_ve | number }}</td>
+      <td nzAlign="center">{{ data.so_km | number }}</td>
+      <td nzAlign="center">{{ data.so_lit | number }}</td>
+      <td nzAlign="center">
+        <nz-divider nzType="vertical"></nz-divider>
+        <a (click)="editModal(data._id)" nz-tooltip nzTooltipTitle="Sửa"><i nz-icon nzType="edit"
+            nzTheme="twotone"></i></a>
+        <nz-divider nzType="vertical"></nz-divider>
+        <a nz-tooltip nzTooltipTitle="Xóa" nz-popconfirm nzPopconfirmTitle="Bạn thật sự muốn xóa?"
+          nzPopconfirmPlacement="topRight" (nzOnConfirm)="confirmDelete(data)" (nzOnCancel)="cancel()"><i nz-icon
+            nzType="delete" [nzTheme]="'twotone'" [nzTwotoneColor]="'#eb2f96'"></i></a>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>

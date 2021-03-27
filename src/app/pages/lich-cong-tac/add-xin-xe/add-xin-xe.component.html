@@ -1,0 +1,76 @@
+<form nz-form [formGroup]="xinxeForm" (ngSubmit)="submitForm()">
+  <div nz-row>
+    <div nz-col nzSpan="12">
+      <nz-form-item>
+        <nz-form-label nzRequired nzFor="Noidi">Nơi đi</nz-form-label>
+        <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng nhập nơi đi'">
+          <nz-input-group>
+            <input type="text" nz-input formControlName="noidi" id="Noidi" required />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col nzSpan="12">
+      <nz-form-item>
+        <nz-form-label nzRequired nzFor="Noiden">Nơi đến</nz-form-label>
+        <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng nhập nơi đến'">
+          <nz-input-group>
+            <input type="text" nz-input formControlName="noiden" id="Noiden" required />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+  <div nz-row>
+    <div nz-col nzSpan="24">
+      <nz-form-item>
+        <nz-form-label nzRequired nzFor="Ngaydi">Ngày công tác</nz-form-label>
+        <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng chọn Ngày công tác'">
+          <nz-range-picker formControlName="ngaydi_ve" style="width: 100%;" nzFormat="dd/MM/yyyy"
+            [(ngModel)]="bussinessDate" id="Ngaydi"></nz-range-picker>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+  <div nz-row>
+    <div nz-col nzSpan="12">
+      <nz-form-item>
+        <nz-form-label nzRequired nzFor="Km_di">Số KM đi</nz-form-label>
+        <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng nhập Số KM đi'">
+          <nz-input-group>
+            <input type="number" nz-input formControlName="km_di" id="K_di" required style="text-align: right;" />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col nzSpan="12">
+      <nz-form-item>
+        <nz-form-label nzRequired nzFor="Km_ve">Số KM về</nz-form-label>
+        <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng nhập Số KM đến'">
+          <nz-input-group>
+            <input type="number" nz-input formControlName="km_ve" id="Km_ve" required style="text-align: right;" />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+  <div nz-row>
+    <div nz-col nzSpan="24">
+      <nz-form-item>
+        <nz-form-label nzFor="Noidung">Nội dung công tác</nz-form-label>
+        <nz-form-control>
+          <nz-textarea-count>
+            <textarea rows="4" formControlName="noidung" nz-input id="Noidung"></textarea>
+          </nz-textarea-count>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+</form>
+<div *nzModalFooter>
+  <button nz-button nzType="default" (click)="close()">Hủy</button>
+  <button nz-button nzType="primary" (click)="submitForm()">Thêm</button>
+</div>
+<ng-template #suffixIconSearch>
+  <i nz-icon nzType="search"></i>
+</ng-template>

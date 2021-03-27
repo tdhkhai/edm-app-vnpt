@@ -46,6 +46,10 @@ const routes: Routes = [
     path: 'webhosting', loadChildren: () => import('./pages/webhosting-services/webhosting.module').then(m => m.WebhostingModule),
     data: { breadcrumb: 'Webhosting' }
   },
+  {
+    path: 'lich-cong-tac', loadChildren: () => import('./pages/lich-cong-tac/lichcongtac.module').then(m => m.LichCongTacModule),
+    data: { breadcrumb: 'Lịch công tác' }
+  },
 ];
 
 @NgModule({
