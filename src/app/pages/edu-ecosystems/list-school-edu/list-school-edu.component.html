@@ -1,0 +1,61 @@
+<nz-page-header class="site-page-header">
+  <nz-page-header-title>SỐ LIỆU HỆ SINH THÁI vnEdu 4.0</nz-page-header-title>
+
+  <nz-breadcrumb nz-page-header-breadcrumb [nzAutoGenerate]="true">
+    <nz-breadcrumb-item>
+      <i nz-icon nzType="home"></i>
+    </nz-breadcrumb-item>
+  </nz-breadcrumb>
+
+  <nz-page-header-extra>
+    <button nz-button nzType="danger" nzType="dashed" (click)="importExcel()"><i nz-icon [nzType]="'upload'"
+        [nzTheme]="'outline'"></i>Import</button>
+    <button nz-button nzType="primary" nzType="dashed" (click)="exportExcel()"><i nz-icon [nzType]="'download'"
+        [nzTheme]="'outline'"></i>Export</button>
+    <button nz-button nzType="primary" (click)="showCreate()"><i nz-icon nzType="plus"
+        nzTheme="outline"></i>Thêm</button>
+  </nz-page-header-extra>
+</nz-page-header>
+<nz-form-item>
+  <nz-form-label nzFor="filter">Lọc</nz-form-label>
+  <nz-form-control nzHasFeedback>
+    <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
+      <input type="text" nz-input id="filter" [(ngModel)]="searchValue" (keyup)="applyFilter($event)" />
+    </nz-input-group>
+  </nz-form-control>
+</nz-form-item>
+<ng-template #suffixIconButton>
+  <button nz-button nzType="primary" nzSearch><i nz-icon nzType="search"></i></button>
+</ng-template>
+
+<nz-table nzBordered #headerTable [nzLoading]="loading" [nzData]="listOfData" nzShowPagination nzShowSizeChanger
+  (nzCurrentPageDataChange)="onCurrentPageDataChange($event)">
+  <thead>
+    <tr>
+      <th nzAlign="center" style="width: 5%;">STT</th>
+      <th nzAlign="center" style="width: 5%;">Đơn vị</th>
+      <th nzAlign="center">Trường</th>
+      <th nzAlign="center">Phân hệ sử dụng</th>
+      <th nzAlign="center">Thao tác</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of headerTable.data ; index as i">
+      <td nzAlign="center">{{ i + 1 }}</td>
+      <td nzAlign="center"> {{ data.unit.unitCode }}</td>
+      <td nzAlign="left"> {{ data.schoolName }}</td>
+      <td nzAlign="center"></td>
+      <td nzAlign="center">
+        <a (click)="openAddModule(data._id)" nz-tooltip nzTooltipTitle="Thêm module"><i nz-icon nzType="plus-circle"
+            nzTheme="twotone"></i></a>
+        <nz-divider nzType="vertical"></nz-divider>
+        <a (click)="editModal(data._id)" nz-tooltip nzTooltipTitle="Sửa"><i nz-icon nzType="edit"
+            nzTheme="twotone"></i></a>
+        <nz-divider nzType="vertical"></nz-divider>
+        <a nz-tooltip nzTooltipTitle="Xóa" nz-popconfirm nzPopconfirmTitle="Bạn thật sự muốn xóa?"
+          nzPopconfirmPlacement="topRight" (nzOnConfirm)="confirmDelete(data)" (nzOnCancel)="cancel()"><i nz-icon
+            nzType="delete" [nzTheme]="'twotone'" [nzTwotoneColor]="'#eb2f96'"></i></a>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>

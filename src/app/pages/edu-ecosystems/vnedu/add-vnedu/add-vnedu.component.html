@@ -1,0 +1,66 @@
+<form nz-form [formGroup]="vnEduForm" (ngSubmit)="submitForm()">
+  <div nz-row>
+    <div nz-col nzSpan="12">
+      <nz-form-item>
+        <nz-form-label nzRequired nzFor="SchoolYear">Năm học</nz-form-label>
+        <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng nhập năm học'">
+          <nz-input-group>
+            <input type="text" nz-input formControlName="schoolYear" id="SchoolYear" required />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+  <div nz-row>
+    <div nz-col nzSpan="24">
+      <nz-form-item>
+        <nz-form-label nzRequired nzFor="AmountSLL">Số lượng SLLĐT</nz-form-label>
+        <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng nhập số lượng SLL'">
+          <nz-input-group>
+            <input type="number" nz-input formControlName="amountSLL" id="AmountSLL" required />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+  <div nz-row>
+    <div nz-col nzSpan="24">
+      <nz-form-item>
+        <nz-form-label nzRequired nzFor="Income">Doanh thu</nz-form-label>
+        <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng nhập số lượng SLL'">
+          <nz-input-group>
+            <input type="number" nz-input formControlName="income" id="Income" required />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+  <div nz-row>
+    <div nz-col nzSpan="24">
+      <nz-form-item>
+        <nz-form-label nzRequired nzFor="UserName">Đơn vị</nz-form-label>
+        <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng chọn đơn vị'">
+          <nz-select nzAllowClear nzPlaceHolder="Chọn AM quản lý" formControlName="am" id="UserName">
+            <nz-option [nzValue]="item" *ngFor="let item of listOfUser" [nzLabel]="item.userName"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+  <div nz-row>
+    <div nz-col nzSpan="24">
+      <nz-form-item>
+        <nz-form-label nzFor="remark">Ghi chú</nz-form-label>
+        <nz-form-control>
+          <nz-textarea-count>
+            <textarea rows="4" formControlName="remark" nz-input></textarea>
+          </nz-textarea-count>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+</form>
+<div *nzModalFooter>
+  <button nz-button nzType="default" (click)="close()">Hủy</button>
+  <button nz-button nzType="primary" (click)="submitForm()">Thêm</button>
+</div>

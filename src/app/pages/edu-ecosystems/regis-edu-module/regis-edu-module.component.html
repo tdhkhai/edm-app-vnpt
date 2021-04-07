@@ -1,0 +1,53 @@
+<div style="width:100%;">
+  <div nz-row [nzGutter]="8">
+    <div nz-col [nzSpan]="6">
+      <a (click)="regisModule_vnEdu()">
+        <nz-card class="h-100">
+          <nz-card-meta nzTitle="vnEdu" nzDescription="Sổ liên lạc điện tử"></nz-card-meta>
+        </nz-card>
+      </a>
+    </div>
+
+    <div nz-col [nzSpan]="6">
+      <a (click)="regisModule('vnEdu-QoE', 'Kiểm định chất lượng giáo dục')">
+        <nz-card class="h-100">
+          <nz-card-meta nzTitle="vnEdu-QoE" nzDescription="Kiểm định chất lượng giáo dục"></nz-card-meta>
+        </nz-card>
+      </a>
+    </div>
+
+    <div nz-col [nzSpan]="6">
+      <a (click)="regisModule('vnPortal', 'Cổng thông tin điện tử')">
+        <nz-card class="h-100">
+          <nz-card-meta nzTitle="vnPortal" nzDescription="Cổng thông tin điện tử"></nz-card-meta>
+        </nz-card>
+      </a>
+    </div>
+
+    <div nz-col [nzSpan]="6">
+      <a (click)="regisModule('vnEdu-FMS', 'Quản lý thanh toán')">
+        <nz-card class="h-100">
+          <nz-card-meta nzTitle="vnEdu-FMS" nzDescription="Quản lý thanh toán"></nz-card-meta>
+        </nz-card>
+      </a>
+    </div>
+  </div>
+  <br>
+  <!-- Row 2 -->
+  <div nz-row [nzGutter]="8">
+    <div nz-col [nzSpan]="6">
+      <a (click)="regisModule('VNPT iOffice', 'Văn phòng điện tử')">
+        <nz-card>
+          <nz-card-meta nzTitle="VNPT - iOffice" nzDescription="Văn phòng điện tử"></nz-card-meta>
+        </nz-card>
+      </a>
+    </div>
+    <div nz-col [nzSpan]="6">
+      <a (click)="regisModule('VNPT Elearning', 'Học và thi trực tuyến')">
+        <nz-card>
+          <nz-card-meta nzTitle="VNPT Elearning" nzDescription="Học và thi trực tuyến"></nz-card-meta>
+        </nz-card>
+      </a>
+    </div>
+  </div>
+</div>

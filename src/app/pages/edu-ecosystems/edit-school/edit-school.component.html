@@ -1,0 +1,61 @@
+<nz-spin [nzSpinning]="isSpinning">
+  <form nz-form [formGroup]="schoolForm" (ngSubmit)="submitForm()">
+    <nz-divider nzText="Thông tin Khách hàng" nzOrientation="center"></nz-divider>
+    <div nz-row>
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label nzRequired nzFor="SchoolTaxCode">Mã số thuế</nz-form-label>
+          <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng nhập mã số thuế trường học'">
+            <nz-input-group nzSearch [nzSuffix]="suffixIconSearch">
+              <input type="text" nz-input formControlName="schoolTaxCode" id="SchoolTaxCode" required />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+    <div nz-row>
+      <div nz-col nzSpan="24">
+        <nz-form-item>
+          <nz-form-label nzRequired nzFor="SchoolName">Tên trường</nz-form-label>
+          <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng nhập tên trường'">
+            <nz-input-group nzSearch [nzSuffix]="suffixIconSearch">
+              <input type="text" nz-input formControlName="schoolName" id="SchoolName" required />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+    <div nz-row>
+      <div nz-col nzSpan="24">
+        <nz-form-item>
+          <nz-form-label nzRequired nzFor="UnitName">Đơn vị</nz-form-label>
+          <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng chọn đơn vị'">
+            <nz-select [compareWith]="compareByOptionId" nzAllowClear nzPlaceHolder="Chọn đơn vị" formControlName="unit" id="UnitName">
+              <nz-option [nzValue]="item" *ngFor="let item of listOfUnit" [nzLabel]="item.unitName"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+    <div nz-row>
+      <div nz-col nzSpan="24">
+        <nz-form-item>
+          <nz-form-label nzFor="remark">Ghi chú</nz-form-label>
+          <nz-form-control>
+            <nz-textarea-count>
+              <textarea rows="4" formControlName="remark" nz-input></textarea>
+            </nz-textarea-count>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+  </form>
+  <div *nzModalFooter>
+    <button nz-button nzType="default" (click)="close()">Hủy</button>
+    <button nz-button nzType="primary" (click)="submitForm()">Cập nhật</button>
+  </div>
+  <ng-template #suffixIconSearch>
+    <i nz-icon nzType="search"></i>
+  </ng-template>
+
+</nz-spin>
