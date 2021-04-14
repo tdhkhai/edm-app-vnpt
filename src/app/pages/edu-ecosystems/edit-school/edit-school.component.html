@@ -26,6 +26,28 @@
       </div>
     </div>
     <div nz-row>
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label nzRequired nzFor="IdvnEdu">vnEdu ID</nz-form-label>
+          <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng nhập ID trường trên vnEdu'">
+            <nz-input-group>
+              <input type="text" nz-input formControlName="id_vnedu" id="IdvnEdu" required />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label nzRequired nzFor="IdMoet">MOET ID</nz-form-label>
+          <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng nhập ID MOET'">
+            <nz-input-group>
+              <input type="text" nz-input formControlName="id_moet" id="IdMoet" required />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+    <div nz-row>
       <div nz-col nzSpan="24">
         <nz-form-item>
           <nz-form-label nzRequired nzFor="UnitName">Đơn vị</nz-form-label>

@@ -35,21 +35,27 @@
       <th nzAlign="center" style="width: 5%;">STT</th>
       <th nzAlign="center" style="width: 5%;">Đơn vị</th>
       <th nzAlign="center">Trường</th>
-      <th nzAlign="center">Phân hệ sử dụng</th>
+      <th nzAlign="center">Phân hệ đang sử dụng</th>
       <th nzAlign="center">Thao tác</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let data of headerTable.data ; index as i">
       <td nzAlign="center">{{ i + 1 }}</td>
-      <td nzAlign="center"> {{ data.unit.unitCode }}</td>
-      <td nzAlign="left"> {{ data.schoolName }}</td>
-      <td nzAlign="center"></td>
+      <td nzAlign="center"> {{ data._id.unit.unitCode }}</td>
+
+      <td nzAlign="left">
+        {{ data._id.schoolName }}
+      </td>
+      <td nzAlign="center">{{ data._id.modules }}</td>
       <td nzAlign="center">
-        <a (click)="openAddModule(data._id)" nz-tooltip nzTooltipTitle="Thêm module"><i nz-icon nzType="plus-circle"
-            nzTheme="twotone"></i></a>
+        <a (click)="openListModulebySchool(data._id.idSchool)" nz-tooltip nzTooltipTitle="Xem chi tiết"><i nz-icon
+            nzType="eye" nzTheme="twotone" [nzTwotoneColor]="'#52c41a'"></i></a>
         <nz-divider nzType="vertical"></nz-divider>
-        <a (click)="editModal(data._id)" nz-tooltip nzTooltipTitle="Sửa"><i nz-icon nzType="edit"
+        <a (click)="openAddModule(data._id.idSchool)" nz-tooltip nzTooltipTitle="Thêm module"><i nz-icon
+            nzType="plus-circle" nzTheme="twotone"></i></a>
+        <nz-divider nzType="vertical"></nz-divider>
+        <a (click)="editModal(data._id.idSchool)" nz-tooltip nzTooltipTitle="Sửa"><i nz-icon nzType="edit"
             nzTheme="twotone"></i></a>
         <nz-divider nzType="vertical"></nz-divider>
         <a nz-tooltip nzTooltipTitle="Xóa" nz-popconfirm nzPopconfirmTitle="Bạn thật sự muốn xóa?"

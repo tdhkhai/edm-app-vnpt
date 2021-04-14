@@ -11,6 +11,7 @@ import { RegisEduModuleComponent } from './regis-edu-module/regis-edu-module.com
 import { AddSchoolComponent } from './add-school/add-school.component';
 import { EditSchoolComponent } from './edit-school/edit-school.component';
 import { AddModuleEduComponent } from './add-module-edu/add-module-edu.component';
+import { ListModulesComponent } from './module-by-school/list-modules/list-modules.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -28,6 +29,7 @@ import { AddModuleEduComponent } from './add-module-edu/add-module-edu.component
     AddVneduComponent,
     EditVneduComponent,
     AddModuleEduComponent,
+    ListModulesComponent,
   ],
   exports: [
     OverviewEduEcosystemsComponent,
@@ -38,6 +40,7 @@ import { AddModuleEduComponent } from './add-module-edu/add-module-edu.component
     AddVneduComponent,
     EditVneduComponent,
     AddModuleEduComponent,
+    ListModulesComponent,
   ],
   providers: [
   ]

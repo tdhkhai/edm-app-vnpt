@@ -30,10 +30,13 @@ export class AddSchoolComponent implements OnInit {
   setForm() {
     this.schoolForm = new FormGroup({
       schoolTaxCode: new FormControl(),
+      id_vnedu: new FormControl(),
+      id_moet: new FormControl(),
       schoolName: new FormControl(),
       unit: new FormControl(),
       remark: new FormControl(),
       status: new FormControl('1'),
+      modules: new FormControl(null)
     });
   }
 
@@ -44,7 +47,7 @@ export class AddSchoolComponent implements OnInit {
   }
 
   submitForm() {
-    console.log(this.schoolForm.value);
+    this.schoolForm.value.schoolName = this.schoolForm.value.schoolName.toUpperCase();
     this.eduEcosystemsServices.AddSchool(this.schoolForm.value).subscribe(res => {
       this.notification.create('success', 'Thành công', 'Bạn đã lưu thành công!');
       this.modal.destroy();

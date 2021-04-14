@@ -29,6 +29,7 @@ import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 import { NzBadgeModule } from 'ng-zorro-antd/badge';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzTimelineModule } from 'ng-zorro-antd/timeline';
+import { NzPopoverModule } from 'ng-zorro-antd/popover';
 
 @NgModule({
   imports: [
@@ -62,6 +63,7 @@ import { NzTimelineModule } from 'ng-zorro-antd/timeline';
     NzBadgeModule,
     NzSpinModule,
     NzTimelineModule,
+    NzPopoverModule,
   ],
   exports: [
     NzIconModule,
@@ -94,6 +96,7 @@ import { NzTimelineModule } from 'ng-zorro-antd/timeline';
     NzBadgeModule,
     NzSpinModule,
     NzTimelineModule,
+    NzPopoverModule,
   ]
 })
 export class AntDesignModule { }

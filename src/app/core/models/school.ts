@@ -4,9 +4,10 @@ import { User } from './user';
 export interface School {
   _id: string;
   unit: Unit;
-  idvnEdu: string;
   schoolName: string;
   schoolTaxCode: string;
+  id_vnedu: string;
+  id_moet: string;
   status: string;
   modules: [{
     moduleName: string;

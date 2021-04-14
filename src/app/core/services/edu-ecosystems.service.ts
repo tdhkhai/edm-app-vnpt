@@ -61,6 +61,18 @@ export class EduEcosystemsService {
       );
   }
 
+    // Get Lists School
+    GetListModuleUsedbySchool(): Observable<any> {
+      const API_URL = `${this.endpoint}/list-module-used-by-school`;
+      return this.http.get(API_URL, { headers: this.headers })
+        .pipe(
+          map((res: Response) => {
+            return res || {};
+          }),
+          catchError(this.errorMgmt)
+        );
+    }
+
   // Get School by Id
   GetSchool(id): Observable<any> {
     const API_URL = `${this.endpoint}/read/${id}`;

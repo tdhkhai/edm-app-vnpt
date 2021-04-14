@@ -31,6 +31,8 @@ export class EditSchoolComponent implements OnInit {
           this.schoolForm = new FormGroup({
             comTaxCode: new FormControl(data.comTaxCode),
             schoolTaxCode: new FormControl(data.schoolTaxCode),
+            id_vnedu: new FormControl(data.id_vnedu),
+            id_moet: new FormControl(data.id_moet),
             schoolName: new FormControl(data.schoolName),
             unit: new FormControl(data.unit),
             remark: new FormControl(data.remark),

@@ -10,6 +10,7 @@ import { EduEcosystemsService } from 'src/app/core/services/edu-ecosystems.servi
 import { School } from 'src/app/core/models/school';
 import { EditSchoolComponent } from '../edit-school/edit-school.component';
 import { RegisEduModuleComponent } from '../regis-edu-module/regis-edu-module.component';
+import { ListModulesComponent } from '../module-by-school/list-modules/list-modules.component';
 
 @Component({
   selector: 'app-list-school-edu',
@@ -34,11 +35,26 @@ export class ListSchoolEduComponent implements OnInit {
 
   getSchool() {
     this.loading = true;
-    this.eduEcosystemsServices.GetAllSchools().subscribe(res => {
+    // this.eduEcosystemsServices.GetAllSchools().subscribe(res => {
+    this.eduEcosystemsServices.GetListModuleUsedbySchool().subscribe(res => {
       this.listOfData = res;
       this.listOfAllData = res;
       this.loading = false;
+
+      this.listOfData.forEach(element => {
+        if ('modules' in element._id === true) {
+          if (element._id.modules !== null || element._id.modules !== []) {
+            element._id.modules = element._id.modules.reduce((accumalator, current) => {
+              if (!accumalator.some(item => item === current)) {
+                accumalator.push(current);
+              }
+              return accumalator;
+            }, []);
+          }
+        }
+      });
     });
+
   }
 
   applyFilter(event: Event) {
@@ -60,6 +76,19 @@ export class ListSchoolEduComponent implements OnInit {
     const modal = this.modalService.create({
       nzTitle: 'ĐĂNG KÝ MODULE',
       nzContent: RegisEduModuleComponent,
+      nzWidth: 800,
+      nzBodyStyle: {
+        height: '370px'
+      },
+    });
+
+    modal.componentInstance.selecedId = id;
+  }
+
+  openListModulebySchool(id: string) {
+    const modal = this.modalService.create({
+      nzTitle: 'DANH SÁCH MODULE TRƯỜNG ĐANG SỬ DỤNG',
+      nzContent: ListModulesComponent,
       nzWidth: 800,
       nzBodyStyle: {
         height: '370px'
@@ -105,7 +134,7 @@ export class ListSchoolEduComponent implements OnInit {
       // tslint:disable-next-line: max-line-length
       const data = XLSX.utils.sheet_to_json(ws, { raw: false });
       // to get 2d array pass 2nd parameter as object {header: 1}
-      //console.log(data); // Data will be logged in array format containing objects
+      // console.log(data); // Data will be logged in array format containing objects
       // console.log(typeof(data));
       // this.importDataImport(data);
     };
@@ -133,7 +162,7 @@ export class ListSchoolEduComponent implements OnInit {
       nzContent: AddSchoolComponent,
       nzWidth: 800,
       nzBodyStyle: {
-        height: '370px'
+        height: '420px'
       },
     });
 
@@ -144,11 +173,11 @@ export class ListSchoolEduComponent implements OnInit {
 
   editModal(selectedId: any) {
     const modal = this.modalService.create({
-      nzTitle: 'THÊM THÔNG TIN TRƯỜNG',
+      nzTitle: 'CHỈNH SỬA THÔNG TIN TRƯỜNG',
       nzContent: EditSchoolComponent,
       nzWidth: 800,
       nzBodyStyle: {
-        height: '370px'
+        height: '420px'
       },
     });
     modal.componentInstance.selectedId = selectedId;
@@ -158,7 +187,7 @@ export class ListSchoolEduComponent implements OnInit {
   }
 
   confirmDelete(data) {
-    this.eduEcosystemsServices.DeleteSchool(data._id).subscribe((res) => {
+    this.eduEcosystemsServices.DeleteSchool(data._id.idSchool).subscribe((res) => {
       this.getSchool();
       this.notification.create('success', 'Thành công', 'Bạn đã xóa thành công!');
     }, (error) => {

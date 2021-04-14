@@ -47,7 +47,7 @@ const routes: Routes = [
     data: { breadcrumb: 'Webhosting' }
   },
   {
-    path: 'edu-ecosystems', loadChildren: () => import('./pages/edu-ecosytems/edu-ecosystems.module').then(m => m.EduEcosystemsModule),
+    path: 'edu-ecosystems', loadChildren: () => import('./pages/edu-ecosystems/edu-ecosystems.module').then(m => m.EduEcosystemsModule),
     data: { breadcrumb: 'HST vnEdu' }
   },
   {

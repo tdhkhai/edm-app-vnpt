@@ -48,7 +48,7 @@ export class AddVneduComponent implements OnInit {
   submitForm() {
     this.eduEcosystemsServices.pushModuleSLL(this.selectedId, { payload: this.vnEduForm.value }).subscribe(res => {
       this.notification.create('success', 'Thành công', 'Bạn đã lưu thành công!');
-      this.modal.destroy();
+      this.modal.close('OK');
     }, err => {
       console.log(err);
       this.notification.create('error', 'Lỗi', 'Đã xảy ra lỗi, vui lòng thử lại!');
