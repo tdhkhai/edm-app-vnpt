@@ -1,13 +1,255 @@
-<nz-table nzBordered #headerTable [nzLoading]="loading" [nzData]="listOfData" nzShowPagination nzShowSizeChanger>
-  <thead>
-    <tr>
-      <th nzAlign="center" style="width: 5%;">STT</th>
-      <th nzAlign="center">Ngày bắt đầu</th>
-      <th nzAlign="center">Ngày hết hạn</th>
-      <th nzAlign="center">Doanh thu</th>
-    </tr>
-  </thead>
-  <tbody>
+<nz-spin [nzSpinning]="isSpinning">
+  <nz-divider nzText="1. vnEdu - SLLĐT" nzOrientation="left" style="color: red;"></nz-divider>
+  <nz-table nzBordered #headerTable [nzLoading]="loading" [nzData]="selectedData.modules" [nzShowPagination]="false">
+    <thead>
+      <tr>
+        <th nzAlign="center" style="width: 5%;">STT</th>
+        <th nzAlign="center">Năm học</th>
+        <th nzAlign="center">Số lượng sổ</th>
+        <th nzAlign="center">Doanh thu</th>
+        <th nzAlign="center">AM</th>
+        <th nzAlign="center">Thao tác</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of headerTable.data ; index as i">
+        <td nzAlign="center" *ngIf="data.moduleName== 'SLLĐT'">{{ i + 1 }}</td>
+        <td nzAlign="center" *ngIf="data.moduleName== 'SLLĐT'"> {{ data.schoolYear }} </td>
+        <td nzAlign="center" *ngIf="data.moduleName== 'SLLĐT'"> {{ data.amountSLL | number }} </td>
+        <td nzAlign="center" *ngIf="data.moduleName== 'SLLĐT'" style="color: red; font-weight: bold;"> {{ data.income |
+          currency: 'VND' :'' }} </td>
+        <td nzAlign="center" *ngIf="data.moduleName== 'SLLĐT'"> {{ data.am.userName }} </td>
+        <td nzAlign="center" *ngIf="data.moduleName== 'SLLĐT'">
+          <a (click)="editModal(data._id)" nz-tooltip nzTooltipTitle="Sửa"><i nz-icon nzType="edit"
+              nzTheme="twotone"></i></a>
+          <nz-divider nzType="vertical"></nz-divider>
+          <a nz-tooltip nzTooltipTitle="Xóa" nz-popconfirm nzPopconfirmTitle="Bạn thật sự muốn xóa?"
+            nzPopconfirmPlacement="topRight" (nzOnConfirm)="confirmDelete('vnEdu', data.schoolYear)"
+            (nzOnCancel)="cancel()"><i nz-icon nzType="delete" [nzTheme]="'twotone'"
+              [nzTwotoneColor]="'#eb2f96'"></i></a>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+  <nz-divider nzText="2. Kiểm định chất lượng giáo dục (vnEdu-QoE)" nzOrientation="left" style="color: red;">
+  </nz-divider>
+  <nz-table nzBordered #headerTable [nzLoading]="loading" [nzData]="selectedData.modules" [nzShowPagination]="false">
+    <thead>
+      <tr>
+        <th nzAlign="center" style="width: 5%;">STT</th>
+        <th nzAlign="center">Ngày bắt đầu</th>
+        <th nzAlign="center">Ngày hết hạn</th>
+        <th nzAlign="center">Doanh thu</th>
+        <th nzAlign="center">AM</th>
+        <th nzAlign="center">Thao tác</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of headerTable.data ; index as j">
+        <td nzAlign="center" *ngIf="data.moduleName== 'vnEdu-QoE'">{{ j + 1 }}</td>
+        <td nzAlign="center" *ngIf="data.moduleName== 'vnEdu-QoE'"> {{ data.fromDate_toDate[0]| date:'dd/MM/yyyy' }}
+        </td>
+        <td nzAlign="center" *ngIf="data.moduleName== 'vnEdu-QoE'"> {{ data.fromDate_toDate[1]| date:'dd/MM/yyyy' }}
+        </td>
+        <td nzAlign="center" *ngIf="data.moduleName== 'vnEdu-QoE'" style="color: red; font-weight: bold;"> {{
+          data.income | currency: 'VND' :'' }} </td>
+        <td nzAlign="center" *ngIf="data.moduleName== 'vnEdu-QoE'"> {{ data.am.userName }} </td>
+        <td nzAlign="center" *ngIf="data.moduleName== 'vnEdu-QoE'">
+          <a (click)="editModal(data._id)" nz-tooltip nzTooltipTitle="Sửa"><i nz-icon nzType="edit"
+              nzTheme="twotone"></i></a>
+          <nz-divider nzType="vertical"></nz-divider>
+          <a nz-tooltip nzTooltipTitle="Xóa" nz-popconfirm nzPopconfirmTitle="Bạn thật sự muốn xóa?"
+            nzPopconfirmPlacement="topRight" (nzOnConfirm)="confirmDelete('vnEdu-QoE', data.fromDate_toDate)"
+            (nzOnCancel)="cancel()"><i nz-icon nzType="delete" [nzTheme]="'twotone'"
+              [nzTwotoneColor]="'#eb2f96'"></i></a>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+  <nz-divider nzText="3. Cổng Thông tin điện tử (vnPortal)" nzOrientation="left" style="color: red;"></nz-divider>
+  <nz-table nzBordered #headerTable [nzLoading]="loading" [nzData]="selectedData.modules" [nzShowPagination]="false">
+    <thead>
+      <tr>
+        <th nzAlign="center" style="width: 5%;">STT</th>
+        <th nzAlign="center">Ngày bắt đầu</th>
+        <th nzAlign="center">Ngày hết hạn</th>
+        <th nzAlign="center">Doanh thu</th>
+        <th nzAlign="center">AM</th>
+        <th nzAlign="center">Thao tác</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of headerTable.data ; index as j">
+        <td nzAlign="center" *ngIf="data.moduleName== 'vnPortal'">{{ j + 1 }}</td>
+        <td nzAlign="center" *ngIf="data.moduleName== 'vnPortal'"> {{ data.fromDate_toDate[0]| date:'dd/MM/yyyy' }}
+        </td>
+        <td nzAlign="center" *ngIf="data.moduleName== 'vnPortal'"> {{ data.fromDate_toDate[1]| date:'dd/MM/yyyy' }}
+        </td>
+        <td nzAlign="center" *ngIf="data.moduleName== 'vnPortal'" style="color: red; font-weight: bold;"> {{ data.income
+          | currency: 'VND' :'' }} </td>
+        <td nzAlign="center" *ngIf="data.moduleName== 'vnPortal'"> {{ data.am.userName }} </td>
+        <td nzAlign="center" *ngIf="data.moduleName== 'vnPortal'">
+          <a (click)="editModal(data._id)" nz-tooltip nzTooltipTitle="Sửa"><i nz-icon nzType="edit"
+              nzTheme="twotone"></i></a>
+          <nz-divider nzType="vertical"></nz-divider>
+          <a nz-tooltip nzTooltipTitle="Xóa" nz-popconfirm nzPopconfirmTitle="Bạn thật sự muốn xóa?"
+            nzPopconfirmPlacement="topRight" (nzOnConfirm)="confirmDelete('vnPortal', data.fromDate_toDate)"
+            (nzOnCancel)="cancel()"><i nz-icon nzType="delete" [nzTheme]="'twotone'"
+              [nzTwotoneColor]="'#eb2f96'"></i></a>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
 
-  </tbody>
-</nz-table>
+  <nz-divider nzText="4. Văn phòng điện tử (VNPT - iOffice)" nzOrientation="left" style="color: red;"></nz-divider>
+  <nz-table nzBordered #headerTable [nzLoading]="loading" [nzData]="selectedData.modules" [nzShowPagination]="false">
+    <thead>
+      <tr>
+        <th nzAlign="center" style="width: 5%;">STT</th>
+        <th nzAlign="center">Ngày bắt đầu</th>
+        <th nzAlign="center">Ngày hết hạn</th>
+        <th nzAlign="center">Doanh thu</th>
+        <th nzAlign="center">AM</th>
+        <th nzAlign="center">Thao tác</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of headerTable.data ; index as j">
+        <td nzAlign="center" *ngIf="data.moduleName== 'VNPT iOffice'">{{ j + 1 }}</td>
+        <td nzAlign="center" *ngIf="data.moduleName== 'VNPT iOffice'"> {{ data.fromDate_toDate[0]| date:'dd/MM/yyyy'
+          }}
+        </td>
+        <td nzAlign="center" *ngIf="data.moduleName== 'VNPT iOffice'"> {{ data.fromDate_toDate[1]| date:'dd/MM/yyyy'
+          }}
+        </td>
+        <td nzAlign="center" *ngIf="data.moduleName== 'VNPT iOffice'" style="color: red; font-weight: bold;"> {{
+          data.income | currency: 'VND' :'' }} </td>
+        <td nzAlign="center" *ngIf="data.moduleName== 'VNPT iOffice'"> {{ data.am.userName }} </td>
+        <td nzAlign="center" *ngIf="data.moduleName== 'VNPT iOffice'">
+          <a (click)="editModal(data._id)" nz-tooltip nzTooltipTitle="Sửa"><i nz-icon nzType="edit"
+              nzTheme="twotone"></i></a>
+          <nz-divider nzType="vertical"></nz-divider>
+          <a nz-tooltip nzTooltipTitle="Xóa" nz-popconfirm nzPopconfirmTitle="Bạn thật sự muốn xóa?"
+            nzPopconfirmPlacement="topRight" (nzOnConfirm)="confirmDelete('VNPT iOffice', data.fromDate_toDate)"
+            (nzOnCancel)="cancel()"><i nz-icon nzType="delete" [nzTheme]="'twotone'"
+              [nzTwotoneColor]="'#eb2f96'"></i></a>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+
+
+  <nz-divider nzText="5. Học và Thi trực tuyến (VNPT Elearning)" nzOrientation="left" style="color: red;"></nz-divider>
+  <nz-table nzBordered #headerTable [nzLoading]="loading" [nzData]="selectedData.modules" [nzShowPagination]="false">
+    <thead>
+      <tr>
+        <th nzAlign="center" style="width: 5%;">STT</th>
+        <th nzAlign="center">Ngày bắt đầu</th>
+        <th nzAlign="center">Ngày hết hạn</th>
+        <th nzAlign="center">Doanh thu</th>
+        <th nzAlign="center">AM</th>
+        <th nzAlign="center">Thao tác</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of headerTable.data ; index as j">
+        <td nzAlign="center" *ngIf="data.moduleName== 'VNPT Elearning'">{{ j + 1 }}</td>
+        <td nzAlign="center" *ngIf="data.moduleName== 'VNPT Elearning'"> {{ data.fromDate_toDate[0]| date:'dd/MM/yyyy'
+          }}
+        </td>
+        <td nzAlign="center" *ngIf="data.moduleName== 'VNPT Elearning'"> {{ data.fromDate_toDate[1]| date:'dd/MM/yyyy'
+          }}
+        </td>
+        <td nzAlign="center" *ngIf="data.moduleName== 'VNPT Elearning'" style="color: red; font-weight: bold;"> {{
+          data.income | currency: 'VND' :'' }} </td>
+        <td nzAlign="center" *ngIf="data.moduleName== 'VNPT Elearning'"> {{ data.am.userName }} </td>
+        <td nzAlign="center" *ngIf="data.moduleName== 'VNPT Elearning'">
+          <a (click)="editModal(data._id)" nz-tooltip nzTooltipTitle="Sửa"><i nz-icon nzType="edit"
+              nzTheme="twotone"></i></a>
+          <nz-divider nzType="vertical"></nz-divider>
+          <a nz-tooltip nzTooltipTitle="Xóa" nz-popconfirm nzPopconfirmTitle="Bạn thật sự muốn xóa?"
+            nzPopconfirmPlacement="topRight" (nzOnConfirm)="confirmDelete('VNPT Elearning', data.fromDate_toDate)"
+            (nzOnCancel)="cancel()"><i nz-icon nzType="delete" [nzTheme]="'twotone'"
+              [nzTwotoneColor]="'#eb2f96'"></i></a>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+
+  <nz-divider nzText="6. Quản lý thanh toán (vnEdu-FMS)" nzOrientation="left" style="color: red;"></nz-divider>
+  <nz-table nzBordered #headerTable [nzLoading]="loading" [nzData]="selectedData.modules" [nzShowPagination]="false">
+    <thead>
+      <tr>
+        <th nzAlign="center" style="width: 5%;">STT</th>
+        <th nzAlign="center">Ngày bắt đầu</th>
+        <th nzAlign="center">Ngày hết hạn</th>
+        <th nzAlign="center">Doanh thu</th>
+        <th nzAlign="center">AM</th>
+        <th nzAlign="center">Thao tác</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of headerTable.data ; index as j">
+        <td nzAlign="center" *ngIf="data.moduleName== 'vnEdu-FMS'">{{ j + 1 }}</td>
+        <td nzAlign="center" *ngIf="data.moduleName== 'vnEdu-FMS'"> {{ data.fromDate_toDate[0]| date:'dd/MM/yyyy'
+          }}
+        </td>
+        <td nzAlign="center" *ngIf="data.moduleName== 'vnEdu-FMS'"> {{ data.fromDate_toDate[1]| date:'dd/MM/yyyy'
+          }}
+        </td>
+        <td nzAlign="center" *ngIf="data.moduleName== 'vnEdu-FMS'" style="color: red; font-weight: bold;"> {{
+          data.income | currency: 'VND' :'' }} </td>
+        <td nzAlign="center" *ngIf="data.moduleName== 'vnEdu-FMS'"> {{ data.am.userName }} </td>
+        <td nzAlign="center" *ngIf="data.moduleName== 'vnEdu-FMS'">
+          <a (click)="editModal(data._id)" nz-tooltip nzTooltipTitle="Sửa"><i nz-icon nzType="edit"
+              nzTheme="twotone"></i></a>
+          <nz-divider nzType="vertical"></nz-divider>
+          <a nz-tooltip nzTooltipTitle="Xóa" nz-popconfirm nzPopconfirmTitle="Bạn thật sự muốn xóa?"
+            nzPopconfirmPlacement="topRight" (nzOnConfirm)="confirmDelete('vnEdu-FMS', data.fromDate_toDate)"
+            (nzOnCancel)="cancel()"><i nz-icon nzType="delete" [nzTheme]="'twotone'"
+              [nzTwotoneColor]="'#eb2f96'"></i></a>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+
+  <nz-divider nzText="7. Hóa đơn điện tử (VNPT Invoice)" nzOrientation="left" style="color: red;"></nz-divider>
+  <nz-table nzBordered #headerTable [nzLoading]="loading" [nzData]="selectedData.modules" [nzShowPagination]="false">
+    <thead>
+      <tr>
+        <th nzAlign="center" style="width: 5%;">STT</th>
+        <th nzAlign="center">Ngày bắt đầu</th>
+        <th nzAlign="center">Ngày hết hạn</th>
+        <th nzAlign="center">Doanh thu</th>
+        <th nzAlign="center">AM</th>
+        <th nzAlign="center">Thao tác</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- <tr *ngFor="let data of headerTable.data ; index as j">
+        <td nzAlign="center" *ngIf="data.moduleName== 'VNPT Invoice'">{{ j + 1 }}</td>
+        <td nzAlign="center" *ngIf="data.moduleName== 'VNPT Invoice'"> {{ data.fromDate_toDate[0]| date:'dd/MM/yyyy'
+          }}
+        </td>
+        <td nzAlign="center" *ngIf="data.moduleName== 'VNPT Invoice'"> {{ data.fromDate_toDate[1]| date:'dd/MM/yyyy'
+          }}
+        </td>
+        <td nzAlign="center" *ngIf="data.moduleName== 'VNPT Invoice'" style="color: red; font-weight: bold;"> {{
+          data.income | currency: 'VND' :'' }} </td>
+        <td nzAlign="center" *ngIf="data.moduleName== 'VNPT Invoice'"> {{ data.am.userName }} </td>
+        <td nzAlign="center" *ngIf="data.moduleName== 'VNPT Invoice'">
+          <a (click)="editModal(data._id)" nz-tooltip nzTooltipTitle="Sửa"><i nz-icon nzType="edit"
+              nzTheme="twotone"></i></a>
+          <nz-divider nzType="vertical"></nz-divider>
+          <a nz-tooltip nzTooltipTitle="Xóa" nz-popconfirm nzPopconfirmTitle="Bạn thật sự muốn xóa?"
+            nzPopconfirmPlacement="topRight" (nzOnConfirm)="confirmDelete('VNPT Invoice', data.fromDate_toDate)"
+            (nzOnCancel)="cancel()"><i nz-icon nzType="delete" [nzTheme]="'twotone'"
+              [nzTwotoneColor]="'#eb2f96'"></i></a>
+        </td>
+      </tr> -->
+    </tbody>
+  </nz-table>
+  <div *nzModalFooter>
+    <button nz-button nzType="default" (click)="handleCancel()">Đóng</button>
+  </div>
+</nz-spin>

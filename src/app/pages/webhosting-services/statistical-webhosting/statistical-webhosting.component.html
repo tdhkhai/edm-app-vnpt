@@ -52,10 +52,10 @@
       <tr>
         <td [nzExpand]="expandSet.has(data._id)" (nzExpandChange)="onExpandChange(data._id, $event)"></td>
         <td nzAlign="center">{{ i+1 }}</td>
-        <td nzAlign="center" *ngIf="data.status == '1'">Mới</td>
-        <td nzAlign="center" *ngIf="data.status == '2'">Gia hạn</td>
+        <td nzAlign="center" *ngIf="data.status == '1'" style="color: green; font-weight: bold;">Mới</td>
+        <td nzAlign="center" *ngIf="data.status == '2'" style="color: orangered; font-weight: bold;">Gia hạn</td>
         <td nzAlign="center" *ngIf="data.status == '3'" nz-tooltip
-          nzTooltipTitle="{{data.cancelDate | date:'dd/MM/yyyy'}}">Thanh lý</td>
+          nzTooltipTitle="{{data.cancelDate | date:'dd/MM/yyyy'}}" style="color: red; font-weight: bold;">Thanh lý</td>
         <td nzAlign="center">{{data.bundle}}</td>
         <td nzAlign="center">{{data.domain}}</td>
         <td nzAlign="center">{{data.am.unitCode}}</td>

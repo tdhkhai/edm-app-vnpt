@@ -24,9 +24,9 @@ export class RegisEduModuleComponent implements OnInit {
       nzTitle: 'vnEDu - Sổ liên lạc điện tử',
       nzContent: AddVneduComponent,
       nzWidth: 490,
-      nzBodyStyle: {
-        height: '370px'
-      },
+      // nzBodyStyle: {
+      //   height: '370px'
+      // },
     });
 
     if (this.selecedId !== '' || this.selecedId != null) {
@@ -42,9 +42,9 @@ export class RegisEduModuleComponent implements OnInit {
       nzTitle: moduleName + ' - ' + subName,
       nzContent: AddModuleEduComponent,
       nzWidth: 490,
-      nzBodyStyle: {
-        height: '310px'
-      },
+      // nzBodyStyle: {
+      //   height: '310px'
+      // },
     });
 
     if (this.selecedId !== '' || this.selecedId != null) {

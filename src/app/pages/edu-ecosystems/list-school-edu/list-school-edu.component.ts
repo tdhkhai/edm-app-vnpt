@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
-import { ExcelToFileService } from 'src/app/core/services/exceltofile.service';
+import { ExcelToFileService } from '../../../core/services/exceltofile.service';
 import * as XLSX from 'xlsx';
 import * as moment from 'moment';
 import { UploadComponent } from '../../shared/upload/upload.component';
 import { AddSchoolComponent } from '../add-school/add-school.component';
-import { EduEcosystemsService } from 'src/app/core/services/edu-ecosystems.service';
-import { School } from 'src/app/core/models/school';
+import { EduEcosystemsService } from '../../../core/services/edu-ecosystems.service';
+import { School } from '../../../core/models/school';
 import { EditSchoolComponent } from '../edit-school/edit-school.component';
 import { RegisEduModuleComponent } from '../regis-edu-module/regis-edu-module.component';
 import { ListModulesComponent } from '../module-by-school/list-modules/list-modules.component';
@@ -30,10 +30,10 @@ export class ListSchoolEduComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getSchool();
+    this.getSchools();
   }
 
-  getSchool() {
+  getSchools() {
     this.loading = true;
     // this.eduEcosystemsServices.GetAllSchools().subscribe(res => {
     this.eduEcosystemsServices.GetListModuleUsedbySchool().subscribe(res => {
@@ -83,6 +83,7 @@ export class ListSchoolEduComponent implements OnInit {
     });
 
     modal.componentInstance.selecedId = id;
+    modal.afterClose.subscribe(result => this.getSchools());
   }
 
   openListModulebySchool(id: string) {
@@ -90,12 +91,13 @@ export class ListSchoolEduComponent implements OnInit {
       nzTitle: 'DANH SÁCH MODULE TRƯỜNG ĐANG SỬ DỤNG',
       nzContent: ListModulesComponent,
       nzWidth: 800,
-      nzBodyStyle: {
-        height: '370px'
-      },
+      // nzBodyStyle: {
+      //   height: '370px'
+      // },
     });
 
-    modal.componentInstance.selecedId = id;
+    modal.componentInstance.selectedId = id;
+    modal.afterClose.subscribe(result => this.getSchools());
   }
 
   exportExcel() {
@@ -167,7 +169,7 @@ export class ListSchoolEduComponent implements OnInit {
     });
 
     modal.afterClose.subscribe(res => {
-      this.getSchool();
+      this.getSchools();
     });
   }
 
@@ -182,13 +184,13 @@ export class ListSchoolEduComponent implements OnInit {
     });
     modal.componentInstance.selectedId = selectedId;
     modal.afterClose.subscribe(res => {
-      this.getSchool();
+      this.getSchools();
     });
   }
 
   confirmDelete(data) {
     this.eduEcosystemsServices.DeleteSchool(data._id.idSchool).subscribe((res) => {
-      this.getSchool();
+      this.getSchools();
       this.notification.create('success', 'Thành công', 'Bạn đã xóa thành công!');
     }, (error) => {
       console.log(error);
@@ -197,10 +199,4 @@ export class ListSchoolEduComponent implements OnInit {
   }
 
   cancel() { }
-
-  onCurrentPageDataChange(listOfCurrentPageData: any[]): void {
-    // this.listOfCurrentPageData = listOfCurrentPageData;
-  }
-
-
 }

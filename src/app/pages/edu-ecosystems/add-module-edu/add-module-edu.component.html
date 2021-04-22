@@ -2,6 +2,18 @@
   <div nz-row>
     <div nz-col nzSpan="24">
       <nz-form-item>
+        <nz-form-label nzRequired nzFor="Status">Trạng thái</nz-form-label>
+        <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng chọn Trạng thái'">
+          <nz-select nzPlaceHolder="Chọn trạng thái" formControlName="status" id="Status">
+            <nz-option [nzValue]="item.status" *ngFor="let item of listOfStatus" [nzLabel]="item.status"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+  <div nz-row>
+    <div nz-col nzSpan="24">
+      <nz-form-item>
         <nz-form-label nzRequired nzFor="FromDate_ToDate">Thời gian sử dụng</nz-form-label>
         <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng chọn Thời gian sử dụng'">
           <nz-range-picker formControlName="fromDate_toDate" style="width: 100%;" nzFormat="dd/MM/yyyy"

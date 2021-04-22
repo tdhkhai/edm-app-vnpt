@@ -1,1 +1,37 @@
-<p>overview-edu-ecosystems works!</p>
+<nz-page-header class="site-page-header">
+  <nz-page-header-title>SỐ LIỆU HỆ SINH THÁI vnEdu 4.0</nz-page-header-title>
+
+  <nz-breadcrumb nz-page-header-breadcrumb [nzAutoGenerate]="true">
+    <nz-breadcrumb-item>
+      <i nz-icon nzType="home"></i>
+    </nz-breadcrumb-item>
+  </nz-breadcrumb>
+</nz-page-header>
+<nz-table nzBordered #headerTable [nzLoading]="loading" [nzData]="listOfData" nzShowPagination nzShowSizeChanger>
+  <thead>
+    <tr>
+      <th nzAlign="center" style="width: 5%;">STT</th>
+      <th nzAlign="center" style="width: 5%;">Đơn vị</th>
+      <th nzAlign="center" style="width: 5%;">SLLĐT</th>
+      <th nzAlign="center" style="width: 5%;">KĐCLGD</th>
+      <th nzAlign="center" style="width: 5%;">Portal</th>
+      <th nzAlign="center" style="width: 5%;">iOffice</th>
+      <th nzAlign="center" style="width: 5%;">Invoice</th>
+      <th nzAlign="center" style="width: 5%;">QL Thanh toán</th>
+      <th nzAlign="center" style="width: 5%;">Elearning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of headerTable.data ; index as i">
+      <td nzAlign="center">{{ i + 1 }}</td>
+      <td nzAlign="center"> {{ data._id.unit }}</td>
+      <td nzAlign="center">{{ data.count_vnEdu | number }}</td>
+      <td nzAlign="center">{{ data.count_vnEdu_QoE | number }}</td>
+      <td nzAlign="center">{{ data.count_vnPortal | number }}</td>
+      <td nzAlign="center">{{ data.count_ioffice | number }}</td>
+      <td nzAlign="center">{{ data.count_invoice | number }}</td>
+      <td nzAlign="center">{{ data.count_vnEdu_FMS | number }}</td>
+      <td nzAlign="center">{{ data.count_elearning | number }}</td>
+    </tr>
+  </tbody>
+</nz-table>

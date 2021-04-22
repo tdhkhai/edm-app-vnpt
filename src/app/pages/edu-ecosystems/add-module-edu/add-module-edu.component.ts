@@ -17,6 +17,21 @@ export class AddModuleEduComponent implements OnInit {
   moduleForm: FormGroup;
   date: Date;
   moduleName: string;
+  listOfStatus = [
+    {
+      status: 'Giới thiệu'
+    },
+    {
+      status: 'Dùng thử'
+    },
+    {
+      status: 'Chính thức'
+    },
+
+    {
+      status: 'Thanh lý'
+    },
+  ];
   constructor(
     private eduEcosystemsServices: EduEcosystemsService,
     private notification: NzNotificationService,
@@ -36,6 +51,7 @@ export class AddModuleEduComponent implements OnInit {
       fromDate_toDate: new FormControl(''),
       remark: new FormControl(''),
       income: new FormControl(''),
+      status: new FormControl(''),
       am: new FormControl('')
     });
   }

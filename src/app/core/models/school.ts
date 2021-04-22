@@ -17,6 +17,7 @@ export interface School {
     fromDate_toDate: Date;
     am: User;
     remark: string;
-  }],
+    status: string
+  }];
   remark: string;
 }

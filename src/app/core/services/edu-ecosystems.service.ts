@@ -43,7 +43,6 @@ export class EduEcosystemsService {
       );
   }
 
-
   // Get all School
   GetAllSchools() {
     return this.http.get<School[]>(`${this.endpoint}`);
@@ -61,17 +60,17 @@ export class EduEcosystemsService {
       );
   }
 
-    // Get Lists School
-    GetListModuleUsedbySchool(): Observable<any> {
-      const API_URL = `${this.endpoint}/list-module-used-by-school`;
-      return this.http.get(API_URL, { headers: this.headers })
-        .pipe(
-          map((res: Response) => {
-            return res || {};
-          }),
-          catchError(this.errorMgmt)
-        );
-    }
+  // Get Lists School
+  GetListModuleUsedbySchool(): Observable<any> {
+    const API_URL = `${this.endpoint}/list-schools`;
+    return this.http.get(API_URL, { headers: this.headers })
+      .pipe(
+        map((res: Response) => {
+          return res || {};
+        }),
+        catchError(this.errorMgmt)
+      );
+  }
 
   // Get School by Id
   GetSchool(id): Observable<any> {
@@ -90,6 +89,45 @@ export class EduEcosystemsService {
     const API_URL = `${this.endpoint}/push-module-edu/${id}`;
     return this.http.put(API_URL, data, { headers: this.headers })
       .pipe(
+        catchError(this.errorMgmt)
+      );
+  }
+
+  // Edit Module Edu
+  EditModuleEdu(id, data): Observable<any> {
+    const API_URL = `${this.endpoint}/edit-module-edu/${id}`;
+    return this.http.put(API_URL, data, { headers: this.headers })
+      .pipe(
+        catchError(this.errorMgmt)
+      );
+  }
+
+  // Pull vnEdu Module
+  PullvnEduModule(id, data): Observable<any> {
+    const API_URL = `${this.endpoint}/pull-vnedu-module/${id}`;
+    return this.http.put(API_URL, data, { headers: this.headers })
+      .pipe(
+        catchError(this.errorMgmt)
+      );
+  }
+
+  // Pull Module
+  PullModule(id, data): Observable<any> {
+    const API_URL = `${this.endpoint}/pull-module/${id}`;
+    return this.http.put(API_URL, data, { headers: this.headers })
+      .pipe(
+        catchError(this.errorMgmt)
+      );
+  }
+
+  // Count Module by Unit
+  GetCountModuleByUnit(): Observable<any> {
+    const API_URL = `${this.endpoint}//count-module-by-unit`;
+    return this.http.get(API_URL, { headers: this.headers })
+      .pipe(
+        map((res: Response) => {
+          return res || {};
+        }),
         catchError(this.errorMgmt)
       );
   }

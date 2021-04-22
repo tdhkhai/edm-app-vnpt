@@ -33,6 +33,7 @@ export class AddVneduComponent implements OnInit {
       amountSLL: new FormControl(),
       remark: new FormControl(),
       income: new FormControl(''),
+      status: new FormControl(''),
       am: new FormControl('')
     });
   }

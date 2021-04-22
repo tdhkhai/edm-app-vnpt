@@ -1,5 +1,5 @@
 <nz-page-header class="site-page-header">
-  <nz-page-header-title>SỐ LIỆU HỆ SINH THÁI vnEdu 4.0</nz-page-header-title>
+  <nz-page-header-title>CHI TIẾT HỆ SINH THÁI vnEdu 4.0</nz-page-header-title>
 
   <nz-breadcrumb nz-page-header-breadcrumb [nzAutoGenerate]="true">
     <nz-breadcrumb-item>
@@ -28,8 +28,7 @@
   <button nz-button nzType="primary" nzSearch><i nz-icon nzType="search"></i></button>
 </ng-template>
 
-<nz-table nzBordered #headerTable [nzLoading]="loading" [nzData]="listOfData" nzShowPagination nzShowSizeChanger
-  (nzCurrentPageDataChange)="onCurrentPageDataChange($event)">
+<nz-table nzBordered #headerTable [nzLoading]="loading" [nzData]="listOfData" nzShowPagination nzShowSizeChanger>
   <thead>
     <tr>
       <th nzAlign="center" style="width: 5%;">STT</th>
