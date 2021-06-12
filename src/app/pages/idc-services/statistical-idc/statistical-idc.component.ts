@@ -45,7 +45,7 @@ export class StatisticalIdcComponent implements OnInit {
     );
   }
   applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
+    const filterValue = (event.target as HTMLInputElement).value;
     // let filterValueLower = filterValue.toLowerCase();
     if (filterValue === '') {
       this.listOfData = this.listOfAllData;
@@ -54,7 +54,7 @@ export class StatisticalIdcComponent implements OnInit {
       this.listOfData = this.listOfAllData.filter(
         (item: IDC) =>
           item.comName.includes(filterValue) ||
-          item.am.unitCode.includes(filterValue) ||
+          item.am.unit.unitCode.includes(filterValue) ||
           item.comTaxCode.includes(filterValue) ||
           item.am.userName.includes(filterValue)
       );
@@ -78,9 +78,6 @@ export class StatisticalIdcComponent implements OnInit {
       nzTitle: 'Import dữ liệu',
       nzContent: UploadComponent,
       nzWidth: 400,
-      nzBodyStyle: {
-        height: '70px'
-      },
     });
 
     modal.afterClose.subscribe(result => {
@@ -132,9 +129,6 @@ export class StatisticalIdcComponent implements OnInit {
       nzTitle: 'KHÁCH HÀNG ĐĂNG KÝ DỊCH VỤ HẠ TẦNG LƯU TRỮ',
       nzContent: AddIdcComponent,
       nzWidth: 800,
-      nzBodyStyle: {
-        height: '590px'
-      },
     });
 
     modal.afterClose.subscribe(res => {
@@ -148,9 +142,6 @@ export class StatisticalIdcComponent implements OnInit {
       nzTitle: 'THÔNG TIN GIA HẠN DỊCH VỤ',
       nzContent: ExtendDetailsComponent,
       nzWidth: 800,
-      nzBodyStyle: {
-        height: '320px'
-      },
     });
     modal.componentInstance.selectedId = selectedId;
     modal.afterClose.subscribe(res => {
@@ -175,9 +166,6 @@ export class StatisticalIdcComponent implements OnInit {
       nzTitle: 'CHỈNH SỬA KHÁCH HÀNG ĐĂNG KÝ DỊCH VỤ HẠ TẦNG LƯU TRỮ',
       nzContent: EditIdcComponent,
       nzWidth: 800,
-      nzBodyStyle: {
-        height: '670px'
-      },
     });
     modal.componentInstance.selectedId = selectedId;
     modal.afterClose.subscribe(res => {

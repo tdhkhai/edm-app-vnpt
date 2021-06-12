@@ -13,6 +13,17 @@ import { UnitService } from 'src/app/core/services/unit.service';
 export class AddSchoolComponent implements OnInit {
   listOfUnit: any = [];
   schoolForm: FormGroup;
+  listOfCaphoc = [
+    { caphoc: 'MG/MN' },
+    { caphoc: 'TH' },
+    { caphoc: 'THCS' },
+    { caphoc: 'THPT' },
+    { caphoc: 'THCS & THPT' },
+    { caphoc: 'TH & THCS' },
+    { caphoc: '3 Cấp học' },
+    { caphoc: 'TTGDTX' },
+    { caphoc: 'TC Nghề' },
+  ];
 
   constructor(
     private eduEcosystemsServices: EduEcosystemsService,
@@ -35,6 +46,7 @@ export class AddSchoolComponent implements OnInit {
       schoolName: new FormControl(),
       unit: new FormControl(),
       remark: new FormControl(),
+      caphoc: new FormControl(),
       status: new FormControl('1'),
       modules: new FormControl(null)
     });

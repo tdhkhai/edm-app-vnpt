@@ -31,7 +31,8 @@
         <nz-form-item>
           <nz-form-label nzRequired nzFor="Bundle">Gói cước</nz-form-label>
           <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng chọn gói cước'">
-            <nz-select [compareWith]="compareByOptionId" nzAllowClear nzPlaceHolder="Chọn gói cước đăng ký" formControlName="bundle" id="Bundle">
+            <nz-select [compareWith]="compareByOptionId" nzAllowClear nzPlaceHolder="Chọn gói cước đăng ký"
+              formControlName="bundle" id="Bundle">
               <nz-option [nzValue]="item.bundle" *ngFor="let item of listOfBundle" [nzLabel]="item.bundle"></nz-option>
             </nz-select>
           </nz-form-control>
@@ -54,7 +55,7 @@
           <nz-form-label nzFor="RegistrationDate">Ngày đăng ký</nz-form-label>
           <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng chọn Ngày đăng ký'">
             <nz-date-picker formControlName="registrationDate" style="width: 100%;" nzFormat="dd/MM/yyyy"
-              [(ngModel)]="registrationDate" id="RegistrationDate"></nz-date-picker>
+              nzPlaceHolder="Chọn ngày" [(ngModel)]="registrationDate" id="RegistrationDate"></nz-date-picker>
           </nz-form-control>
         </nz-form-item>
       </div>
@@ -64,7 +65,7 @@
           <nz-form-label nzFor="ExpirationDate">Ngày hết hạn</nz-form-label>
           <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng chọn ngày hết hạn'">
             <nz-date-picker formControlName="expirationDate" style="width: 100%;" nzFormat="dd/MM/yyyy"
-              [(ngModel)]="expirationDate" id="ExpirationDate"></nz-date-picker>
+              nzPlaceHolder="Chọn ngày" [(ngModel)]="expirationDate" id="ExpirationDate"></nz-date-picker>
           </nz-form-control>
         </nz-form-item>
       </div>
@@ -75,7 +76,7 @@
           <nz-form-label nzFor="IncomeDate">Tháng ghi doanh thu</nz-form-label>
           <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng chọn ngày hết hạn'">
             <nz-date-picker formControlName="incomeDate" style="width: 100%;" nzFormat="dd/MM/yyyy"
-              [(ngModel)]="incomeDate" id="IncomeDate"></nz-date-picker>
+              nzPlaceHolder="Chọn ngày" [(ngModel)]="incomeDate" id="IncomeDate"></nz-date-picker>
           </nz-form-control>
         </nz-form-item>
       </div>
@@ -96,9 +97,23 @@
         <nz-form-item>
           <nz-form-label nzRequired nzFor="UserName">AM</nz-form-label>
           <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng chọn AM phát triển'">
-            <nz-select [compareWith]="compareByOptionId" nzAllowClear nzPlaceHolder="Chọn AM phát triển" formControlName="am" id="UserName">
-              <nz-option [nzValue]="item" *ngFor="let item of listOfUser" [nzLabel]="item.userName"></nz-option>
+            <nz-select nzAllowClear nzShowSearch nzPlaceHolder="Chọn AM phát triển" formControlName="am" id="UserName" [nzCustomTemplate]="defaultTemplate">
+              <nz-option [nzValue]="item" *ngFor="let item of listOfUser" [nzLabel]="item.userName" nzCustomContent > {{
+                item.unit.unitCode }} - {{ item.userName }}</nz-option>
             </nz-select>
+            <ng-template #defaultTemplate let-selected>{{ selected.nzValue.unit.unitCode }} - {{ selected.nzLabel }}
+            </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
+    <div nz-row>
+      <div nz-col>
+        <nz-form-item>
+          <nz-form-label nzFor="CancelDate">Ngày thanh lý</nz-form-label>
+          <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng chọn Ngày thanh lý'">
+            <nz-date-picker formControlName="cancelDate" style="width: 100%;" nzFormat="dd/MM/yyyy"
+              nzPlaceHolder="Chọn ngày" [(ngModel)]="cancelDate" id="CancelDate"></nz-date-picker>
           </nz-form-control>
         </nz-form-item>
       </div>

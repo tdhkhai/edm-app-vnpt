@@ -16,23 +16,26 @@ export class AddStatisticalInvoiceComponent implements OnInit {
   listOfUnit: any = [];
   listOfUser: any = [];
   listOfStatus = [
-    {
-      status: 'Pending'
-    },
-    {
-      status: 'Demo'
-    },
-    {
-      status: 'Golive'
-    },
-    {
-      status: 'Extend'
-    },
-    {
-      status: 'Delete'
-    },
+    { status: 'Pending' },
+    { status: 'Demo' },
+    { status: 'Golive' },
+    { status: 'Extend' },
+    { status: 'Delete' },
   ];
 
+  listTypeOfCustomer = [
+    { typeOfCustomer: 'Doanh nghiệp' },
+    { typeOfCustomer: 'Giáo dục' },
+    { typeOfCustomer: 'Tổ chức' },
+  ];
+
+  listDetailTypeOfCustomer = [
+    { detailTypeOfCustomer: 'Mầm non/Mẫu giáo' },
+    { detailTypeOfCustomer: 'Tiểu học' },
+    { detailTypeOfCustomer: 'THCS' },
+    { detailTypeOfCustomer: 'THPT' },
+    { detailTypeOfCustomer: 'THCS & THPT' },
+  ];
   invoiceForm: FormGroup;
 
   dateAction = new Date();
@@ -45,7 +48,7 @@ export class AddStatisticalInvoiceComponent implements OnInit {
   isGolive = true;
   isExtend = true;
   isDelete = true;
-
+  isEducation = false;
   amountTemp = 0;
   constructor(
     private unitAPI: UnitService,
@@ -74,7 +77,9 @@ export class AddStatisticalInvoiceComponent implements OnInit {
       comName: new FormControl(),
       amount: new FormControl(),
       income: new FormControl(),
-      incomeDate: new FormControl()
+      incomeDate: new FormControl(),
+      typeOfCustomer: new FormControl(),
+      detailTypeOfCustomer: new FormControl(),
     });
   }
 
@@ -168,6 +173,30 @@ export class AddStatisticalInvoiceComponent implements OnInit {
       console.log(err);
       this.notification.create('error', 'Lỗi', 'Đã xảy ra lỗi, vui lòng thử lại!');
     });
+
+  }
+
+  getInvoicebyComTaxCode(comTaxCode: string) {
+    if (comTaxCode !== '') {
+      this.invoiceAPI.postListStatisticsbyCustomerType_Education({ comTaxCode }).subscribe(data => {
+        if (data === null || data === '' || data === []) {
+          this.notification.warning("Cảnh báo!", "Không tìm thấy dữ liệu")
+        } else {
+          this.invoiceForm.value.comName = data[0].comName;
+          this.invoiceForm.value.typeOfCustomer = data[0].typeOfCustomer;
+          this.invoiceForm.value.detailTypeOfCustomer = data[0].detailTypeOfCustomer;
+        }
+      });
+    }
+  }
+
+
+  ngModelChange(e) {
+    if (e.typeOfCustomer === 'Giáo dục') {
+      this.isEducation = true;
+    } else {
+      this.isEducation = false;
+    }
 
   }
 

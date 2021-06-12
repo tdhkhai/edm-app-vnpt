@@ -4,7 +4,7 @@
     <div class="sidebar-logo">
       <a href="https://ng.ant.design/components/button/en" target="_blank">
         <img src="https://ng.ant.design/assets/img/logo.svg" alt="logo">
-        <h1>VNPT - JIRA</h1>
+        <h1>EDM - VNPT</h1>
       </a>
     </div>
     <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
@@ -24,6 +24,7 @@
           </li>
         </ul>
       </li>
+
       <li nz-submenu nzOpen nzTitle="Dịch vụ Đầu số" nzIcon="ordered-list">
         <ul>
           <li nz-menu-item nzMatchRouter nzIcon="dashboard">
@@ -34,6 +35,7 @@
           </li>
         </ul>
       </li>
+
       <li nz-submenu nzOpen nzTitle="IDC" nzIcon="ordered-list">
         <ul>
           <li nz-menu-item nzMatchRouter nzIcon="dashboard">
@@ -44,6 +46,7 @@
           </li>
         </ul>
       </li>
+
       <li nz-submenu nzOpen nzTitle="Tên miền" nzIcon="ordered-list">
         <ul>
           <li nz-menu-item nzMatchRouter nzIcon="dashboard">
@@ -54,6 +57,7 @@
           </li>
         </ul>
       </li>
+
       <li nz-submenu nzOpen nzTitle="Webhosting" nzIcon="ordered-list">
         <ul>
           <li nz-menu-item nzMatchRouter nzIcon="dashboard">
@@ -64,18 +68,33 @@
           </li>
         </ul>
       </li>
+
+      <li nz-submenu nzOpen nzTitle="SMS Brandname" nzIcon="ordered-list">
+        <ul>
+          <li nz-menu-item nzMatchRouter nzIcon="dashboard">
+            <a routerLink="/smsbrandname/tong-quan-smsbrandname">Tổng quan</a>
+          </li>
+          <li nz-menu-item nzMatchRouter nzIcon="appstore">
+            <a routerLink="/smsbrandname/so-lieu-smsbrandname">Chi tiết</a>
+          </li>
+        </ul>
+      </li>
+
       <li nz-submenu nzOpen nzTitle="Hóa đơn điện tử" nzIcon="ordered-list">
         <ul>
           <li nz-menu-item nzMatchRouter nzIcon="dashboard">
             <a routerLink="/vnpt-invoice/tong-quan-hddt">Tổng quan HDDT</a>
           </li>
-          <li nz-menu-item nzMatchRouter nzIcon="appstore">
-            <a routerLink="/vnpt-invoice/so-lieu-site">Số liệu Site</a>
-          </li>
           <li nz-submenu nzTitle="Doanh thu" nzIcon="appstore">
             <ul>
               <li nz-menu-item><a routerLink="/vnpt-invoice/bao-cao-doanh-thu-thang">Theo tháng</a></li>
               <li nz-menu-item><a routerLink="/vnpt-invoice/bao-cao-doanh-thu-nam">Cả năm</a></li>
+            </ul>
+          </li>
+          <li nz-submenu nzTitle="Thống kê" nzIcon="appstore">
+            <ul>
+              <li nz-menu-item><a routerLink="/vnpt-invoice/so-lieu-site">Số lượng site theo tháng</a></li>
+              <li nz-menu-item><a routerLink="/vnpt-invoice/thong-ke-theo-loai-khach-hang">Theo loại khách hàng</a></li>
             </ul>
           </li>
           <!-- <li nz-menu-item nzMatchRouter>
@@ -89,6 +108,7 @@
           </li>
         </ul>
       </li>
+
       <li nz-submenu nzOpen nzTitle="Lịch công tác" nzIcon="form">
         <ul>
           <li nz-menu-item nzMatchRouter nzIcon="control">
@@ -96,6 +116,7 @@
           </li>
         </ul>
       </li>
+
       <li nz-submenu nzOpen nzTitle="Administrator" nzIcon="form">
         <ul>
           <li nz-menu-item nzMatchRouter nzIcon="control">
@@ -114,11 +135,14 @@
       </li>
     </ul>
   </nz-sider>
-  <nz-layout>
+  <nz-layout class="right-layout">
     <nz-header>
       <div class="app-header">
-        <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
+        <!-- <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
           <i class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></i>
+        </span> -->
+        <span class="header-trigger" >
+          <b>PHẦN MỀM ĐANG ĐƯỢC PHÁT TRIỂN BỞI TRẦN DƯƠNG HOÀNG KHẢI</b>
         </span>
       </div>
     </nz-header>

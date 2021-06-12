@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { NzModalService } from 'ng-zorro-antd/modal';
+import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 import { ExcelToFileService } from 'src/app/core/services/exceltofile.service';
-import { ExtendDetailsComponent } from '../../idc-services/extend-details/extend-details.component';
+import { ExtendDetailsDomainComponent } from '../extend-details-domain/extend-details-domain.component';
 
 @Component({
   selector: 'app-domain-list-expired',
@@ -14,6 +14,7 @@ export class DomainListExpiredComponent implements OnInit {
   constructor(
     private excelToFile: ExcelToFileService,
     private modalService: NzModalService,
+    private modal: NzModalRef
   ) { }
 
   ngOnInit(): void {
@@ -26,13 +27,14 @@ export class DomainListExpiredComponent implements OnInit {
   openExtendDetails(selectedId: any) {
     const modal = this.modalService.create({
       nzTitle: 'THÔNG TIN GIA HẠN DỊCH VỤ',
-      nzContent: ExtendDetailsComponent,
+      nzContent: ExtendDetailsDomainComponent,
       nzWidth: 800,
-      nzBodyStyle: {
-        height: '320px'
-      },
     });
     modal.componentInstance.selectedId = selectedId;
+  }
+
+  close() {
+    this.modal.close();
   }
 
 }

@@ -15,4 +15,6 @@ export interface Invoice {
   income: number;
   incomeDate: Date;
   typeOfIncome: string;
+  typeOfCustomer: string;
+  detailTypeOfCustomer: string;
 }

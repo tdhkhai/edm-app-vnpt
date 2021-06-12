@@ -55,7 +55,7 @@
         <td nzAlign="center" *ngIf="data.status == '3'" nz-tooltip
           nzTooltipTitle="{{data.cancelDate | date:'dd/MM/yyyy'}}" style="color: red; font-weight: bold;">Thanh lý</td>
         <td nzAlign="center" nz-tooltip nzTooltipTitle="Gói: {{data.bundle}}">{{data.loaiIDC}}</td>
-        <td nzAlign="center">{{data.am.unitCode}}</td>
+        <td nzAlign="center">{{data.am.unit.unitCode}}</td>
         <td>{{data.am.userName}}</td>
         <td nzAlign="center">{{data.comTaxCode}}</td>
         <td>{{data.comName}}</td>

@@ -49,7 +49,7 @@ export class StatisticalDomainComponent implements OnInit {
   }
 
   applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
+    const filterValue = (event.target as HTMLInputElement).value;
     // let filterValueLower = filterValue.toLowerCase();
     if (filterValue === '') {
       this.listOfData = this.listOfAllData;
@@ -58,9 +58,9 @@ export class StatisticalDomainComponent implements OnInit {
       this.listOfData = this.listOfAllData.filter(
         (item: Domain) =>
           item.comName.includes(filterValue) ||
-          item.am.unitCode.includes(filterValue) ||
-          item.comTaxCode.includes(filterValue) ||
-          item.am.userName.includes(filterValue)
+          item.am.unit.unitCode.includes(filterValue) ||
+          item.am.userName.includes(filterValue) ||
+          item.domain.includes(filterValue)
       );
     }
   }
@@ -78,9 +78,6 @@ export class StatisticalDomainComponent implements OnInit {
       nzTitle: 'THÔNG TIN GIA HẠN DỊCH VỤ',
       nzContent: ExtendDetailsDomainComponent,
       nzWidth: 800,
-      nzBodyStyle: {
-        height: '320px'
-      },
     });
     modal.componentInstance.selectedId = selectedId;
     modal.afterClose.subscribe(res => {
@@ -110,9 +107,6 @@ export class StatisticalDomainComponent implements OnInit {
       nzTitle: 'Import dữ liệu',
       nzContent: UploadComponent,
       nzWidth: 400,
-      nzBodyStyle: {
-        height: '70px'
-      },
     });
 
     modal.afterClose.subscribe(result => {
@@ -164,9 +158,6 @@ export class StatisticalDomainComponent implements OnInit {
       nzTitle: 'KHÁCH HÀNG ĐĂNG KÝ DỊCH VỤ TÊN MIỀN',
       nzContent: AddDomainComponent,
       nzWidth: 800,
-      nzBodyStyle: {
-        height: '590px'
-      },
     });
 
     modal.afterClose.subscribe(res => {
@@ -180,9 +171,6 @@ export class StatisticalDomainComponent implements OnInit {
       nzTitle: 'CHỈNH SỬA KHÁCH HÀNG ĐĂNG KÝ DỊCH VỤ TÊN MIỀN',
       nzContent: EditDomainComponent,
       nzWidth: 800,
-      nzBodyStyle: {
-        height: '590px'
-      },
     });
     modal.componentInstance.selectedId = selectedId;
     modal.afterClose.subscribe(res => {
@@ -202,9 +190,6 @@ export class StatisticalDomainComponent implements OnInit {
 
   cancel() { }
 
-  onCurrentPageDataChange(listOfCurrentPageData: any[]): void {
-    this.listOfCurrentPageData = listOfCurrentPageData;
-  }
 
 
 }

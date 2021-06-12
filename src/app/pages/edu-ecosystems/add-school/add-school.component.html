@@ -49,6 +49,18 @@
   <div nz-row>
     <div nz-col nzSpan="24">
       <nz-form-item>
+        <nz-form-label nzRequired nzFor="Caphoc">Cấp học</nz-form-label>
+        <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng chọn Cấp học'">
+          <nz-select nzAllowClear nzPlaceHolder="Chọn đơn vị" formControlName="caphoc" id="Caphoc">
+            <nz-option [nzValue]="item" *ngFor="let item of listOfCaphoc" [nzLabel]="item.caphoc"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+  <div nz-row>
+    <div nz-col nzSpan="24">
+      <nz-form-item>
         <nz-form-label nzRequired nzFor="UnitName">Đơn vị</nz-form-label>
         <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng chọn đơn vị'">
           <nz-select nzAllowClear nzPlaceHolder="Chọn đơn vị" formControlName="unit" id="UnitName">

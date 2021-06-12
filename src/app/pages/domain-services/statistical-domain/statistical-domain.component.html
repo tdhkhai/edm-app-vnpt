@@ -28,8 +28,7 @@
   <button nz-button nzType="primary" nzSearch><i nz-icon nzType="search"></i></button>
 </ng-template>
 
-<nz-table nzBordered #headerTable [nzLoading]="loading" [nzData]="listOfData" nzShowPagination nzShowSizeChanger
-  (nzCurrentPageDataChange)="onCurrentPageDataChange($event)">
+<nz-table nzBordered #headerTable [nzLoading]="loading" [nzData]="listOfData" nzShowPagination nzShowSizeChanger>
   <thead>
     <tr>
       <th nzAlign="center"></th>
@@ -56,10 +55,14 @@
         <td nzAlign="center" *ngIf="data.status == '2'" style="color: orangered; font-weight: bold;">Gia hạn</td>
         <td nzAlign="center" *ngIf="data.status == '3'" nz-tooltip
           nzTooltipTitle="{{data.cancelDate | date:'dd/MM/yyyy'}}" style="color: red; font-weight: bold;">Thanh lý</td>
-        <td nzAlign="center" *ngIf="data.loaiDomain == 'VN'">Việt Nam</td>
-        <td nzAlign="center" *ngIf="data.loaiDomain == 'QT'">Quốc tế</td>
+        <ng-container *ngIf="data.loaiDomain == 'VN'; else elseTemplate">
+          <td nzAlign="center">Việt Nam</td>
+        </ng-container>
+        <ng-template #elseTemplate>
+          <td nzAlign="center">Quốc tế</td>
+        </ng-template>
         <td nzAlign="center">{{data.domain}}</td>
-        <td nzAlign="center">{{data.am.unitCode}}</td>
+        <td nzAlign="center">{{data.am.unit.unitCode}}</td>
         <td>{{data.am.userName}}</td>
         <td nzAlign="center">{{data.comTaxCode}}</td>
         <td>{{data.comName}}</td>
@@ -79,7 +82,7 @@
               nzType="delete" [nzTheme]="'twotone'" [nzTwotoneColor]="'#eb2f96'"></i></a>
         </td>
       </tr>
-      <tr *ngIf="data.extend != null" [nzExpand]="expandSet.has(data._id)">
+      <tr *ngIf="data.extend !== null || data.status === '1'" [nzExpand]="expandSet.has(data._id)">
         <nz-table [nzHideOnSinglePage]="true" [nzShowPagination]="false" [nzTemplateMode]="true" nzSize="small"
           nzBordered>
           <thead>

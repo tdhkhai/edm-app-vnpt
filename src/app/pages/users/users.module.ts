@@ -8,6 +8,7 @@ import { HighlightModule } from 'ngx-highlightjs';
 import { UsersRoutingModule } from './users-routing.module';
 import { CreatUserComponent } from './create-user/create-user.component';
 import { ListUsersComponent } from './list-users/list-users.component';
+import { EditUserComponent } from './edit-user/edit-user.component';
 
 @NgModule({
   imports: [
@@ -22,10 +23,12 @@ import { ListUsersComponent } from './list-users/list-users.component';
   declarations: [
     ListUsersComponent,
     CreatUserComponent,
+    EditUserComponent,
   ],
   exports: [
     ListUsersComponent,
     CreatUserComponent,
+    EditUserComponent,
   ],
   providers: [
   ]

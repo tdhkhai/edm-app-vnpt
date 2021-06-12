@@ -54,6 +54,7 @@ export class OverviewDausoComponent implements OnInit {
       nzTitle: 'DANH SÁCH KHÁCH HÀNG ' + tmp.toUpperCase() + ' TRONG NĂM ' + year,
       nzContent: ListDauSoByStatusComponent,
       nzWidth: 1560,
+      nzFooter: null,
       nzBodyStyle: {
         // height: '550px'
       },

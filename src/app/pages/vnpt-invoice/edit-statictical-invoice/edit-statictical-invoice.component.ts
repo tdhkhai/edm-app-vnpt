@@ -17,23 +17,27 @@ export class EditStaticticalInvoiceComponent implements OnInit {
   listOfUnit: any = [];
   listOfUser: any = [];
   listOfStatus = [
-    {
-      status: 'Pending'
-    },
-    {
-      status: 'Demo'
-    },
-    {
-      status: 'Golive'
-    },
-    {
-      status: 'Extend'
-    },
-    {
-      status: 'Delete'
-    },
+    { status: 'Pending' },
+    { status: 'Demo' },
+    { status: 'Golive' },
+    { status: 'Extend' },
+    { status: 'Delete' },
   ];
 
+  listTypeOfCustomer = [
+    { typeOfCustomer: 'Doanh nghiệp' },
+    { typeOfCustomer: 'Giáo dục' },
+    { typeOfCustomer: 'Tổ chức' },
+  ];
+
+  listDetailTypeOfCustomer = [
+    { detailTypeOfCustomer: 'Mầm non/Mẫu giáo' },
+    { detailTypeOfCustomer: 'Tiểu học' },
+    { detailTypeOfCustomer: 'THCS' },
+    { detailTypeOfCustomer: 'THPT' },
+    { detailTypeOfCustomer: 'THCS & THPT' },
+  ];
+  isEducation = false;
   invoiceForm: FormGroup;
   monthAction: Date;
   dateAction: Date;
@@ -76,7 +80,9 @@ export class EditStaticticalInvoiceComponent implements OnInit {
           comName: new FormControl(data.comName),
           amount: new FormControl(data.amount),
           income: new FormControl(data.income),
-          incomeDate: new FormControl(data.incomeDate)
+          incomeDate: new FormControl(data.incomeDate),
+          typeOfCustomer: new FormControl(data.typeOfCustomer),
+          detailTypeOfCustomer: new FormControl(data.detailTypeOfCustomer),
         });
       });
     }, 2000);
@@ -101,7 +107,9 @@ export class EditStaticticalInvoiceComponent implements OnInit {
       comName: new FormControl(),
       amount: new FormControl(),
       income: new FormControl(),
-      incomeDate: new FormControl()
+      incomeDate: new FormControl(),
+      typeOfCustomer: new FormControl(),
+      detailTypeOfCustomer: new FormControl(),
     });
   }
 
@@ -154,7 +162,7 @@ export class EditStaticticalInvoiceComponent implements OnInit {
   }
 
   compareByOptionId(c1, c2) {
-    return c1 && c2 ? c1._id === c2._id : c1 === c2;
+    return c1 && c2 ? c1.userName === c2.userName : c1 === c2;
   }
 
   close() {
@@ -189,14 +197,22 @@ export class EditStaticticalInvoiceComponent implements OnInit {
     } else {
       this.invoiceForm.value.income = this.invoiceForm.value.amount * 300;
     }
-
-    this.invoiceAPI.UpdateInvoice(this.invoiceForm.value, this.selectedId).subscribe(res => {
+    this.invoiceAPI.UpdateInvoice(this.selectedId, this.invoiceForm.value).subscribe(res => {
       this.notification.create('success', 'Thành công', 'Bạn đã lưu thành công!');
       this.modal.destroy();
     }, err => {
       console.log(err);
       this.notification.create('error', 'Lỗi', 'Đã xảy ra lỗi, vui lòng thử lại!');
     });
+
+  }
+
+  ngModelChange(e) {
+    if (e.typeOfCustomer === 'Giáo dục') {
+      this.isEducation = true;
+    } else {
+      this.isEducation = false;
+    }
 
   }
 

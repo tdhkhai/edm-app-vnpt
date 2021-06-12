@@ -56,7 +56,7 @@
         <nz-form-item>
           <nz-form-label nzFor="RegistrationDate">Ngày đăng ký</nz-form-label>
           <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng chọn Ngày đăng ký'">
-            <nz-date-picker formControlName="registrationDate" style="width: 100%;" nzFormat="dd/MM/yyyy"
+            <nz-date-picker formControlName="registrationDate" style="width: 100%;" nzFormat="dd/MM/yyyy" nzPlaceHolder="Chọn ngày"
               id="RegistrationDate" [(ngModel)]="registrationDate"></nz-date-picker>
           </nz-form-control>
         </nz-form-item>
@@ -67,7 +67,7 @@
         <nz-form-item>
           <nz-form-label nzFor="CancelDate">Ngày hủy</nz-form-label>
           <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng chọn Ngày hủy'">
-            <nz-date-picker formControlName="cancelDate" style="width: 100%;" nzFormat="dd/MM/yyyy" id="CancelDate"
+            <nz-date-picker formControlName="cancelDate" style="width: 100%;" nzFormat="dd/MM/yyyy" nzPlaceHolder="Chọn ngày" id="CancelDate"
               [(ngModel)]="cancelDate"></nz-date-picker>
           </nz-form-control>
         </nz-form-item>

@@ -52,7 +52,9 @@ export class AddDausoComponent implements OnInit {
     );
   }
 
-  close() { }
+  close() {
+    this.modal.close();
+  }
 
   submitForm() {
     // console.log(this.dausoForm.value);

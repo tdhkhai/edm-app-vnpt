@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { NzModalRef } from 'ng-zorro-antd/modal';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { UserService } from 'src/app/core/services/user.service';
 import { WebhostingService } from 'src/app/core/services/webhosting.service';
 
 @Component({
@@ -15,10 +16,12 @@ export class ExtendDetailsWebhostingComponent implements OnInit {
   fromDate: Date;
   toDate: Date;
   selectedId: string;
+  listOfUser: any = [];
   constructor(
     private notification: NzNotificationService,
     private modal: NzModalRef,
-    private webhostingAPI: WebhostingService
+    private webhostingAPI: WebhostingService,
+    private userAPI: UserService,
   ) { this.setForm(); }
 
   ngOnInit(): void {
@@ -33,6 +36,7 @@ export class ExtendDetailsWebhostingComponent implements OnInit {
       incomeDate: new FormControl(),
       income: new FormControl(),
       remark: new FormControl(),
+      am: new FormControl(),
     });
   }
 

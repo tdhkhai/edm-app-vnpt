@@ -74,9 +74,7 @@ export class OverviewWebhostingComponent implements OnInit {
       nzTitle: 'DANH SÁCH KHÁCH HÀNG ' + tmp.toUpperCase() + ' TRONG NĂM ' + year,
       nzContent: ListWebhostingByStatusComponent,
       nzWidth: 1560,
-      nzBodyStyle: {
-        // height: '550px'
-      },
+      nzFooter: null,
     });
 
     modal.componentInstance.payload = payload;
@@ -94,10 +92,8 @@ export class OverviewWebhostingComponent implements OnInit {
     const modal = this.modalService.create({
       nzTitle: 'DANH SÁCH KHÁCH HÀNG HẾT HẠN',
       nzContent: WebhostingListExpiredComponent,
-      nzWidth: 900,
-      nzBodyStyle: {
-        height: '320px'
-      },
+      nzWidth: 1300,
+      nzFooter: null,
     });
     modal.componentInstance.listExpired = this.listExpired;
     modal.afterClose.subscribe(res => {

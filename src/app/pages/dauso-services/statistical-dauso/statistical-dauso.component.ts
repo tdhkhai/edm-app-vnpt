@@ -46,7 +46,7 @@ export class StatisticalDausoComponent implements OnInit {
   }
 
   applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
+    const filterValue = (event.target as HTMLInputElement).value;
     // let filterValueLower = filterValue.toLowerCase();
     if (filterValue === '') {
       this.listOfData = this.listOfAllData;
@@ -55,7 +55,7 @@ export class StatisticalDausoComponent implements OnInit {
       this.listOfData = this.listOfAllData.filter(
         (item: Dauso) =>
         item.comName.includes(filterValue) ||
-        item.am.unitCode.includes(filterValue) ||
+        item.am.unit.unitCode.includes(filterValue) ||
         item.am.userName.includes(filterValue) ||
         item.comTaxCode.includes(filterValue) ||
         item.dauso.includes(filterValue)
@@ -72,9 +72,6 @@ export class StatisticalDausoComponent implements OnInit {
       nzTitle: 'Import dữ liệu',
       nzContent: UploadComponent,
       nzWidth: 400,
-      nzBodyStyle: {
-        height: '70px'
-      },
     });
 
     modal.afterClose.subscribe(result => {
@@ -126,9 +123,6 @@ export class StatisticalDausoComponent implements OnInit {
       nzTitle: 'KHÁCH HÀNG ĐĂNG KÝ ĐẦU SỐ 1800 - 1900 MỚI',
       nzContent: AddDausoComponent,
       nzWidth: 800,
-      nzBodyStyle: {
-        height: '590px'
-      },
     });
 
     modal.afterClose.subscribe(res => {

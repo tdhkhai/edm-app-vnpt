@@ -53,7 +53,7 @@
       <nz-form-item>
         <nz-form-label nzFor="RegistrationDate">Ngày đăng ký</nz-form-label>
         <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng chọn Ngày đăng ký'">
-          <nz-date-picker formControlName="registrationDate" style="width: 100%;" nzFormat="dd/MM/yyyy"
+          <nz-date-picker formControlName="registrationDate" style="width: 100%;" nzFormat="dd/MM/yyyy" nzPlaceHolder="Chọn ngày"
             [(ngModel)]="registrationDate" id="RegistrationDate"></nz-date-picker>
         </nz-form-control>
       </nz-form-item>
@@ -63,7 +63,7 @@
       <nz-form-item>
         <nz-form-label nzFor="ExpirationDate">Ngày hết hạn</nz-form-label>
         <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng chọn ngày hết hạn'">
-          <nz-date-picker formControlName="expirationDate" style="width: 100%;" nzFormat="dd/MM/yyyy"
+          <nz-date-picker formControlName="expirationDate" style="width: 100%;" nzFormat="dd/MM/yyyy" nzPlaceHolder="Chọn ngày"
             [(ngModel)]="expirationDate" id="ExpirationDate"></nz-date-picker>
         </nz-form-control>
       </nz-form-item>
@@ -74,7 +74,7 @@
       <nz-form-item>
         <nz-form-label nzFor="IncomeDate">Tháng ghi doanh thu</nz-form-label>
         <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng chọn ngày hết hạn'">
-          <nz-date-picker formControlName="incomeDate" style="width: 100%;" nzFormat="dd/MM/yyyy"
+          <nz-date-picker formControlName="incomeDate" style="width: 100%;" nzFormat="dd/MM/yyyy" nzPlaceHolder="Chọn ngày"
             [(ngModel)]="incomeDate" id="IncomeDate"></nz-date-picker>
         </nz-form-control>
       </nz-form-item>
@@ -85,7 +85,7 @@
         <nz-form-label nzRequired nzFor="Income">Doanh thu</nz-form-label>
         <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng nhập Doanh thu'">
           <nz-input-group nzSearch nzAddOnAfter="VNĐ">
-            <input type="text" nz-input formControlName="income" id="Income" required style="text-align: right;"/>
+            <input type="text" nz-input formControlName="income" id="Income" required style="text-align: right;" />
           </nz-input-group>
         </nz-form-control>
       </nz-form-item>
@@ -96,9 +96,12 @@
       <nz-form-item>
         <nz-form-label nzRequired nzFor="UserName">AM</nz-form-label>
         <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng chọn AM phát triển'">
-          <nz-select nzAllowClear nzPlaceHolder="Chọn AM phát triển" formControlName="am" id="UserName">
-            <nz-option [nzValue]="item" *ngFor="let item of listOfUser" [nzLabel]="item.userName"></nz-option>
+          <nz-select nzAllowClear nzShowSearch nzPlaceHolder="Chọn AM phát triển" formControlName="am" id="UserName" [nzCustomTemplate]="defaultTemplate">
+            <nz-option [nzValue]="item" *ngFor="let item of listOfUser" [nzLabel]="item.userName" nzCustomContent > {{
+              item.unit.unitCode }} - {{ item.userName }}</nz-option>
           </nz-select>
+          <ng-template #defaultTemplate let-selected>{{ selected.nzValue.unit.unitCode }} - {{ selected.nzLabel }}
+          </ng-template>
         </nz-form-control>
       </nz-form-item>
     </div>

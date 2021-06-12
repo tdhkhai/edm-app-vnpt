@@ -9,6 +9,7 @@ export interface School {
   id_vnedu: string;
   id_moet: string;
   status: string;
+  caphoc: string;
   modules: [{
     moduleName: string;
     schoolYear: string;

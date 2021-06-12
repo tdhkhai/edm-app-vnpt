@@ -17,7 +17,7 @@ export class EditWebhostingComponent implements OnInit {
   webhostingForm: FormGroup;
   registrationDate: Date;
   expirationDate: Date;
-  cancelnDate: Date;
+  cancelDate: Date;
   incomeDate: Date;
   isSpinning = false;
 
@@ -97,8 +97,9 @@ export class EditWebhostingComponent implements OnInit {
   close() { this.modal.close(); }
 
   submitForm() {
-    // console.log(this.dausoForm.value);
-    this.webhostingForm.value.status = '1';
+    if (this.webhostingForm.value.cancelDate !== null || !('cancelDate' in this.webhostingForm.value)) {
+      this.webhostingForm.value.status = '3';
+    }
     this.webhostingAPI.UpdateWebhosting(this.selectedId, this.webhostingForm.value).subscribe(res => {
       this.notification.create('success', 'Thành công', 'Bạn đã cập nhật thành công!');
       this.modal.destroy();

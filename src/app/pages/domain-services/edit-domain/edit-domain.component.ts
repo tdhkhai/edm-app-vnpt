@@ -17,7 +17,7 @@ export class EditDomainComponent implements OnInit {
   domainForm: FormGroup;
   registrationDate: Date;
   expirationDate: Date;
-  cancelnDate: Date;
+  cancelDate: Date;
   incomeDate: Date;
   isSpinning = false;
 
@@ -89,8 +89,10 @@ export class EditDomainComponent implements OnInit {
   close() { this.modal.close(); }
 
   submitForm() {
-    // console.log(this.dausoForm.value);
-    this.domainForm.value.status = '1';
+    if (this.domainForm.value.cancelDate !== null || !('cancelDate' in this.domainForm.value)) {
+      this.domainForm.value.status = '3';
+    }
+
     this.domainAPI.UpdateDomain(this.selectedId, this.domainForm.value).subscribe(res => {
       this.notification.create('success', 'Thành công', 'Bạn đã cập nhật thành công!');
       this.modal.destroy();

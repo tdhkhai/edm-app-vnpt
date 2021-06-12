@@ -14,6 +14,7 @@ export interface Domain {
   income: number;
   extend: [{
     _id: string,
+    am: User,
     numberOfExtend: string,
     fromDate: Date,
     toDate: Date,

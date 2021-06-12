@@ -97,9 +97,6 @@ export class StatisticalInvoiceComponent implements OnInit {
       nzTitle: 'Import dữ liệu',
       nzContent: UploadComponent,
       nzWidth: 400,
-      nzBodyStyle: {
-        height: '70px'
-      },
     });
 
     modal.afterClose.subscribe(result => {
@@ -157,9 +154,6 @@ export class StatisticalInvoiceComponent implements OnInit {
       nzTitle: 'KHÁCH HÀNG HÓA ĐƠN ĐIỆN TỬ MỚI',
       nzContent: AddStatisticalInvoiceComponent,
       nzWidth: 800,
-      nzBodyStyle: {
-        height: '640px'
-      },
     });
 
     modal.afterClose.subscribe(res => {
@@ -184,9 +178,6 @@ export class StatisticalInvoiceComponent implements OnInit {
       nzTitle: 'CHỈNH SỬA THÔNG TIN KHÁCH HÀNG HÓA ĐƠN ĐIỆN TỬ',
       nzContent: EditStaticticalInvoiceComponent,
       nzWidth: 800,
-      nzBodyStyle: {
-        height: '640px'
-      },
     });
 
     modal.componentInstance.selectedId = data;

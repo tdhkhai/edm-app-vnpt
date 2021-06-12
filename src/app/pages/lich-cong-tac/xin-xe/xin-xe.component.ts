@@ -34,9 +34,6 @@ export class XinXeComponent implements OnInit {
       nzTitle: 'THÊM XIN XE',
       nzContent: AddXinXeComponent,
       nzWidth: 640,
-      nzBodyStyle: {
-        height: '340px'
-      },
     });
 
     modal.afterClose.subscribe(res => {
@@ -49,9 +46,6 @@ export class XinXeComponent implements OnInit {
       nzTitle: 'CHỈNH SỬA THÔNG TIN CÔNG TÁC',
       nzContent: EditXinXeComponent,
       nzWidth: 640,
-      nzBodyStyle: {
-        height: '340px'
-      },
     });
     modal.componentInstance.selectedId = selectedId;
     modal.afterClose.subscribe(res => {

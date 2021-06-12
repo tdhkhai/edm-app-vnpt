@@ -25,6 +25,33 @@
         </nz-form-item>
       </div>
     </div>
+    <div nz-row>
+      <div nz-col nzSpan="12">
+        <nz-form-item>
+          <nz-form-label nzRequired nzFor="TypeOfCustomer">Loại Khách hàng</nz-form-label>
+          <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng chọn Loại khách hàng'">
+            <nz-select nzAllowClear nzPlaceHolder="Chọn Loại khách hàng" formControlName="typeOfCustomer"
+              id="TypeOfCustomer" (ngModelChange)="ngModelChange($event)">
+              <nz-option [nzValue]="item.typeOfCustomer" *ngFor="let item of listTypeOfCustomer" [nzLabel]="item.typeOfCustomer">
+              </nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+      <div nz-col nzSpan="12" *ngIf="isEducation">
+        <nz-form-item>
+          <nz-form-label nzRequired nzFor="DetailTypeOfCustomer">Cấp học</nz-form-label>
+          <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng chọn Cấp học'">
+            <nz-select nzAllowClear nzPlaceHolder="Chọn Cấp học" formControlName="detailTypeOfCustomer"
+              id="DetailTypeOfCustomer">
+              <nz-option [nzValue]="item" *ngFor="let item of listDetailTypeOfCustomer"
+                [nzLabel]="item.detailTypeOfCustomer">
+              </nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+      </div>
+    </div>
     <nz-divider nzText="Thông tin đăng ký" nzOrientation="center"></nz-divider>
     <div nz-row>
       <div nz-col>
@@ -55,7 +82,7 @@
         <nz-form-item>
           <nz-form-label [nzRequired]="!isDemo" nzFor="DateDemo">Ngày tạo Demo</nz-form-label>
           <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng chọn Ngày tạo Demo'">
-            <nz-date-picker formControlName="dateDemo" style="width: 100%;" nzFormat="dd/MM/yyyy" [nzDisabled]="isDemo"
+            <nz-date-picker formControlName="dateDemo" style="width: 100%;" nzFormat="dd/MM/yyyy" nzPlaceHolder="Chọn ngày" [nzDisabled]="isDemo"
               [(ngModel)]="dateDemo" id="DateDemo"></nz-date-picker>
           </nz-form-control>
         </nz-form-item>
@@ -66,7 +93,7 @@
         <nz-form-item>
           <nz-form-label [nzRequired]="!isGolive" nzFor="DateGolive">Ngày chuyển chính thức</nz-form-label>
           <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng chọn Ngày chuyển chính thức'">
-            <nz-date-picker formControlName="dateGolive" style="width: 100%;" nzAllowClear="false" nzFormat="dd/MM/yyyy"
+            <nz-date-picker formControlName="dateGolive" style="width: 100%;" nzAllowClear="false" nzFormat="dd/MM/yyyy" nzPlaceHolder="Chọn ngày"
               [nzDisabled]="isGolive" [(ngModel)]="dateGolive" id="DateGolive">
             </nz-date-picker>
           </nz-form-control>
@@ -78,7 +105,7 @@
         <nz-form-item>
           <nz-form-label [nzRequired]="!isExtend" nzFor="DateExtend">Ngày chuyển gia hạn/bổ sung</nz-form-label>
           <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng chọn Ngày chuyển bổ sung/gia hạn'">
-            <nz-date-picker formControlName="dateExtend" style="width: 100%;" nzAllowClear="false" nzFormat="dd/MM/yyyy"
+            <nz-date-picker formControlName="dateExtend" style="width: 100%;" nzAllowClear="false" nzFormat="dd/MM/yyyy" nzPlaceHolder="Chọn ngày"
               [nzDisabled]="isExtend" [(ngModel)]="dateExtend" id="DateExtend">
             </nz-date-picker>
           </nz-form-control>
@@ -90,7 +117,7 @@
         <nz-form-item>
           <nz-form-label [nzRequired]="!isDelete" nzFor="DateDelete">Ngày hủy</nz-form-label>
           <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng chọn Ngày yêu cầu hủy'">
-            <nz-date-picker formControlName="dateDelete" style="width: 100%;" nzAllowClear="false" nzFormat="dd/MM/yyyy"
+            <nz-date-picker formControlName="dateDelete" style="width: 100%;" nzAllowClear="false" nzFormat="dd/MM/yyyy" nzPlaceHolder="Chọn ngày"
               [nzDisabled]="isDelete" [(ngModel)]="dateDelete" id="DateDelete"></nz-date-picker>
           </nz-form-control>
         </nz-form-item>

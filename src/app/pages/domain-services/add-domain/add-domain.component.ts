@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { NzModalRef } from 'ng-zorro-antd/modal';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { BehaviorSubject } from 'rxjs';
 import { DomainService } from 'src/app/core/services/domain.service';
 import { UserService } from 'src/app/core/services/user.service';
 
@@ -11,7 +12,6 @@ import { UserService } from 'src/app/core/services/user.service';
   styleUrls: ['./add-domain.component.scss']
 })
 export class AddDomainComponent implements OnInit {
-
   listOfUser: any = [];
   domainForm: FormGroup;
   registrationDate: Date;
@@ -31,6 +31,7 @@ export class AddDomainComponent implements OnInit {
   ngOnInit(): void {
     this.getAllUsersActivated();
   }
+
 
   setForm() {
     this.domainForm = new FormGroup({

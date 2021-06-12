@@ -16,6 +16,17 @@ export class EditSchoolComponent implements OnInit {
   selectedId: string;
   isSpinning = false;
   selectedData: any;
+  listOfCaphoc = [
+    { caphoc: 'MG/MN' },
+    { caphoc: 'TH' },
+    { caphoc: 'THCS' },
+    { caphoc: 'THPT' },
+    { caphoc: 'THCS & THPT' },
+    { caphoc: 'TH & THCS' },
+    { caphoc: '3 Cấp học' },
+    { caphoc: 'TTGDTX' },
+    { caphoc: 'TC Nghề' },
+  ];
   constructor(
     private eduEcosystemsServices: EduEcosystemsService,
     private notification: NzNotificationService,
@@ -34,6 +45,7 @@ export class EditSchoolComponent implements OnInit {
             id_vnedu: new FormControl(data.id_vnedu),
             id_moet: new FormControl(data.id_moet),
             schoolName: new FormControl(data.schoolName),
+            caphoc: new FormControl(data.caphoc),
             unit: new FormControl(data.unit),
             remark: new FormControl(data.remark),
           });

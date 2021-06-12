@@ -3,6 +3,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { NzModalRef } from 'ng-zorro-antd/modal';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { DomainService } from 'src/app/core/services/domain.service';
+import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
   selector: 'app-extend-details-domain',
@@ -10,7 +11,7 @@ import { DomainService } from 'src/app/core/services/domain.service';
   styleUrls: ['./extend-details-domain.component.scss']
 })
 export class ExtendDetailsDomainComponent implements OnInit {
-
+  listOfUser: any = [];
   extendForm: FormGroup;
   incomeDate: Date;
   fromDate: Date;
@@ -19,10 +20,20 @@ export class ExtendDetailsDomainComponent implements OnInit {
   constructor(
     private notification: NzNotificationService,
     private modal: NzModalRef,
-    private domainAPI: DomainService
+    private domainAPI: DomainService,
+    private userAPI: UserService,
   ) { this.setForm(); }
 
   ngOnInit(): void {
+    this.getAllUsersActivated();
+  }
+
+  getAllUsersActivated() {
+    this.userAPI.GetUsersActivated().subscribe(
+      (data) => {
+        this.listOfUser = data;
+      }
+    );
   }
 
   setForm() {
@@ -34,6 +45,7 @@ export class ExtendDetailsDomainComponent implements OnInit {
       incomeDate: new FormControl(),
       income: new FormControl(),
       remark: new FormControl(),
+      am: new FormControl(),
     });
   }
 
@@ -50,8 +62,6 @@ export class ExtendDetailsDomainComponent implements OnInit {
       status: '2',
       extend: this.extendForm.value
     };
-
-    console.log(tmp);
 
     this.domainAPI.pushExtendDomain(this.selectedId, tmp).subscribe(
       (res) => {

@@ -55,7 +55,7 @@
       <nz-form-item>
         <nz-form-label nzFor="RegistrationDate">Ngày đăng ký</nz-form-label>
         <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng chọn Ngày đăng ký'">
-          <nz-date-picker formControlName="registrationDate" style="width: 100%;" nzFormat="dd/MM/yyyy"
+          <nz-date-picker formControlName="registrationDate" style="width: 100%;" nzFormat="dd/MM/yyyy" nzPlaceHolder="Chọn ngày"
             [(ngModel)]="registrationDate" id="RegistrationDate"></nz-date-picker>
         </nz-form-control>
       </nz-form-item>
@@ -66,7 +66,7 @@
       <nz-form-item>
         <nz-form-label nzFor="CancelDate">Ngày hủy</nz-form-label>
         <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng chọn Ngày hủy'">
-          <nz-date-picker formControlName="cancelDate" style="width: 100%;" nzFormat="dd/MM/yyyy"
+          <nz-date-picker formControlName="cancelDate" style="width: 100%;" nzFormat="dd/MM/yyyy" nzPlaceHolder="Chọn ngày"
             [(ngModel)]="cancelDate" id="CancelDate"></nz-date-picker>
         </nz-form-control>
       </nz-form-item>
@@ -77,9 +77,12 @@
       <nz-form-item>
         <nz-form-label nzRequired nzFor="UserName">AM</nz-form-label>
         <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng chọn AM phát triển'">
-          <nz-select nzAllowClear nzPlaceHolder="Chọn AM phát triển" formControlName="am" id="UserName">
-            <nz-option [nzValue]="item" *ngFor="let item of listOfUser" [nzLabel]="item.userName"></nz-option>
+          <nz-select nzAllowClear nzShowSearch nzPlaceHolder="Chọn AM phát triển" formControlName="am" id="UserName" [nzCustomTemplate]="defaultTemplate">
+            <nz-option [nzValue]="item" *ngFor="let item of listOfUser" [nzLabel]="item.userName" nzCustomContent > {{
+              item.unit.unitCode }} - {{ item.userName }}</nz-option>
           </nz-select>
+          <ng-template #defaultTemplate let-selected>{{ selected.nzValue.unit.unitCode }} - {{ selected.nzLabel }}
+          </ng-template>
         </nz-form-control>
       </nz-form-item>
     </div>

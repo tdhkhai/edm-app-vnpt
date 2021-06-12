@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { NzModalRef } from 'ng-zorro-antd/modal';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { IDCService } from 'src/app/core/services/idc.service';
+import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
   selector: 'app-extend-details',
@@ -10,6 +11,7 @@ import { IDCService } from 'src/app/core/services/idc.service';
   styleUrls: ['./extend-details.component.scss']
 })
 export class ExtendDetailsComponent implements OnInit {
+  listOfUser: any = [];
   extendForm: FormGroup;
   incomeDate: Date;
   fromDate: Date;
@@ -18,11 +20,22 @@ export class ExtendDetailsComponent implements OnInit {
   constructor(
     private notification: NzNotificationService,
     private modal: NzModalRef,
-    private idcAPI: IDCService
+    private idcAPI: IDCService,
+    private userAPI: UserService,
   ) { this.setForm(); }
 
   ngOnInit(): void {
+    this.getAllUsersActivated();
   }
+
+  getAllUsersActivated() {
+    this.userAPI.GetUsersActivated().subscribe(
+      (data) => {
+        this.listOfUser = data;
+      }
+    );
+  }
+
 
   setForm() {
     this.extendForm = new FormGroup({

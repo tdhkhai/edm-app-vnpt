@@ -71,7 +71,7 @@ export class EditIdcComponent implements OnInit {
       incomeDate: new FormControl(Date()),
       income: new FormControl(),
       extend: new FormControl(),
-      cancelDate: new FormControl(Date()),
+      cancelDate: new FormControl(),
       am: new FormControl(),
       status: new FormControl(),
       remark: new FormControl(),
@@ -89,11 +89,11 @@ export class EditIdcComponent implements OnInit {
   close() { this.modal.close(); }
 
   submitForm() {
-    // console.log(this.dausoForm.value);
-    if(this.idcForm.value.cancelDate !== '' || this.idcForm.value.cancelDate !== null) {
-      this.idcForm.value.status = "3";
+    // tslint:disable-next-line: max-line-length
+    if (this.idcForm.value.cancelDate !== null || !('cancelDate' in this.idcForm.value)) {
+      this.idcForm.value.status = '3';
     }
-
+    // console.log(this.idcForm.value);
     this.idcAPI.UpdateIDC(this.selectedId, this.idcForm.value).subscribe(res => {
       this.notification.create('success', 'Thành công', 'Bạn đã cập nhật thành công!');
       this.modal.destroy();

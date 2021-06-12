@@ -31,16 +31,18 @@
   <tbody>
     <tr *ngFor="let data of basicTable.data ; index as i">
       <td>{{ i+1 }}</td>
-      <td>{{ data.unitCode }}</td>
+      <td>{{ data.unit.unitName }}</td>
       <td>{{ data.userName }}</td>
       <ng-container *ngIf="data.status; else elseTemplate">
-        <td><i nz-icon nzType="unlock" nzTheme="fill"></i></td>
+        <td><a nz-tooltip nzTooltipTitle="Click để khóa"><i nz-icon nzType="unlock" nzTheme="fill"></i></a></td>
       </ng-container>
       <ng-template #elseTemplate>
-        <td><i nz-icon nzType="lock" nzTheme="fill"></i></td>
+        <td><a nz-tooltip nzTooltipTitle="Click để mở khóa"><i nz-icon nzType="lock" nzTheme="fill"></i></a></td>
       </ng-template>
       <td>
-        <a><i nz-icon nzType="edit" nzTheme="twotone"></i></a>
+        <a nz-tooltip nzTooltipTitle="Reset mật khẩu"><i nz-icon nzType="key" nzTheme="outline"></i></a>
+        <nz-divider nzType="vertical"></nz-divider>
+        <a nz-tooltip nzTooltipTitle="Chỉnh sửa" (click)="showEdit(data._id)"><i nz-icon nzType="edit" nzTheme="twotone"></i></a>
         <nz-divider nzType="vertical"></nz-divider>
         <a nz-popconfirm nzPopconfirmTitle="Bạn thật sự muốn xóa?" nzPopconfirmPlacement="topRight"
           (nzOnConfirm)="confirmDelete(data)" (nzOnCancel)="cancel()"><i nz-icon nzType="delete" [nzTheme]="'twotone'"

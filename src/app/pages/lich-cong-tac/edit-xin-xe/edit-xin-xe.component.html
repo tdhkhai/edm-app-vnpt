@@ -28,7 +28,7 @@
           <nz-form-label nzRequired nzFor="Ngaydi">Ngày công tác</nz-form-label>
           <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng chọn Ngày công tác'">
             <nz-range-picker formControlName="ngaydi_ve" style="width: 100%;" nzFormat="dd/MM/yyyy"
-              [(ngModel)]="bussinessDate" id="Ngaydi"></nz-range-picker>
+              [(ngModel)]="bussinessDate" id="Ngaydi" [nzPlaceHolder]="['Chọn ngày', 'Chọn ngày']"></nz-range-picker>
           </nz-form-control>
         </nz-form-item>
       </div>

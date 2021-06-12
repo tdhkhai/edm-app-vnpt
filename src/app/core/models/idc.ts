@@ -20,7 +20,8 @@ export interface IDC {
       toDate: Date,
       incomeDate: Date,
       income: number,
-      remark: string
+      remark: string,
+      am: User,
     }
   ];
   cancelDate: Date;

@@ -38,8 +38,6 @@ export class OverviewDomainComponent implements OnInit {
   getCountDomain() {
     this.domainAPI.GetCountDomain().subscribe((res) => {
       this.countDomain = res;
-      console.log(this.countDomain);
-
       this.countDomain.forEach(element => {
         this.allCusDomain += element.countNew;
         this.allCusCanceledDomain += element.countCanceled;
@@ -58,6 +56,7 @@ export class OverviewDomainComponent implements OnInit {
     const modal = this.modalService.create({
       nzTitle: 'DANH SÁCH KHÁCH HÀNG HẾT HẠN',
       nzContent: DomainListExpiredComponent,
+      nzFooter: null,
       nzWidth: 1300,
       nzBodyStyle: {
         // height: '320px'
@@ -68,6 +67,7 @@ export class OverviewDomainComponent implements OnInit {
       this.getListExpired();
     });
   }
+
   viewListByStatus(year: string, status: string) {
     const payload = { year, status };
     let tmp = ''
@@ -91,6 +91,7 @@ export class OverviewDomainComponent implements OnInit {
       nzTitle: 'DANH SÁCH KHÁCH HÀNG ' + tmp.toUpperCase() + ' TRONG NĂM ' + year,
       nzContent: ListDomainByStatusComponent,
       nzWidth: 1560,
+      nzFooter: null,
       nzBodyStyle: {
         // height: '550px'
       },

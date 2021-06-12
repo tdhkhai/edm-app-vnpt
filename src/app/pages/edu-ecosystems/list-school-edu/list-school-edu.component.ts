@@ -76,10 +76,8 @@ export class ListSchoolEduComponent implements OnInit {
     const modal = this.modalService.create({
       nzTitle: 'ĐĂNG KÝ MODULE',
       nzContent: RegisEduModuleComponent,
+      nzFooter: null,
       nzWidth: 800,
-      nzBodyStyle: {
-        height: '370px'
-      },
     });
 
     modal.componentInstance.selecedId = id;
@@ -138,7 +136,7 @@ export class ListSchoolEduComponent implements OnInit {
       // to get 2d array pass 2nd parameter as object {header: 1}
       // console.log(data); // Data will be logged in array format containing objects
       // console.log(typeof(data));
-      // this.importDataImport(data);
+      this.importDataImport(data);
     };
   }
 
@@ -163,9 +161,9 @@ export class ListSchoolEduComponent implements OnInit {
       nzTitle: 'THÊM TRƯỜNG MỚI',
       nzContent: AddSchoolComponent,
       nzWidth: 800,
-      nzBodyStyle: {
-        height: '420px'
-      },
+      // nzBodyStyle: {
+      //   height: '420px'
+      // },
     });
 
     modal.afterClose.subscribe(res => {
@@ -178,9 +176,9 @@ export class ListSchoolEduComponent implements OnInit {
       nzTitle: 'CHỈNH SỬA THÔNG TIN TRƯỜNG',
       nzContent: EditSchoolComponent,
       nzWidth: 800,
-      nzBodyStyle: {
-        height: '420px'
-      },
+      // nzBodyStyle: {
+      //   height: '420px'
+      // },
     });
     modal.componentInstance.selectedId = selectedId;
     modal.afterClose.subscribe(res => {

@@ -17,7 +17,7 @@
         <nz-form-label nzRequired nzFor="FromDate_ToDate">Thời gian sử dụng</nz-form-label>
         <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng chọn Thời gian sử dụng'">
           <nz-range-picker formControlName="fromDate_toDate" style="width: 100%;" nzFormat="dd/MM/yyyy"
-            [(ngModel)]="date" id="FromDate_ToDate"></nz-range-picker>
+            [nzPlaceHolder]="['Chọn ngày', 'Chọn ngày']" [(ngModel)]="date" id="FromDate_ToDate"></nz-range-picker>
         </nz-form-control>
       </nz-form-item>
     </div>
@@ -39,9 +39,13 @@
       <nz-form-item>
         <nz-form-label nzRequired nzFor="UserName">Đơn vị</nz-form-label>
         <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng chọn đơn vị'">
-          <nz-select nzAllowClear nzPlaceHolder="Chọn AM quản lý" formControlName="am" id="UserName">
-            <nz-option [nzValue]="item" *ngFor="let item of listOfUser" [nzLabel]="item.userName"></nz-option>
+          <nz-select nzAllowClear nzShowSearch nzPlaceHolder="Chọn AM phát triển" formControlName="am" id="UserName"
+            [nzCustomTemplate]="defaultTemplate">
+            <nz-option [nzValue]="item" *ngFor="let item of listOfUser" [nzLabel]="item.userName" nzCustomContent> {{
+              item.unit.unitCode }} - {{ item.userName }}</nz-option>
           </nz-select>
+          <ng-template #defaultTemplate let-selected>{{ selected.nzValue.unit.unitCode }} - {{ selected.nzLabel }}
+          </ng-template>
         </nz-form-control>
       </nz-form-item>
     </div>

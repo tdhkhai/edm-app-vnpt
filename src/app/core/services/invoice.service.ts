@@ -76,17 +76,17 @@ export class InvoiceService {
       );
   }
 
-    // Doanh thu hàng tháng theo đơn vị
-    GetMonthlyIncomebyAM(data): Observable<any> {
-      const API_URL = `${this.endpoint}/income-by-month-am`;
-      return this.http.post(API_URL, data)
-        .pipe(
-          map((res: Response) => {
-            return res || {};
-          }),
-          catchError(this.errorMgmt)
-        );
-    }
+  // Doanh thu hàng tháng theo đơn vị
+  GetMonthlyIncomebyAM(data): Observable<any> {
+    const API_URL = `${this.endpoint}/income-by-month-am`;
+    return this.http.post(API_URL, data)
+      .pipe(
+        map((res: Response) => {
+          return res || {};
+        }),
+        catchError(this.errorMgmt)
+      );
+  }
 
 
   // Doanh thu năm
@@ -240,7 +240,6 @@ export class InvoiceService {
       );
   }
 
-  // So lieu Site - AM
   dataOfSitesDonVi(data: any) {
 
     const API_URL = `${this.endpoint}/so-lieu-site-don-vi`;
@@ -253,4 +252,33 @@ export class InvoiceService {
         catchError(this.errorMgmt)
       );
   }
+
+
+  getStatisticsByCustomerType_Education() {
+
+    const API_URL = `${this.endpoint}/statistics-by-customer-type-education`;
+
+    return this.http.get(API_URL)
+      .pipe(
+        map((res: Response) => {
+          return res || {};
+        }),
+        catchError(this.errorMgmt)
+      );
+  }
+
+  postListStatisticsbyCustomerType_Education(data: any) {
+
+    const API_URL = `${this.endpoint}/list-statistics-by-customer-type-education`;
+
+    return this.http.post(API_URL, data)
+      .pipe(
+        map((res: Response) => {
+          return res || {};
+        }),
+        catchError(this.errorMgmt)
+      );
+  }
+
+
 }

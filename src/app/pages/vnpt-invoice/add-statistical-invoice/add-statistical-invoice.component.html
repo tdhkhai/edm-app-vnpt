@@ -1,16 +1,17 @@
-<form nz-form [formGroup]="invoiceForm" (ngSubmit)="submitInvoiceForm()">
+<form nz-form [formGroup]="invoiceForm">
   <nz-divider nzText="Thông tin Khách hàng" nzOrientation="center"></nz-divider>
   <div nz-row>
-    <div nz-col nzSpan="12">
+    <div nz-col nzSpan="24">
       <nz-form-item>
         <nz-form-label nzRequired nzFor="ComTaxCode">Mã số thuế</nz-form-label>
         <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng nhập mã số thuế khách hàng'">
-          <nz-input-group nzSearch [nzSuffix]="suffixIconSearch">
+          <nz-input-group nzSearch [nzAddOnAfter]="suffixButton">
             <input type="text" nz-input formControlName="comTaxCode" id="ComTaxCode" required />
           </nz-input-group>
         </nz-form-control>
       </nz-form-item>
     </div>
+
   </div>
   <div nz-row>
     <div nz-col nzSpan="24">
@@ -24,9 +25,36 @@
       </nz-form-item>
     </div>
   </div>
+  <div nz-row>
+    <div nz-col nzSpan="12">
+      <nz-form-item>
+        <nz-form-label nzRequired nzFor="TypeOfCustomer">Loại Khách hàng</nz-form-label>
+        <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng chọn Loại khách hàng'">
+          <nz-select nzAllowClear nzPlaceHolder="Chọn Loại khách hàng" formControlName="typeOfCustomer"
+            id="TypeOfCustomer" (ngModelChange)="ngModelChange($event)">
+            <nz-option [nzValue]="item" *ngFor="let item of listTypeOfCustomer" [nzLabel]="item.typeOfCustomer">
+            </nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col nzSpan="12" *ngIf="isEducation">
+      <nz-form-item>
+        <nz-form-label nzRequired nzFor="DetailTypeOfCustomer">Cấp học</nz-form-label>
+        <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng chọn Cấp học'">
+          <nz-select nzAllowClear nzPlaceHolder="Chọn Cấp học" formControlName="detailTypeOfCustomer"
+            id="DetailTypeOfCustomer">
+            <nz-option [nzValue]="item" *ngFor="let item of listDetailTypeOfCustomer"
+              [nzLabel]="item.detailTypeOfCustomer">
+            </nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
   <nz-divider nzText="Thông tin đăng ký" nzOrientation="center"></nz-divider>
   <div nz-row>
-    <div nz-col>
+    <div nz-col nzSpan="12">
       <nz-form-item>
         <nz-form-label nzRequired nzFor="MonthAction">Tháng thực hiện</nz-form-label>
         <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng chọn Tháng thực hiện'">
@@ -35,9 +63,7 @@
         </nz-form-control>
       </nz-form-item>
     </div>
-  </div>
-  <div nz-row>
-    <div nz-col nzSpan="8">
+    <div nz-col nzSpan="12">
       <nz-form-item>
         <nz-form-label nzRequired nzFor="Status">Trạng thái</nz-form-label>
         <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng chọn Trạng thái'">
@@ -50,22 +76,20 @@
     </div>
   </div>
   <div nz-row>
-    <div nz-col nzSpan="10">
+    <div nz-col nzSpan="12">
       <nz-form-item>
         <nz-form-label [nzRequired]="!isDemo" nzFor="DateDemo">Ngày tạo Demo</nz-form-label>
         <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng chọn Ngày tạo Demo'">
-          <nz-date-picker formControlName="dateDemo" style="width: 100%;" nzFormat="dd/MM/yyyy"
-           [nzDisabled]="isDemo" [(ngModel)]="dateDemo" id="DateDemo"></nz-date-picker>
+          <nz-date-picker formControlName="dateDemo" style="width: 100%;" nzFormat="dd/MM/yyyy" nzPlaceHolder="Chọn ngày" [nzDisabled]="isDemo"
+            [(ngModel)]="dateDemo" id="DateDemo"></nz-date-picker>
         </nz-form-control>
       </nz-form-item>
     </div>
-  </div>
-  <div nz-row>
-    <div nz-col>
+    <div nz-col nzSpan="12">
       <nz-form-item>
         <nz-form-label [nzRequired]="!isGolive" nzFor="DateGolive">Ngày chuyển chính thức</nz-form-label>
         <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng chọn Ngày chuyển chính thức'">
-          <nz-date-picker formControlName="dateGolive" style="width: 100%;" nzAllowClear="false" nzFormat="dd/MM/yyyy"
+          <nz-date-picker formControlName="dateGolive" style="width: 100%;" nzAllowClear="false" nzFormat="dd/MM/yyyy" nzPlaceHolder="Chọn ngày"
             [nzDisabled]="isGolive" [(ngModel)]="dateGolive" id="DateGolive">
           </nz-date-picker>
         </nz-form-control>
@@ -73,23 +97,21 @@
     </div>
   </div>
   <div nz-row>
-    <div nz-col>
+    <div nz-col nzSpan="12">
       <nz-form-item>
-        <nz-form-label [nzRequired]="!isExtend" nzFor="DateExtend">Ngày chuyển gia hạn/bổ sung</nz-form-label>
+        <nz-form-label [nzRequired]="!isExtend" nzFor="DateExtend">Ngày gia hạn/bổ sung</nz-form-label>
         <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng chọn Ngày chuyển bổ sung/gia hạn'">
-          <nz-date-picker formControlName="dateExtend" style="width: 100%;" nzAllowClear="false" nzFormat="dd/MM/yyyy"
+          <nz-date-picker formControlName="dateExtend" style="width: 100%;" nzAllowClear="false" nzFormat="dd/MM/yyyy" nzPlaceHolder="Chọn ngày"
             [nzDisabled]="isExtend" [(ngModel)]="dateExtend" id="DateExtend">
           </nz-date-picker>
         </nz-form-control>
       </nz-form-item>
     </div>
-  </div>
-  <div nz-row>
-    <div nz-col>
+    <div nz-col nzSpan="12">
       <nz-form-item>
         <nz-form-label [nzRequired]="!isDelete" nzFor="DateDelete">Ngày hủy</nz-form-label>
         <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng chọn Ngày yêu cầu hủy'">
-          <nz-date-picker formControlName="dateDelete" style="width: 100%;" nzAllowClear="false" nzFormat="dd/MM/yyyy"
+          <nz-date-picker formControlName="dateDelete" style="width: 100%;" nzAllowClear="false" nzFormat="dd/MM/yyyy" nzPlaceHolder="Chọn ngày"
             [nzDisabled]="isDelete" [(ngModel)]="dateDelete" id="DateDelete"></nz-date-picker>
         </nz-form-control>
       </nz-form-item>
@@ -101,8 +123,7 @@
         <nz-form-label nzRequired nzFor="Amount">Số lượng hóa đơn</nz-form-label>
         <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng nhập số lượng hóa đơn'">
           <nz-input-group>
-            <input type="text" nz-input formControlName="amount"
-              required id="Amount"/>
+            <input type="text" nz-input formControlName="amount" required id="Amount" />
           </nz-input-group>
         </nz-form-control>
       </nz-form-item>
@@ -114,9 +135,12 @@
       <nz-form-item>
         <nz-form-label nzRequired nzFor="AM">AM</nz-form-label>
         <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng chọn AM phát triển'">
-          <nz-select nzAllowClear nzPlaceHolder="Chọn AM phát triển" formControlName="am" id="AM">
-            <nz-option [nzValue]="item" *ngFor="let item of listOfUser" [nzLabel]="item.userName"></nz-option>
+          <nz-select nzAllowClear nzShowSearch nzPlaceHolder="Chọn AM phát triển" formControlName="am" id="UserName" [nzCustomTemplate]="defaultTemplate">
+            <nz-option [nzValue]="item" *ngFor="let item of listOfUser" [nzLabel]="item.userName" nzCustomContent > {{
+              item.unit.unitCode }} - {{ item.userName }}</nz-option>
           </nz-select>
+          <ng-template #defaultTemplate let-selected>{{ selected.nzValue.unit.unitCode }} - {{ selected.nzLabel }}
+          </ng-template>
         </nz-form-control>
       </nz-form-item>
     </div>
@@ -128,4 +152,9 @@
 </div>
 <ng-template #suffixIconSearch>
   <i nz-icon nzType="search"></i>
+</ng-template>
+
+<ng-template #suffixButton>
+  <button nz-button nzType="primary" nzSize="large" nzSearch
+    (click)="getInvoicebyComTaxCode(this.invoiceForm.value.comTaxCode)">Search</button>
 </ng-template>

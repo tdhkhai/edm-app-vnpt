@@ -9,6 +9,7 @@ import { CreatUserComponent } from '../create-user/create-user.component';
 import * as XLSX from 'xlsx';
 import { User } from 'src/app/core/models/user';
 import { NzModalService } from 'ng-zorro-antd/modal';
+import { EditUserComponent } from '../edit-user/edit-user.component';
 
 @Component({
   selector: 'app-list-users',
@@ -49,9 +50,9 @@ export class ListUsersComponent implements OnInit {
       nzTitle: 'Import dữ liệu',
       nzContent: UploadComponent,
       nzWidth: 400,
-      nzBodyStyle: {
-        height: '70px'
-      },
+      // nzBodyStyle: {
+      //   height: '70px'
+      // },
     });
 
     modal.afterClose.subscribe(result => {
@@ -94,14 +95,33 @@ export class ListUsersComponent implements OnInit {
   }
 
   showCreate(): void {
-    const dialogRef = this.dialog.open(CreatUserComponent, {
-      height: '500px',
-      width: '500px',
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      // this.getAllUnits();
+    const modal = this.modalService.create({
+      nzTitle: 'THÊM MỚI NGƯỜI DÙNG',
+      nzContent: CreatUserComponent,
+      nzWidth: 640,
+      // nzBodyStyle: {
+      //   height: '340px'
+      // },
     });
 
+    modal.afterClose.subscribe(res => {
+      this.getAllUsers();
+    });
+  }
+
+  showEdit(id: string): void {
+    const modal = this.modalService.create({
+      nzTitle: 'CHỈNH SỬA NGƯỜI DÙNG',
+      nzContent: EditUserComponent,
+      nzWidth: 640,
+      // nzBodyStyle: {
+      //   height: '340px'
+      // },
+    });
+    modal.componentInstance.selectedId = id;
+    modal.afterClose.subscribe(res => {
+      this.getAllUsers();
+    });
   }
 
   cancel(): void {
