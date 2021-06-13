@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NzModalRef } from 'ng-zorro-antd/modal';
 
 @Component({
   selector: 'app-create-type-of-invoice',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateTypeOfInvoiceComponent implements OnInit {
 
-  constructor() { }
+  constructor(private modal: NzModalRef) { }
 
   ngOnInit(): void {
+  }
+
+  close() {
+    this.modal.destroy();
   }
 
 }

@@ -5,6 +5,7 @@ import { DataOfSitesComponent } from './data-of-sites/data-of-sites.component';
 import { IncomeMonthInvoiceComponent } from './income-month-invoice/income-month-invoice.component';
 import { IncomeYearInvoiceComponent } from './income-year-invoice/income-year-invoice.component';
 import { OverviewInvoiceComponent } from './overview-invoice/overview-invoice.component';
+import { StatisticalInvoiceByTypeOfCustomerComponent } from './statistical-invoice-by-type-of-customer/statistical-invoice-by-type-of-customer.component';
 import { StatisticalInvoiceComponent } from './statistical-invoice/statistical-invoice.component';
 
 const routes: Routes = [
@@ -35,6 +36,10 @@ const routes: Routes = [
   {
     path: 'tong-quan-hddt', component: OverviewInvoiceComponent,
     data: { breadcrumb: 'Tổng quan Hóa đơn điện tử' }
+  },
+  {
+    path: 'thong-ke-theo-loai-khach-hang', component: StatisticalInvoiceByTypeOfCustomerComponent,
+    data: { breadcrumb: 'Thống kê HDDT theo loại khách hàng' }
   },
 ];
 

@@ -58,7 +58,6 @@ export class StatisticalDomainComponent implements OnInit {
       this.listOfData = this.listOfAllData.filter(
         (item: Domain) =>
           item.comName.includes(filterValue) ||
-          item.am.unit.unitCode.includes(filterValue) ||
           item.am.userName.includes(filterValue) ||
           item.domain.includes(filterValue)
       );

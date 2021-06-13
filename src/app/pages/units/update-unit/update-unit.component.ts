@@ -1,9 +1,9 @@
 import { Inject } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Unit } from 'src/app/core/models/unit';
-import { UnitService } from 'src/app/core/services/unit.service';
+import { NzModalRef } from 'ng-zorro-antd/modal';
+import { Unit } from '../../../core/models/unit';
+import { UnitService } from '../../../core/services/unit.service';
 
 @Component({
   selector: 'app-update-unit',
@@ -13,11 +13,13 @@ import { UnitService } from 'src/app/core/services/unit.service';
 export class UpdateUnitComponent implements OnInit {
   unitForm: FormGroup;
   unit: Unit;
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private unitAPI: UnitService) { }
+  constructor(
+    private unitAPI: UnitService,
+    private modal: NzModalRef
+    ) { }
 
   ngOnInit(): void {
     this.buildUnitForm();
-    this.unit = this.data;
   }
 
   buildUnitForm() {
@@ -36,6 +38,10 @@ export class UpdateUnitComponent implements OnInit {
         // console.log("OK");
       });
     }
+  }
+
+  close() {
+    this.modal.destroy();
   }
 
 }

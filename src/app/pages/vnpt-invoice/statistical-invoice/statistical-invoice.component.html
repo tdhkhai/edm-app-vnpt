@@ -121,8 +121,8 @@
             nzTheme="outline"></i></a>
         <nz-divider nzType="vertical"></nz-divider>
         <a nz-tooltip nzTooltipTitle="Xóa" nz-popconfirm nzPopconfirmTitle="Bạn thật sự muốn xóa?"
-          nzPopconfirmPlacement="topRight" (nzOnConfirm)="confirmDelete(data._id)" (nzOnCancel)="cancel()"><i nz-icon
-            nzType="delete" [nzTheme]="'twotone'" [nzTwotoneColor]="'#eb2f96'"></i></a>
+          nzPopconfirmPlacement="topRight" (nzOnConfirm)="confirmDelete(data)" (nzOnCancel)="cancel()" nzOkText="OK"
+          nzCancelText="Hủy"><i nz-icon nzType="delete" [nzTheme]="'twotone'" [nzTwotoneColor]="'#eb2f96'"></i></a>
       </td>
     </tr>
     <!-- </ng-template> -->

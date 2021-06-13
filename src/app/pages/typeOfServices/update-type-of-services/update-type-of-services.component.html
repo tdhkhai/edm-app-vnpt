@@ -1,17 +1,15 @@
-<h2 mat-dialog-title>CHỈNH SỬA LOẠI DỊCH VỤ</h2>
-<mat-dialog-content>
 <form [formGroup]="typeofserviceForm" (ngSubmit)="submitUnitForm()">
   <nz-form-item>
     <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng nhập mã loại dịch vụ'">
       <nz-input-group [nzPrefix]="prefixTemplateWriter">
-        <input type="text" nz-input placeholder="Nhập mã loại dịch vụ" formControlName="typeOfServiceCode" required [(ngModel)]="this.typeOfService.typeOfServiceCode"/>
+        <input type="text" nz-input placeholder="Nhập mã loại dịch vụ" formControlName="typeOfServiceCode" required />
       </nz-input-group>
     </nz-form-control>
   </nz-form-item>
   <nz-form-item>
     <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng nhập tên loại dịch vụ'">
       <nz-input-group [nzPrefix]="prefixTemplateWriter">
-        <input type="text" nz-input placeholder="Nhập tên loại dịch vụ" formControlName="typeOfServiceName" required [(ngModel)]="this.typeOfService.typeOfServiceName"/>
+        <input type="text" nz-input placeholder="Nhập tên loại dịch vụ" formControlName="typeOfServiceName" required />
       </nz-input-group>
     </nz-form-control>
   </nz-form-item>
@@ -22,9 +20,8 @@
     </nz-radio-group>
   </nz-form-item>
 </form>
-</mat-dialog-content>
-<mat-dialog-actions align="end">
-  <button mat-button [mat-dialog-close]="true">Hủy</button>
-  <button mat-button mat-raised-button color="primary" mat-dialog-close (click)="submitUnitForm()" cdkFocusInitial>OK</button>
-</mat-dialog-actions>
+<div *nzModalFooter>
+  <button nz-button nzType="default" (click)="close()">Hủy</button>
+  <button nz-button nzType="primary" (click)="submitUnitForm()">Thêm</button>
+</div>
 <ng-template #prefixTemplateWriter><i nz-icon nzType="edit" [nzTheme]="'fill'"></i></ng-template>

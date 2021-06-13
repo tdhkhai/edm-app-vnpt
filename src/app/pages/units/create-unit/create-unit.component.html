@@ -1,17 +1,15 @@
-<h2 mat-dialog-title>THÊM PHÒNG - BAN</h2>
-<mat-dialog-content>
 <form [formGroup]="unitForm" (ngSubmit)="submitUnitForm()">
   <nz-form-item>
     <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng nhập mã Phòng - Ban'">
       <nz-input-group [nzPrefix]="prefixTemplateWriter">
-        <input type="text" nz-input placeholder="Nhập mã Phòng - Ban" formControlName="unitCode" required/>
+        <input type="text" nz-input placeholder="Nhập mã Phòng - Ban" formControlName="unitCode" required />
       </nz-input-group>
     </nz-form-control>
   </nz-form-item>
   <nz-form-item>
     <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng nhập tên Phòng - Ban'">
       <nz-input-group [nzPrefix]="prefixTemplateWriter">
-        <input type="text" nz-input placeholder="Nhập tên Phòng - Ban" formControlName="unitName" required/>
+        <input type="text" nz-input placeholder="Nhập tên Phòng - Ban" formControlName="unitName" required />
       </nz-input-group>
     </nz-form-control>
   </nz-form-item>
@@ -22,9 +20,10 @@
     </nz-radio-group>
   </nz-form-item>
 </form>
-</mat-dialog-content>
-<mat-dialog-actions align="end">
-  <button mat-button [mat-dialog-close]="true">Hủy</button>
-  <button mat-button mat-raised-button color="primary" mat-dialog-close (click)="submitUnitForm()" cdkFocusInitial>OK</button>
-</mat-dialog-actions>
+<div *nzModalFooter>
+  <button nz-button nzType="default" (click)="close()">Hủy</button>
+  <button nz-button nzType="primary" (click)="submitUnitForm()">Thêm</button>
+</div>
+
+
 <ng-template #prefixTemplateWriter><i nz-icon nzType="edit" [nzTheme]="'fill'"></i></ng-template>

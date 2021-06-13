@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { NzModalRef } from 'ng-zorro-antd/modal';
+
 import { TypeOfService } from 'src/app/core/models/typeofservice';
 import { TypeOfServicesService } from 'src/app/core/services/typeofservices.service';
 
@@ -15,12 +16,11 @@ export class UpdateTypeOfServicesComponent implements OnInit {
   typeOfService: TypeOfService;
   constructor(
     private TypeOfServiceAPI: TypeOfServicesService,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    private modal: NzModalRef
   ) { }
 
   ngOnInit(): void {
     this.buildUnitForm();
-    this.typeOfService = this.data;
   }
 
   buildUnitForm() {
@@ -37,6 +37,10 @@ export class UpdateTypeOfServicesComponent implements OnInit {
       this.TypeOfServiceAPI.UpdateTypeOfService(this.typeOfService._id, this.typeofserviceForm.value).subscribe(res => {
       });
     }
+  }
+
+  close() {
+    this.modal.destroy();
   }
 
 }

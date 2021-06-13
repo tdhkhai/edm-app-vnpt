@@ -97,9 +97,12 @@
       <nz-form-item>
         <nz-form-label nzRequired nzFor="UserName">AM</nz-form-label>
         <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng chọn AM phát triển'">
-          <nz-select nzAllowClear nzPlaceHolder="Chọn AM phát triển" formControlName="am" id="UserName">
-            <nz-option [nzValue]="item" *ngFor="let item of listOfUser" [nzLabel]="item.userName"></nz-option>
+          <nz-select nzAllowClear nzShowSearch nzPlaceHolder="Chọn AM phát triển" formControlName="am" id="UserName" [nzCustomTemplate]="defaultTemplate">
+            <nz-option [nzValue]="item" *ngFor="let item of listOfUser" [nzLabel]="item.userName" nzCustomContent > {{
+              item.unit.unitCode }} - {{ item.userName }}</nz-option>
           </nz-select>
+          <ng-template #defaultTemplate let-selected>{{ selected.nzValue.unit.unitCode }} - {{ selected.nzLabel }}
+          </ng-template>
         </nz-form-control>
       </nz-form-item>
     </div>

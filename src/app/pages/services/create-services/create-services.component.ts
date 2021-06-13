@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { NzModalRef } from 'ng-zorro-antd/modal';
 import { ServicesService } from 'src/app/core/services/services.service';
 import { TypeOfServicesService } from 'src/app/core/services/typeofservices.service';
 
@@ -17,7 +18,8 @@ export class CreateServicesComponent implements OnInit {
 
   constructor(
     private ServiceAPI: ServicesService,
-    private typeOfSerice: TypeOfServicesService
+    private typeOfSerice: TypeOfServicesService,
+    private modal: NzModalRef
     ) { }
 
   ngOnInit(): void {
@@ -49,4 +51,7 @@ export class CreateServicesComponent implements OnInit {
     }
   }
 
+  close() {
+    this.modal.destroy();
+  }
 }

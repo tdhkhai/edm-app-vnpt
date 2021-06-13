@@ -1,6 +1,7 @@
 import { Component, NgZone, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NzModalRef } from 'ng-zorro-antd/modal';
 import { UnitService } from 'src/app/core/services/unit.service';
 
 @Component({
@@ -12,7 +13,8 @@ export class CreateUnitComponent implements OnInit {
   unitForm: FormGroup;
 
   constructor(
-    private unitAPI: UnitService
+    private unitAPI: UnitService,
+    private modal: NzModalRef
     ) { }
 
   ngOnInit(): void {
@@ -44,4 +46,9 @@ export class CreateUnitComponent implements OnInit {
       });
     }
   }
+
+  close() {
+    this.modal.destroy();
+  }
 }
+

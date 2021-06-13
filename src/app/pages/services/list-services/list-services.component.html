@@ -39,9 +39,9 @@
       <td>
         <a><i nz-icon nzType="edit" nzTheme="twotone" (click)="showUpdate(data)"></i></a>
         <nz-divider nzType="vertical"></nz-divider>
-        <a nz-popconfirm nzPopconfirmTitle="Bạn thật sự muốn xóa?" nzPopconfirmPlacement="topRight"
-          (nzOnConfirm)="confirmDelete(data)" (nzOnCancel)="cancel()"><i nz-icon nzType="delete" [nzTheme]="'twotone'"
-            [nzTwotoneColor]="'#eb2f96'"></i></a>
+        <a nz-tooltip nzTooltipTitle="Xóa" nz-popconfirm nzPopconfirmTitle="Bạn thật sự muốn xóa?"
+          nzPopconfirmPlacement="topRight" (nzOnConfirm)="confirmDelete(data)" (nzOnCancel)="cancel()" nzOkText="OK"
+          nzCancelText="Hủy"><i nz-icon nzType="delete" [nzTheme]="'twotone'" [nzTwotoneColor]="'#eb2f96'"></i></a>
       </td>
     </tr>
   </tbody>

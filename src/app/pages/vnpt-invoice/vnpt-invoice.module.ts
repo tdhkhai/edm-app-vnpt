@@ -15,6 +15,7 @@ import { EditStaticticalInvoiceComponent } from './edit-statictical-invoice/edit
 import { OverviewInvoiceComponent } from './overview-invoice/overview-invoice.component';
 import { ListInvoiceByStatusComponent } from './list-invoice-by-status/list-invoice-by-status.component';
 import { ListInvoiceByCusTaxCodeComponent } from './list-invoice-by-com-tax-code/list-invoice-by-com-tax-code';
+import { StatisticalInvoiceByTypeOfCustomerComponent } from './statistical-invoice-by-type-of-customer/statistical-invoice-by-type-of-customer.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { ListInvoiceByCusTaxCodeComponent } from './list-invoice-by-com-tax-code
     EditStaticticalInvoiceComponent,
     OverviewInvoiceComponent,
     ListInvoiceByStatusComponent,
-    ListInvoiceByCusTaxCodeComponent
+    ListInvoiceByCusTaxCodeComponent,
+    StatisticalInvoiceByTypeOfCustomerComponent
   ],
   exports: [
     BuildInvoiceExamplesComponent,
@@ -50,7 +52,8 @@ import { ListInvoiceByCusTaxCodeComponent } from './list-invoice-by-com-tax-code
     DataOfSitesComponent,
     OverviewInvoiceComponent,
     ListInvoiceByStatusComponent,
-    ListInvoiceByCusTaxCodeComponent
+    ListInvoiceByCusTaxCodeComponent,
+    StatisticalInvoiceByTypeOfCustomerComponent
   ],
   providers: [
   ]
