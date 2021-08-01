@@ -28,7 +28,7 @@
   <button nz-button nzType="primary" nzSearch><i nz-icon nzType="search"></i></button>
 </ng-template>
 
-<nz-table nzBordered #headerTable [nzLoading]="loading" [nzData]="listOfData">
+<nz-table nzBordered #headerTable [nzLoading]="loading" [nzData]="listOfData" id="idcTable">
   <thead>
     <tr>
       <th nzAlign="center"></th>
@@ -41,7 +41,7 @@
       <th nzAlign="center">Tên Khách hàng</th>
       <th nzAlign="center">Ngày đăng ký</th>
       <th nzAlign="center">Ngày hết hạn</th>
-      <th nzAlign="center">Doanh thu<br/><span style="font-style: italic;">(VNĐ)</span></th>
+      <th nzAlign="center">Doanh thu<br /><span style="font-style: italic;">(VNĐ)</span></th>
       <th nzAlign="center">Thao tác</th>
     </tr>
   </thead>
@@ -60,6 +60,13 @@
         <td nzAlign="center">{{data.comTaxCode}}</td>
         <td>{{data.comName}}</td>
         <td nzAlign="center">{{data.registrationDate | date:'dd/MM/yyyy'}}</td>
+
+        <!-- <ng-template *ngIf="data.extend != null || data.extend != '' ;else hasExtend">
+          <td nzAlign="center">{{data.extend[data.extend.length - 1].toDate | date:'dd/MM/yyyy'}}</td>
+        </ng-template>
+        <ng-template #hasExtend>
+          <td nzAlign="center">{{data.expirationDate | date:'dd/MM/yyyy'}}</td>
+        </ng-template> -->
         <td nzAlign="center">{{data.expirationDate | date:'dd/MM/yyyy'}}</td>
         <td style="text-align: right;" nz-tooltip nzTooltipTitle="Doanh thu: {{data.incomeDate |  date:'dd/MM/yyyy'}}">
           {{data.income | currency: 'VND' :''}}</td>
@@ -71,8 +78,8 @@
               nzTheme="twotone"></i></a>
           <nz-divider nzType="vertical"></nz-divider>
           <a nz-tooltip nzTooltipTitle="Xóa" nz-popconfirm nzPopconfirmTitle="Bạn thật sự muốn xóa?"
-          nzPopconfirmPlacement="topRight" (nzOnConfirm)="confirmDelete(data)" (nzOnCancel)="cancel()" nzOkText="OK"
-          nzCancelText="Hủy"><i nz-icon nzType="delete" [nzTheme]="'twotone'" [nzTwotoneColor]="'#eb2f96'"></i></a>
+            nzPopconfirmPlacement="topRight" (nzOnConfirm)="confirmDelete(data)" (nzOnCancel)="cancel()" nzOkText="OK"
+            nzCancelText="Hủy"><i nz-icon nzType="delete" [nzTheme]="'twotone'" [nzTwotoneColor]="'#eb2f96'"></i></a>
         </td>
       </tr>
       <tr *ngIf="data.extend != null" [nzExpand]="expandSet.has(data._id)">
@@ -90,23 +97,23 @@
               <th nzAlign="center">Xóa</th>
             </tr>
           </thead>
-          <tbody>
-            <tr *ngFor="let data2 of data.extend ; index as i">
-              <td nzAlign="center">{{ i+1 }}</td>
-              <td nzAlign="center">{{ data2.numberOfExtend }}</td>
-              <td nzAlign="center">{{ data2.fromDate | date:'dd/MM/yyyy' }}</td>
-              <td nzAlign="center">{{ data2.toDate | date:'dd/MM/yyyy'}}</td>
-              <td nzAlign="center" style="color: red;font-weight: bold;">{{ data2.income | currency: 'VND' :'' }}</td>
-              <td nzAlign="center">{{ data2.incomeDate | date:'dd/MM/yyyy'}}</td>
-              <td>{{ data2.remark }}</td>
-              <td nzAlign="center">
-                <a nzAlign="center" style="color: red;" (click)="deleteExtend(data._id, data2._id)"><i nz-icon
-                    nzType="delete" nzTheme="outline"></i></a>
-              </td>
-            </tr>
-          </tbody>
-        </nz-table>
-        </tr>
-        </ng-container>
+  <tbody>
+    <tr *ngFor="let data2 of data.extend ; index as i">
+      <td nzAlign="center">{{ i+1 }}</td>
+      <td nzAlign="center">{{ data2.numberOfExtend }}</td>
+      <td nzAlign="center">{{ data2.fromDate | date:'dd/MM/yyyy' }}</td>
+      <td nzAlign="center">{{ data2.toDate | date:'dd/MM/yyyy'}}</td>
+      <td nzAlign="center" style="color: red;font-weight: bold;">{{ data2.income | currency: 'VND' :'' }}</td>
+      <td nzAlign="center">{{ data2.incomeDate | date:'dd/MM/yyyy'}}</td>
+      <td>{{ data2.remark }}</td>
+      <td nzAlign="center">
+        <a nzAlign="center" style="color: red;" (click)="deleteExtend(data._id, data2._id)"><i nz-icon nzType="delete"
+            nzTheme="outline"></i></a>
+      </td>
+    </tr>
   </tbody>
+</nz-table>
+</tr>
+</ng-container>
+</tbody>
 </nz-table>

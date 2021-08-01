@@ -52,7 +52,7 @@
         <nz-form-item>
           <nz-form-label nzRequired nzFor="Caphoc">Cấp học</nz-form-label>
           <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng chọn Cấp học'">
-            <nz-select nzAllowClear nzPlaceHolder="Chọn đơn vị" formControlName="caphoc" id="Caphoc">
+            <nz-select [compareWith]="compareByOptionCapHoc" nzAllowClear nzPlaceHolder="Chọn đơn vị" formControlName="caphoc" id="Caphoc">
               <nz-option [nzValue]="item" *ngFor="let item of listOfCaphoc" [nzLabel]="item.caphoc"></nz-option>
             </nz-select>
           </nz-form-control>

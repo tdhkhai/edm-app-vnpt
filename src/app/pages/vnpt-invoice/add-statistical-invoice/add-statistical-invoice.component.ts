@@ -180,7 +180,7 @@ export class AddStatisticalInvoiceComponent implements OnInit {
     if (comTaxCode !== '') {
       this.invoiceAPI.postListStatisticsbyCustomerType_Education({ comTaxCode }).subscribe(data => {
         if (data === null || data === '' || data === []) {
-          this.notification.warning("Cảnh báo!", "Không tìm thấy dữ liệu")
+          this.notification.warning('Cảnh báo!', 'Không tìm thấy dữ liệu')
         } else {
           this.invoiceForm.value.comName = data[0].comName;
           this.invoiceForm.value.typeOfCustomer = data[0].typeOfCustomer;

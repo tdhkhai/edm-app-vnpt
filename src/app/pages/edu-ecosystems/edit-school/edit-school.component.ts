@@ -21,11 +21,11 @@ export class EditSchoolComponent implements OnInit {
     { caphoc: 'TH' },
     { caphoc: 'THCS' },
     { caphoc: 'THPT' },
-    { caphoc: 'THCS & THPT' },
-    { caphoc: 'TH & THCS' },
+    { caphoc: 'THCS và THPT' },
+    { caphoc: 'TH và THCS' },
     { caphoc: '3 Cấp học' },
     { caphoc: 'TTGDTX' },
-    { caphoc: 'TC Nghề' },
+    { caphoc: 'Nghề' },
   ];
   constructor(
     private eduEcosystemsServices: EduEcosystemsService,
@@ -40,21 +40,20 @@ export class EditSchoolComponent implements OnInit {
           this.isSpinning = false;
           this.selectedData = data;
           this.schoolForm = new FormGroup({
-            comTaxCode: new FormControl(data.comTaxCode),
+            schoolName: new FormControl(data.schoolName),
             schoolTaxCode: new FormControl(data.schoolTaxCode),
             id_vnedu: new FormControl(data.id_vnedu),
             id_moet: new FormControl(data.id_moet),
-            schoolName: new FormControl(data.schoolName),
             caphoc: new FormControl(data.caphoc),
             unit: new FormControl(data.unit),
             remark: new FormControl(data.remark),
           });
-          // console.log(this.domainForm.value);
+          console.log(this.schoolForm.value);
 
         }
       );
     }, 1000);
-   }
+  }
 
   ngOnInit(): void {
     this.setForm();
@@ -68,6 +67,9 @@ export class EditSchoolComponent implements OnInit {
       unit: new FormControl(),
       remark: new FormControl(),
       status: new FormControl('1'),
+      id_vnedu: new FormControl(),
+      id_moet: new FormControl(),
+      caphoc: new FormControl(),
     });
   }
 
@@ -93,5 +95,9 @@ export class EditSchoolComponent implements OnInit {
 
   compareByOptionId(c1, c2) {
     return c1 && c2 ? c1._id === c2._id : c1 === c2;
+  }
+
+  compareByOptionCapHoc(c1, c2) {
+    return c1 && c2 ? c1 === c2.caphoc : c1 === c2;
   }
 }

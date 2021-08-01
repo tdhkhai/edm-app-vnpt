@@ -1,0 +1,54 @@
+<nz-page-header class="site-page-header">
+  <nz-page-header-title>IMPORT MODULE HỆ SINH THÁI vnEdu 4.0</nz-page-header-title>
+
+  <nz-breadcrumb nz-page-header-breadcrumb [nzAutoGenerate]="true">
+    <nz-breadcrumb-item>
+      <i nz-icon nzType="home"></i>
+    </nz-breadcrumb-item>
+  </nz-breadcrumb>
+  </nz-page-header>
+<div style="width:100%;">
+  <div nz-row [nzGutter]="8">
+    <div nz-col [nzSpan]="6">
+      <button nz-button nzType="danger" nzType="dashed" (click)="importExcel('SLLĐT')"><i nz-icon [nzType]="'upload'"
+        [nzTheme]="'outline'"></i>Import SLLĐT</button>
+    </div>
+
+    <div nz-col [nzSpan]="6">
+      <button nz-button nzType="danger" nzType="dashed" (click)="importExcel('')"><i nz-icon [nzType]="'upload'"
+        [nzTheme]="'outline'"></i>Import Pay</button>
+    </div>
+
+    <div nz-col [nzSpan]="6">
+      <button nz-button nzType="danger" nzType="dashed" (click)="importExcel('VNPT Elearning')"><i nz-icon [nzType]="'upload'"
+        [nzTheme]="'outline'"></i>Import Elearning</button>
+    </div>
+
+    <div nz-col [nzSpan]="6">
+      <button nz-button nzType="danger" nzType="dashed" (click)="importExcel('vnEdu-QoE')"><i nz-icon [nzType]="'upload'"
+        [nzTheme]="'outline'"></i>Import KĐCLGD</button>
+    </div>
+  </div>
+  <br>
+  <div style="width:100%;">
+    <div nz-row [nzGutter]="8">
+      <div nz-col [nzSpan]="6">
+        <button nz-button nzType="danger" nzType="dashed" (click)="importExcel('vnPortal')"><i nz-icon [nzType]="'upload'"
+          [nzTheme]="'outline'"></i>Import Portal</button>
+      </div>
+
+      <div nz-col [nzSpan]="6">
+        <button nz-button nzType="danger" nzType="dashed" (click)="importExcel('VNPT iOffice')"><i nz-icon [nzType]="'upload'"
+          [nzTheme]="'outline'"></i>Import iOffice</button>
+      </div>
+
+      <div nz-col [nzSpan]="6">
+        <button nz-button nzType="danger" nzType="dashed" (click)="importExcel('')"><i nz-icon [nzType]="'upload'"
+          [nzTheme]="'outline'"></i>Import</button>
+      </div>
+
+      <div nz-col [nzSpan]="6">
+        <button nz-button nzType="danger" nzType="dashed" (click)="importExcel('')"><i nz-icon [nzType]="'upload'"
+          [nzTheme]="'outline'"></i>Import</button>
+      </div>
+    </div>

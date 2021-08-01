@@ -6,32 +6,63 @@
       <i nz-icon nzType="home"></i>
     </nz-breadcrumb-item>
   </nz-breadcrumb>
+  <!-- <nz-page-header-extra> -->
+
+  <!-- </nz-page-header-extra> -->
 </nz-page-header>
-<nz-table nzBordered #headerTable [nzLoading]="loading" [nzData]="listOfData" nzShowPagination nzShowSizeChanger>
-  <thead>
-    <tr>
-      <th nzAlign="center" style="width: 5%;">STT</th>
-      <th nzAlign="center" style="width: 5%;">Đơn vị</th>
-      <th nzAlign="center" style="width: 5%;">SLLĐT</th>
-      <th nzAlign="center" style="width: 5%;">KĐCLGD</th>
-      <th nzAlign="center" style="width: 5%;">Portal</th>
-      <th nzAlign="center" style="width: 5%;">iOffice</th>
-      <th nzAlign="center" style="width: 5%;">Invoice</th>
-      <th nzAlign="center" style="width: 5%;">QL Thanh toán</th>
-      <th nzAlign="center" style="width: 5%;">Elearning</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let data of headerTable.data ; index as i">
-      <td nzAlign="center">{{ i + 1 }}</td>
-      <td nzAlign="center"> {{ data._id.unit }}</td>
-      <td nzAlign="center">{{ data.count_vnEdu | number }}</td>
-      <td nzAlign="center">{{ data.count_vnEdu_QoE | number }}</td>
-      <td nzAlign="center">{{ data.count_vnPortal | number }}</td>
-      <td nzAlign="center">{{ data.count_ioffice | number }}</td>
-      <td nzAlign="center">{{ data.count_invoice | number }}</td>
-      <td nzAlign="center">{{ data.count_vnEdu_FMS | number }}</td>
-      <td nzAlign="center">{{ data.count_elearning | number }}</td>
-    </tr>
-  </tbody>
-</nz-table>
+<nz-page-header-content>
+  <nz-select [(ngModel)]="selectedSchoolYear" nzSize="large" style="width: 300px;" (ngModelChange)="selectedChange($event)">
+    <nz-option *ngFor="let option of listOfSchoolYear" [nzLabel]="option.label" [nzValue]="option"></nz-option>
+  </nz-select>
+  <br>
+  <nz-table nzBordered #headerTable [nzLoading]="loading" [nzData]="listOfData" nzShowPagination="false"
+    nzPageSize="11">
+    <thead>
+      <tr>
+        <th nzAlign="center" style="width: 5%; font-weight: bold;" rowspan="2">STT</th>
+        <th nzAlign="center" style="width: 5%; font-weight: bold;" rowspan="2">Đơn vị</th>
+        <th nzAlign="center" style="width: 5%; font-weight: bold;" colspan="3">SLLĐT</th>
+        <th nzAlign="center" style="width: 5%; font-weight: bold;" rowspan="2">KĐCLGD</th>
+        <th nzAlign="center" style="width: 5%; font-weight: bold;" rowspan="2">Portal</th>
+        <th nzAlign="center" style="width: 5%; font-weight: bold;" rowspan="2">iOffice</th>
+        <th nzAlign="center" style="width: 5%; font-weight: bold;" rowspan="2">Invoice</th>
+        <th nzAlign="center" style="width: 5%; font-weight: bold;" rowspan="2">QL Thanh toán</th>
+        <th nzAlign="center" style="width: 5%; font-weight: bold;" rowspan="2">Elearning</th>
+      </tr>
+      <tr>
+        <th nzAlign="center" style="width: 5%;font-weight: bold;">Tái ký</th>
+        <th nzAlign="center" style="width: 5%;font-weight: bold;">Mới</th>
+        <th nzAlign="center" style="width: 5%;font-weight: bold;">Tổng</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of headerTable.data ; index as i">
+        <td nzAlign="center">{{ i + 1 }}</td>
+        <td nzAlign="center"> {{ data?._id.unitCode }}</td>
+        <td nzAlign="center">{{ data?.count_vnEdu_TK | number }}</td>
+        <td nzAlign="center">{{ data?.count_vnEdu_New | number }}</td>
+        <td nzAlign="center" style="color: red;font-weight: bold;">{{ (data?.count_vnEdu_TK + data?.count_vnEdu_New ) |
+          number }}</td>
+        <td nzAlign="center">{{ data?.count_vnEdu_QoE | number }}</td>
+        <td nzAlign="center">{{ data?.count_vnPortal | number }}</td>
+        <td nzAlign="center">{{ data?.count_ioffice | number }}</td>
+        <td nzAlign="center">{{ data?.count_invoice | number }}</td>
+        <td nzAlign="center">{{ data?.count_vnEdu_FMS | number }}</td>
+        <td nzAlign="center">{{ data?.count_elearning | number }}</td>
+      </tr>
+      <tr>
+        <td nzAlign="center" style="font-weight: bold; color: red;" colspan="2">Tổng cộng</td>
+        <td nzAlign="center" style="font-weight: bold; color: red;">{{ sumSLL_TK }}</td>
+        <td nzAlign="center" style="font-weight: bold; color: red;">{{ sumSLL_Moi }}</td>
+        <td nzAlign="center" style="font-weight: bold; color: red;">{{ sumSLL_TK + sumSLL_Moi }}</td>
+        <td nzAlign="center" style="font-weight: bold; color: red;">{{ sumQoE }}</td>
+        <td nzAlign="center" style="font-weight: bold; color: red;">{{ sumPortal }}</td>
+        <td nzAlign="center" style="font-weight: bold; color: red;">{{ sumiOffice }}</td>
+        <td nzAlign="center" style="font-weight: bold; color: red;">{{ sumInvoice }}</td>
+        <td nzAlign="center" style="font-weight: bold; color: red;">{{ sumQLTT }}</td>
+        <td nzAlign="center" style="font-weight: bold; color: red;">{{ sumElearning }}</td>
+      </tr>
+    </tbody>
+  </nz-table>
+</nz-page-header-content>

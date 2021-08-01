@@ -18,7 +18,7 @@
         <td nzAlign="center" *ngIf="data.moduleName== 'SLLĐT'"> {{ data.amountSLL | number }} </td>
         <td nzAlign="center" *ngIf="data.moduleName== 'SLLĐT'" style="color: red; font-weight: bold;"> {{ data.income |
           currency: 'VND' :'' }} </td>
-        <td nzAlign="center" *ngIf="data.moduleName== 'SLLĐT'"> {{ data.am.userName }} </td>
+        <td nzAlign="center" *ngIf="data.moduleName== 'SLLĐT'"> {{ data.am?.userName }} </td>
         <td nzAlign="center" *ngIf="data.moduleName== 'SLLĐT'">
           <a (click)="editModal(data._id)" nz-tooltip nzTooltipTitle="Sửa"><i nz-icon nzType="edit"
               nzTheme="twotone"></i></a>
@@ -53,7 +53,7 @@
         </td>
         <td nzAlign="center" *ngIf="data.moduleName== 'vnEdu-QoE'" style="color: red; font-weight: bold;"> {{
           data.income | currency: 'VND' :'' }} </td>
-        <td nzAlign="center" *ngIf="data.moduleName== 'vnEdu-QoE'"> {{ data.am.userName }} </td>
+        <td nzAlign="center" *ngIf="data.moduleName== 'vnEdu-QoE'"> {{ data.am?.userName }} </td>
         <td nzAlign="center" *ngIf="data.moduleName== 'vnEdu-QoE'">
           <a (click)="editModal(data._id)" nz-tooltip nzTooltipTitle="Sửa"><i nz-icon nzType="edit"
               nzTheme="twotone"></i></a>
@@ -87,7 +87,7 @@
         </td>
         <td nzAlign="center" *ngIf="data.moduleName== 'vnPortal'" style="color: red; font-weight: bold;"> {{ data.income
           | currency: 'VND' :'' }} </td>
-        <td nzAlign="center" *ngIf="data.moduleName== 'vnPortal'"> {{ data.am.userName }} </td>
+        <td nzAlign="center" *ngIf="data.moduleName== 'vnPortal'"> {{ data.am?.userName }} </td>
         <td nzAlign="center" *ngIf="data.moduleName== 'vnPortal'">
           <a (click)="editModal(data._id)" nz-tooltip nzTooltipTitle="Sửa"><i nz-icon nzType="edit"
               nzTheme="twotone"></i></a>
@@ -124,7 +124,7 @@
         </td>
         <td nzAlign="center" *ngIf="data.moduleName== 'VNPT iOffice'" style="color: red; font-weight: bold;"> {{
           data.income | currency: 'VND' :'' }} </td>
-        <td nzAlign="center" *ngIf="data.moduleName== 'VNPT iOffice'"> {{ data.am.userName }} </td>
+        <td nzAlign="center" *ngIf="data.moduleName== 'VNPT iOffice'"> {{ data.am?.userName }} </td>
         <td nzAlign="center" *ngIf="data.moduleName== 'VNPT iOffice'">
           <a (click)="editModal(data._id)" nz-tooltip nzTooltipTitle="Sửa"><i nz-icon nzType="edit"
               nzTheme="twotone"></i></a>
@@ -162,7 +162,7 @@
         </td>
         <td nzAlign="center" *ngIf="data.moduleName== 'VNPT Elearning'" style="color: red; font-weight: bold;"> {{
           data.income | currency: 'VND' :'' }} </td>
-        <td nzAlign="center" *ngIf="data.moduleName== 'VNPT Elearning'"> {{ data.am.userName }} </td>
+        <td nzAlign="center" *ngIf="data.moduleName== 'VNPT Elearning'"> {{ data.am?.userName }} </td>
         <td nzAlign="center" *ngIf="data.moduleName== 'VNPT Elearning'">
           <a (click)="editModal(data._id)" nz-tooltip nzTooltipTitle="Sửa"><i nz-icon nzType="edit"
               nzTheme="twotone"></i></a>
@@ -199,7 +199,7 @@
         </td>
         <td nzAlign="center" *ngIf="data.moduleName== 'vnEdu-FMS'" style="color: red; font-weight: bold;"> {{
           data.income | currency: 'VND' :'' }} </td>
-        <td nzAlign="center" *ngIf="data.moduleName== 'vnEdu-FMS'"> {{ data.am.userName }} </td>
+        <td nzAlign="center" *ngIf="data.moduleName== 'vnEdu-FMS'"> {{ data.am?.userName }} </td>
         <td nzAlign="center" *ngIf="data.moduleName== 'vnEdu-FMS'">
           <a (click)="editModal(data._id)" nz-tooltip nzTooltipTitle="Sửa"><i nz-icon nzType="edit"
               nzTheme="twotone"></i></a>
@@ -236,7 +236,7 @@
         </td>
         <td nzAlign="center" *ngIf="data.moduleName== 'VNPT Invoice'" style="color: red; font-weight: bold;"> {{
           data.income | currency: 'VND' :'' }} </td>
-        <td nzAlign="center" *ngIf="data.moduleName== 'VNPT Invoice'"> {{ data.am.userName }} </td>
+        <td nzAlign="center" *ngIf="data.moduleName== 'VNPT Invoice'"> {{ data.am?.userName }} </td>
         <td nzAlign="center" *ngIf="data.moduleName== 'VNPT Invoice'">
           <a (click)="editModal(data._id)" nz-tooltip nzTooltipTitle="Sửa"><i nz-icon nzType="edit"
               nzTheme="twotone"></i></a>

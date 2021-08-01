@@ -37,10 +37,22 @@ export class UserService {
     return this.http.get(`${this.endpoint}/activatedusers`);
   }
 
-    // Get Users for Select
-    GetUsersActivatedForSelect() {
-      return this.http.get(`${this.endpoint}/userselect`);
-    }
+  // Get Users for Select
+  GetUsersActivatedForSelect() {
+    return this.http.get(`${this.endpoint}/userselect`);
+  }
+
+  // Get User by Username
+  GetUserbyUserName(data): Observable<any> {
+    const API_URL = `${this.endpoint}/getuserbyusername`;
+    return this.http.post(API_URL, data, { headers: this.headers })
+      .pipe(
+        map((res: Response) => {
+          return res || {};
+        }),
+        catchError(this.errorMgmt)
+      );
+  }
 
   // Get User by Id
   GetUser(id): Observable<any> {

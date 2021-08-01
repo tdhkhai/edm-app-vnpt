@@ -6,17 +6,21 @@ export interface School {
   unit: Unit;
   schoolName: string;
   schoolTaxCode: string;
+  typeOfSchool: string;
   id_vnedu: string;
   id_moet: string;
   status: string;
   caphoc: string;
   modules: [{
     moduleName: string;
-    schoolYear: string;
-    amountSLL: number;
+    loaiHD_SLL?: string;
+    schoolYear?: string;
+    amountSLL?: number;
     income: number;
+    incomeDate: Date;
     fromDate_toDate: Date;
-    am: User;
+    thoihanhopdong?: string;
+    am?: User;
     remark: string;
     status: string
   }];

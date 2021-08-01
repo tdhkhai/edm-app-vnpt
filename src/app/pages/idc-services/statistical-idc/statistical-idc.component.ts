@@ -4,11 +4,13 @@ import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { IDC } from '../../../core/models/idc';
 import { ExcelToFileService } from '../../../core/services/exceltofile.service';
 import { IDCService } from '../../../core/services/idc.service';
-import * as XLSX from 'xlsx';
 import { UploadComponent } from '../../shared/upload/upload.component';
 import { AddIdcComponent } from '../add-idc/add-idc.component';
 import { EditIdcComponent } from '../edit-idc/edit-idc.component';
 import { ExtendDetailsComponent } from '../extend-details/extend-details.component';
+import * as XLSX from 'xlsx';
+import * as Excel from 'exceljs/dist/exceljs';
+import * as fs from 'file-saver';
 
 @Component({
   selector: 'app-statistical-idc',
@@ -40,6 +42,8 @@ export class StatisticalIdcComponent implements OnInit {
       (data) => {
         this.listOfData = data;
         this.listOfAllData = data;
+        // console.log(data[0].extend[data[0].extend.length - 1].toDate);
+
         this.loading = false;
       }
     );
@@ -70,7 +74,110 @@ export class StatisticalIdcComponent implements OnInit {
   }
 
   exportExcel() {
-    this.excelToFile.exportExcel(this.listOfData, 'danh_sach_idc');
+    // this.excelToFile.exportExcel(this.listOfData, 'danh_sach_idc');
+    const wb = new Excel.Workbook();
+    const ws = wb.addWorksheet('Sheet1');
+    // const ws = wb.getWorksheet('Sheet1');
+
+    const header = ['STT', 'Trạng thái', 'Đơn vị', 'AM', 'Tên Khách hàng', 'MST', 'Ngày đăng ký', 'Ngày hết hạn']
+
+    const headerRow = ws.addRow(header);
+
+    let i = 0;
+    let status = '';
+    let expDate = new Date();
+    this.listOfData.forEach(element => {
+      i += 1;
+      switch (element.status) {
+        case '1': { status = 'Mới'; break; }
+        case '2': { status = 'Gia hạn'; break; }
+        case '3': { status = 'Thanh lý'; break; }
+        default: break;
+      }
+
+      // if (element.extend != null || element.extend !== [] || 'extend' in element === false) {
+      //   // expDate = element.extend[element.extend.length - 1];
+      //   console.log(element.extend[element.extend.length - 1]);
+
+      // } else {
+      //   expDate = element.expirationDate;
+      // }
+      const rowValues = [
+        i,
+        status,
+        element.am.unit.unitCode,
+        element.am.userName,
+        element.comName,
+        element.comTaxCode,
+        new Date(element.registrationDate),
+        new Date(expDate),
+      ];
+
+      ws.addRow(rowValues);
+    });
+
+    // Format Cell
+    ws.eachRow((row, rowNumber) => {
+      row.eachCell((cell, number) => {
+        if (rowNumber == 1) {
+          cell.fill = {
+            type: 'pattern',
+            pattern: 'solid',
+            fgColor: {
+              argb: 'FFFFFFFF'
+            },
+            bgColor: {
+              argb: 'FFFFFFFF'
+            },
+          };
+          cell.alignment = {
+            vertical: 'middle',
+            horizontal: 'center'
+          };
+          cell.font = {
+            color: {
+              argb: '00000000',
+            },
+            bold: true
+          };
+        }
+        cell.border = {
+          top: {
+            style: 'thin'
+          },
+          left: {
+            style: 'thin'
+          },
+          bottom: {
+            style: 'thin'
+          },
+          right: {
+            style: 'thin'
+          }
+        };
+      });
+    });
+
+    // AutoFit Columns
+    ws.columns.forEach((column) => {
+      let maxColumnLength = 0;
+      column.eachCell({ includeEmpty: true }, (cell) => {
+        maxColumnLength = Math.max(
+          maxColumnLength,
+          10,
+          cell.value ? cell.value.toString().length : 0
+        );
+      });
+      column.width = maxColumnLength + 2;
+    });
+
+    wb.xlsx.writeBuffer().then((data: any) => {
+      const blob = new Blob([data], {
+        type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+      });
+      fs.saveAs(blob, 'Danh sách KH IDC.xlsx');
+    });
+
   }
 
   importExcel() {
@@ -150,7 +257,7 @@ export class StatisticalIdcComponent implements OnInit {
   }
 
   deleteExtend(id: string, data: string) {
-    this.idcAPI.pullExtendIDC(id, {_id: data}).subscribe(
+    this.idcAPI.pullExtendIDC(id, { _id: data }).subscribe(
       (res) => {
         this.getAllIDCs();
         this.notification.create('success', 'Thành công', 'Bạn đã xóa gia hạn thành công!');

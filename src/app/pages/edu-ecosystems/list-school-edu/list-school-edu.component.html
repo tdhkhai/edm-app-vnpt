@@ -16,14 +16,27 @@
         nzTheme="outline"></i>Thêm</button>
   </nz-page-header-extra>
 </nz-page-header>
+
+<!-- Search box -->
 <nz-form-item>
-  <nz-form-label nzFor="filter">Lọc</nz-form-label>
+  <nz-form-label nzFor="filter">Tên trường</nz-form-label>
   <nz-form-control nzHasFeedback>
     <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
-      <input type="text" nz-input id="filter" [(ngModel)]="searchValue" (keyup)="applyFilter($event)" />
+      <input type="text" nz-input id="filter" [formControl]="filterSchoolName" />
     </nz-input-group>
   </nz-form-control>
 </nz-form-item>
+<nz-form-item>
+  <nz-form-label nzFor="filter">Mã số thuế</nz-form-label>
+  <nz-form-control nzHasFeedback>
+    <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
+      <input type="text" nz-input id="filter" [formControl]="filterSchoolTaxCode" />
+    </nz-input-group>
+  </nz-form-control>
+</nz-form-item>
+
+<!-- Search box -->
+
 <ng-template #suffixIconButton>
   <button nz-button nzType="primary" nzSearch><i nz-icon nzType="search"></i></button>
 </ng-template>
@@ -33,16 +46,22 @@
     <tr>
       <th nzAlign="center" style="width: 5%;">STT</th>
       <th nzAlign="center" style="width: 5%;">Đơn vị</th>
+      <th nzAlign="center" style="width: 10%;">MST</th>
+      <th nzAlign="center" style="width: 8%;">MOET ID</th>
+      <th nzAlign="center" style="width: 8%;">vnEdu ID</th>
       <th nzAlign="center">Trường</th>
       <th nzAlign="center">Phân hệ đang sử dụng</th>
       <th nzAlign="center">Thao tác</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let data of headerTable.data ; index as i">
+    <tr
+      *ngFor="let data of headerTable.data; index as i ">
       <td nzAlign="center">{{ i + 1 }}</td>
-      <td nzAlign="center"> {{ data._id.unit.unitCode }}</td>
-
+      <td nzAlign="center"> {{ data._id.unit?.unitCode }}</td>
+      <td nzAlign="center"> {{ data._id.schoolTaxCode }}</td>
+      <td nzAlign="center"> {{ data._id.id_moet }}</td>
+      <td nzAlign="center"> {{ data._id.id_vnedu }}</td>
       <td nzAlign="left">
         {{ data._id.schoolName }}
       </td>

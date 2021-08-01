@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, ChangeDetectorRef, OnChanges } from '@angular/core';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { ExcelToFileService } from '../../../core/services/exceltofile.service';
@@ -11,6 +11,8 @@ import { School } from '../../../core/models/school';
 import { EditSchoolComponent } from '../edit-school/edit-school.component';
 import { RegisEduModuleComponent } from '../regis-edu-module/regis-edu-module.component';
 import { ListModulesComponent } from '../module-by-school/list-modules/list-modules.component';
+import { UnitService } from '../../../../app/core/services/unit.service';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-list-school-edu',
@@ -20,9 +22,15 @@ import { ListModulesComponent } from '../module-by-school/list-modules/list-modu
 export class ListSchoolEduComponent implements OnInit {
   listOfData: any = [];
   listOfAllData: any = [];
-  searchValue: string;
   loading: boolean;
+  filterSchoolName = new FormControl('');
+  filterSchoolTaxCode = new FormControl('');
+  tmp: any;
+  filteredData: any[] = [];
+
   constructor(
+    private ref: ChangeDetectorRef,
+    private unitAPI: UnitService,
     private excelToFile: ExcelToFileService,
     private notification: NzNotificationService,
     private modalService: NzModalService,
@@ -32,13 +40,13 @@ export class ListSchoolEduComponent implements OnInit {
   ngOnInit(): void {
     this.getSchools();
   }
-
   getSchools() {
     this.loading = true;
     // this.eduEcosystemsServices.GetAllSchools().subscribe(res => {
     this.eduEcosystemsServices.GetListModuleUsedbySchool().subscribe(res => {
       this.listOfData = res;
       this.listOfAllData = res;
+      // this.filteredData = this.filteredData.length > 0 ? this.filteredData : this.listOfData;
       this.loading = false;
 
       this.listOfData.forEach(element => {
@@ -57,20 +65,21 @@ export class ListSchoolEduComponent implements OnInit {
 
   }
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
-    // let filterValueLower = filterValue.toLowerCase();
-    if (filterValue === '') {
-      this.listOfData = this.listOfAllData;
-    }
-    else {
-      this.listOfData = this.listOfAllData.filter(
-        (item: School) =>
-          item.schoolName.includes(filterValue) ||
-          item.schoolTaxCode.includes(filterValue)
-      );
-    }
-  }
+  // applyFilter(event: Event) {
+  //   const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
+
+  //   if (filterValue === '') {
+  //     this.listOfData = this.listOfAllData;
+  //   }
+  //   else {
+  //     this.listOfData = this.listOfAllData.filter(
+  //       (item: School) =>
+  //         item.schoolName.includes(filterValue) ||
+  //         item.schoolTaxCode.includes(filterValue)
+  //       // item.userName.includes(filterValue)
+  //     );
+  //   }
+  // }
 
   openAddModule(id: string) {
     const modal = this.modalService.create({
@@ -107,9 +116,6 @@ export class ListSchoolEduComponent implements OnInit {
       nzTitle: 'Import dữ liệu',
       nzContent: UploadComponent,
       nzWidth: 400,
-      nzBodyStyle: {
-        height: '70px'
-      },
     });
 
     modal.afterClose.subscribe(result => {
@@ -141,19 +147,26 @@ export class ListSchoolEduComponent implements OnInit {
   }
 
   importDataImport(data: any) {
-    // data.forEach(element => {
+    data.forEach(element => {
 
-    //   element.registrationDate = moment(element.registrationDate).toISOString();
-    //   element.expirationDate = moment(element.expirationDate).toISOString();
+      this.unitAPI.GetUnitbyUnitCode({ unitCode: element.unitCode }).subscribe(res => {
+        element.unit = res[0];
+      });
 
-    //   // this.domainAPI.AddDomain(element).subscribe(res => {
-    //   //   this.notification.create('success', 'Thành công', 'Bạn đã lưu thành công!');
-    //   // }, (error) => {
-    //   //   console.log(error);
-    //   //   this.notification.create('error', 'Lỗi', 'Đã xảy ra lỗi, vui lòng thử lại!');
-    //   // });
-    // });
-    // this.getAllDomains();
+      delete element.unitCode;
+      element.schoolName = element.schoolName.toUpperCase();
+
+      setTimeout(() => {
+        // console.log(element);
+        this.eduEcosystemsServices.AddSchool(element).subscribe(res => {
+          // this.notification.create('success', 'Thành công', 'Bạn đã lưu thành công!');
+        }, (error) => {
+          console.log(error);
+          // this.notification.create('error', 'Lỗi', 'Đã xảy ra lỗi, vui lòng thử lại!');
+        });
+      }, 1000);
+    });
+    this.getSchools();
   }
 
   showCreate() {

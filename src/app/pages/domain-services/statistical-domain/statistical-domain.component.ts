@@ -5,6 +5,8 @@ import { Domain } from 'src/app/core/models/domain';
 import { DomainService } from 'src/app/core/services/domain.service';
 import { ExcelToFileService } from 'src/app/core/services/exceltofile.service';
 import * as XLSX from 'xlsx';
+import * as Excel from 'exceljs/dist/exceljs';
+import * as fs from 'file-saver';
 import * as moment from 'moment';
 import { UploadComponent } from '../../shared/upload/upload.component';
 import { AddDomainComponent } from '../add-domain/add-domain.component';
@@ -98,7 +100,109 @@ export class StatisticalDomainComponent implements OnInit {
 
 
   exportExcel() {
-    this.excelToFile.exportExcel(this.listOfData, 'danh_sach_ten_mien');
+    const wb = new Excel.Workbook();
+    const ws = wb.addWorksheet('Sheet1');
+    // const ws = wb.getWorksheet('Sheet1');
+
+    const header = ['STT', 'Trạng thái', 'Đơn vị', 'AM', 'Domain', 'Tên Khách hàng', 'MST', 'Ngày đăng ký', 'Ngày hết hạn']
+
+    const headerRow = ws.addRow(header);
+
+    let i = 0;
+    let status = '';
+    let expDate = new Date();
+    this.listOfData.forEach(element => {
+      i += 1;
+      switch (element.status) {
+        case '1': { status = 'Mới'; break; }
+        case '2': { status = 'Gia hạn'; break; }
+        case '3': { status = 'Thanh lý'; break; }
+        default: break;
+      }
+
+      // if (element.extend != null || element.extend !== [] || 'extend' in element === false) {
+      //   // expDate = element.extend[element.extend.length - 1];
+      //   console.log(element.extend[element.extend.length - 1]);
+
+      // } else {
+      //   expDate = element.expirationDate;
+      // }
+      const rowValues = [
+        i,
+        status,
+        element.am.unit.unitCode,
+        element.am.userName,
+        element.domain,
+        element.comName,
+        element.comTaxCode,
+        new Date(element.registrationDate),
+        new Date(element.expirationDate),
+      ];
+
+      ws.addRow(rowValues);
+    });
+
+    // Format Cell
+    ws.eachRow((row, rowNumber) => {
+      row.eachCell((cell, number) => {
+        if (rowNumber == 1) {
+          cell.fill = {
+            type: 'pattern',
+            pattern: 'solid',
+            fgColor: {
+              argb: 'FFFFFFFF'
+            },
+            bgColor: {
+              argb: 'FFFFFFFF'
+            },
+          };
+          cell.alignment = {
+            vertical: 'middle',
+            horizontal: 'center'
+          };
+          cell.font = {
+            color: {
+              argb: '00000000',
+            },
+            bold: true
+          };
+        }
+        cell.border = {
+          top: {
+            style: 'thin'
+          },
+          left: {
+            style: 'thin'
+          },
+          bottom: {
+            style: 'thin'
+          },
+          right: {
+            style: 'thin'
+          }
+        };
+      });
+    });
+
+    // AutoFit Columns
+    ws.columns.forEach((column) => {
+      let maxColumnLength = 0;
+      column.eachCell({ includeEmpty: true }, (cell) => {
+        maxColumnLength = Math.max(
+          maxColumnLength,
+          10,
+          cell.value ? cell.value.toString().length : 0
+        );
+      });
+      column.width = maxColumnLength + 2;
+    });
+
+    wb.xlsx.writeBuffer().then((data: any) => {
+      const blob = new Blob([data], {
+        type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+      });
+      fs.saveAs(blob, 'Danh sách KH Tên miền.xlsx');
+    });
   }
 
   importExcel() {

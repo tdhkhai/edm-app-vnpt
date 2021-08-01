@@ -1,15 +1,17 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
+import { Observable, Subject, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import { School } from '../models/school';
-import { Xinxe } from '../models/xinxe';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EduEcosystemsService {
+  setGroupFilter$ = new Subject<any>();
+  getGroupFilter = this.setGroupFilter$.asObservable();
+
   endpoint = environment.db_url + 'api/edu-ecosystems';
   // endpoint = 'api/services';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
@@ -17,7 +19,7 @@ export class EduEcosystemsService {
   constructor(private http: HttpClient) { }
 
   // Add School
-  AddSchool(data: School): Observable<any> {
+  AddSchool(data): Observable<any> {
     const API_URL = `${this.endpoint}/create`;
     return this.http.post(API_URL, data)
       .pipe(
@@ -93,6 +95,15 @@ export class EduEcosystemsService {
       );
   }
 
+  // Import Push Extend vnEdu - SLLLĐT
+  importPushModuleSLL(data): Observable<any> {
+    const API_URL = `${this.endpoint}/import-push-module-edu`;
+    return this.http.post(API_URL, data, { headers: this.headers })
+      .pipe(
+        catchError(this.errorMgmt)
+      );
+  }
+
   // Edit Module Edu
   EditModuleEdu(id, data): Observable<any> {
     const API_URL = `${this.endpoint}/edit-module-edu/${id}`;
@@ -121,8 +132,20 @@ export class EduEcosystemsService {
   }
 
   // Count Module by Unit
-  GetCountModuleByUnit(): Observable<any> {
-    const API_URL = `${this.endpoint}//count-module-by-unit`;
+  PostCountModuleByUnit(data): Observable<any> {
+    const API_URL = `${this.endpoint}/count-module-by-unit`;
+    return this.http.post(API_URL, data, { headers: this.headers })
+      .pipe(
+        map((res: Response) => {
+          return res || {};
+        }),
+        catchError(this.errorMgmt)
+      );
+  }
+
+   // Count School by Unit
+   GetCountSchoolByUnit(): Observable<any> {
+    const API_URL = `${this.endpoint}/count-school-by-unit`;
     return this.http.get(API_URL, { headers: this.headers })
       .pipe(
         map((res: Response) => {

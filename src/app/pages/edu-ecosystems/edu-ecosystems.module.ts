@@ -12,15 +12,21 @@ import { AddSchoolComponent } from './add-school/add-school.component';
 import { EditSchoolComponent } from './edit-school/edit-school.component';
 import { AddModuleEduComponent } from './add-module-edu/add-module-edu.component';
 import { ListModulesComponent } from './module-by-school/list-modules/list-modules.component';
+import { ImportModuleComponent } from './import-module/import-module.component';
+import { FilterPipe } from '../../../app/core/pipe/filter.pipe';
+import { ThongKeSlTruongThucTeComponent } from './thong-ke-sl-truong-thuc-te/thong-ke-sl-truong-thuc-te.component';
+
 @NgModule({
   imports: [
     CommonModule,
     AntDesignModule,
     FormsModule,
     ReactiveFormsModule,
-    EduEcosystemsRoutingModule
+    EduEcosystemsRoutingModule,
+
   ],
   declarations: [
+    FilterPipe,
     OverviewEduEcosystemsComponent,
     ListSchoolEduComponent,
     RegisEduModuleComponent,
@@ -30,6 +36,8 @@ import { ListModulesComponent } from './module-by-school/list-modules/list-modul
     EditVneduComponent,
     AddModuleEduComponent,
     ListModulesComponent,
+    ImportModuleComponent,
+    ThongKeSlTruongThucTeComponent,
   ],
   exports: [
     OverviewEduEcosystemsComponent,
@@ -41,6 +49,8 @@ import { ListModulesComponent } from './module-by-school/list-modules/list-modul
     EditVneduComponent,
     AddModuleEduComponent,
     ListModulesComponent,
+    ImportModuleComponent,
+    ThongKeSlTruongThucTeComponent,
   ],
   providers: [
   ]

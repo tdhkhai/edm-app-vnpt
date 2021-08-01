@@ -32,7 +32,7 @@ export class ExtendDetailsComponent implements OnInit {
     this.userAPI.GetUsersActivated().subscribe(
       (data) => {
         this.listOfUser = data;
-      }
+      } 
     );
   }
 
@@ -46,6 +46,7 @@ export class ExtendDetailsComponent implements OnInit {
       incomeDate: new FormControl(),
       income: new FormControl(),
       remark: new FormControl(),
+      am: new FormControl(),
     });
   }
 

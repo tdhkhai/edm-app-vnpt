@@ -1,0 +1,63 @@
+<nz-page-header class="site-page-header">
+  <nz-page-header-title>THỐNG KÊ SỐ LƯỢNG TRƯỜNG</nz-page-header-title>
+
+  <nz-breadcrumb nz-page-header-breadcrumb [nzAutoGenerate]="true">
+    <nz-breadcrumb-item>
+      <i nz-icon nzType="home"></i>
+    </nz-breadcrumb-item>
+  </nz-breadcrumb>
+
+  <nz-page-header-extra>
+
+  </nz-page-header-extra>
+
+</nz-page-header>
+
+
+<nz-table nzPageSize="11" nzBordered #headerTable [nzLoading]="loading" [nzData]="listOfData" nzShowPagination="false">
+  <thead>
+    <tr>
+      <th nzAlign="center" style="width: 5%;font-weight: bold;" rowspan="2">STT</th>
+      <th nzAlign="center" style="width: 5%;font-weight: bold;" rowspan="2">Đơn vị</th>
+      <th nzAlign="center" style="width: 5%;font-weight: bold;" colspan="4">Phòng Giáo dục</th>
+      <th nzAlign="center" style="width: 5%;font-weight: bold;" colspan="3">Sở Giáo dục</th>
+      <th nzAlign="center" style="width: 5%;font-weight: bold;" colspan="2">Khác</th>
+      <th nzAlign="center" style="width: 10%;font-weight: bold;" rowspan="2">Tổng</th>
+    </tr>
+    <tr>
+      <th nzAlign="center" style="width: 10%;font-weight: bold;">MN/MG</th>
+      <th nzAlign="center" style="width: 10%;font-weight: bold;">Tiểu học</th>
+      <th nzAlign="center" style="width: 10%;font-weight: bold;">THCS</th>
+      <th nzAlign="center" style="width: 10%;font-weight: bold;">Tổng</th>
+
+      <th nzAlign="center" style="width: 10%;font-weight: bold;">THPT</th>
+      <th nzAlign="center" style="width: 10%;font-weight: bold;">THCS & THPT</th>
+      <th nzAlign="center" style="width: 10%;font-weight: bold;">Tổng</th>
+
+      <th nzAlign="center" style="width: 10%;font-weight: bold;">3 Cấp</th>
+      <th nzAlign="center" style="width: 10%;font-weight: bold;">Khác</th>
+
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of headerTable.data; index as i ">
+      <td nzAlign="center">{{ i + 1 }}</td>
+      <td nzAlign="center" style="font-weight: bold;">{{ data._id.unitCode}}</td>
+      <td nzAlign="center">{{ data?.countC0 }}</td>
+      <td nzAlign="center">{{ data?.countC1 }}</td>
+      <td nzAlign="center">{{ data?.countC2 }}</td>
+      <td nzAlign="center" style="color: red; font-weight: bold;">{{ data?.countC2 + data?.countC0 +data?.countC1 }}
+      </td>
+      <td nzAlign="center">{{ data?.countC3 }}</td>
+      <td nzAlign="center">{{ data?.countC23 }}</td>
+      <td nzAlign="center" style="color: red; font-weight: bold;">{{ data?.countC3 + data?.countC23 }}
+      </td>
+      <td nzAlign="center">{{ data?.count3cap }}</td>
+      <td nzAlign="center">{{ data?.countC12 + data?.countNghe + data?.countKT }}</td>
+      <td nzAlign="center" style="color: red; font-weight: bold;">{{ data?.countC0 + data?.countC1 + data?.countC2+
+        data?.countC3+ data?.countC23+
+        data?.count3cap+ data?.countC12 + data?.countNghe + data?.countKT }}</td>
+    </tr>
+  </tbody>
+</nz-table>

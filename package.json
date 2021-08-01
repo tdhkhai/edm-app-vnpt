@@ -27,6 +27,7 @@
     "@swimlane/ngx-charts": "^16.0.0",
     "chart.js": "^2.9.4",
     "chartjs-plugin-datalabels": "^0.7.0",
+    "exceljs": "^4.2.1",
     "express": "^4.17.1",
     "file-saver": "^2.0.5",
     "moment": "^2.29.1",
@@ -37,7 +38,6 @@
     "rxjs": "~6.6.3",
     "tslib": "^2.1.0",
     "xlsx": "^0.16.9",
-    "xlsx-populate": "^1.21.0",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {

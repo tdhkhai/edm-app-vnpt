@@ -48,6 +48,20 @@ export class UnitService {
       );
   }
 
+  // Get unit by UnitCode
+  GetUnitbyUnitCode(data): Observable<any> {
+    // console.log(data);
+
+    const API_URL = `${this.endpoint}/getUnitbyUnitCode`;
+    return this.http.post(API_URL, data, { headers: this.headers })
+      .pipe(
+        map((res: Response) => {
+          return res || {};
+        }),
+        catchError(this.errorMgmt)
+      );
+  }
+
   // Update unit
   UpdateUnit(id, data): Observable<any> {
     const API_URL = `${this.endpoint}/update/${id}`;

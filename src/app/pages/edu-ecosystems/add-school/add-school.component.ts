@@ -18,11 +18,11 @@ export class AddSchoolComponent implements OnInit {
     { caphoc: 'TH' },
     { caphoc: 'THCS' },
     { caphoc: 'THPT' },
-    { caphoc: 'THCS & THPT' },
-    { caphoc: 'TH & THCS' },
+    { caphoc: 'THCS và THPT' },
+    { caphoc: 'TH và THCS' },
     { caphoc: '3 Cấp học' },
     { caphoc: 'TTGDTX' },
-    { caphoc: 'TC Nghề' },
+    { caphoc: 'Nghề' },
   ];
 
   constructor(
