@@ -13,10 +13,12 @@ import { AntDesignModule } from './antDesign.module';
 import { MatModule } from './mat.module';
 import { NzI18nService, NZ_DATE_LOCALE } from 'ng-zorro-antd/i18n';
 import { enUS, ja, vi } from 'date-fns/locale';
+import { LayoutComponent } from './pages/layout/layout.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LayoutComponent
   ],
   imports: [
     BrowserModule,

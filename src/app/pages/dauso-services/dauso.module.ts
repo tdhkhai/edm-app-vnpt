@@ -8,8 +8,9 @@ import { DauSoRoutingModule } from './dauso-routing.module';
 import { OverviewDausoComponent } from './overview-dauso/overview-dauso.component';
 import { StatisticalDausoComponent } from './statistical-dauso/statistical-dauso.component';
 import { AddDausoComponent } from './add-dauso/add-dauso.component';
-import { EditDausoComponent } from './edit-dauso/edit-dauso.component';
+import { EditDausoComponent } from './add-dauso/edit-dauso/edit-dauso.component';
 import { ListDauSoByStatusComponent } from './list-dau-so-by-status/list-dau-so-by-status.component';
+import { LayoutModule } from '@angular/cdk/layout';
 
 @NgModule({
   imports: [
@@ -19,6 +20,7 @@ import { ListDauSoByStatusComponent } from './list-dau-so-by-status/list-dau-so-
     ReactiveFormsModule,
     MatModule,
     DauSoRoutingModule,
+    LayoutModule
   ],
   declarations: [
     OverviewDausoComponent,

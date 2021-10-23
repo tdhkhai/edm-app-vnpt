@@ -1,0 +1,129 @@
+<nz-page-header class="site-page-header">
+  <nz-page-header-title>SỐ LIỆU DỊCH VỤ CHỨNG THƯ SỐ CHO WEBSITE</nz-page-header-title>
+
+  <nz-breadcrumb nz-page-header-breadcrumb [nzAutoGenerate]="true">
+    <nz-breadcrumb-item>
+      <i nz-icon nzType="home"></i>
+    </nz-breadcrumb-item>
+  </nz-breadcrumb>
+
+  <nz-page-header-extra>
+    <button nz-button nzType="danger" nzType="dashed" (click)="importExcel()"><i nz-icon [nzType]="'upload'"
+        [nzTheme]="'outline'"></i>Nạp dữ liệu</button>
+    <button nz-button nzType="primary" nzType="dashed" nz-dropdown [nzDropdownMenu]="actions">
+      <i nz-icon [nzType]="'download'" [nzTheme]="'outline'"></i>Xuất dữ liệu
+    </button>
+    <nz-dropdown-menu #actions="nzDropdownMenu">
+      <ul nz-menu>
+        <li nz-menu-item (click)="exportExcel('all')">
+          <a>Tất cả</a>
+        </li>
+        <li nz-menu-item (click)="exportExcel('1')">
+          <a>Đang sử dụng</a>
+        </li>
+        <li nz-menu-item (click)="exportExcel('1')">
+          <a>Sắp hết hạn</a>
+        </li>
+        <li nz-menu-item (click)="exportExcel('3')">
+          <a>Thanh lý</a>
+        </li>
+      </ul>
+    </nz-dropdown-menu>
+    <button nz-button nzType="primary" (click)="showCreate()"><i nz-icon nzType="plus"
+        nzTheme="outline"></i>Thêm</button>
+  </nz-page-header-extra>
+</nz-page-header>
+<nz-form-item>
+  <nz-form-label nzFor="filter">Lọc</nz-form-label>
+  <nz-form-control nzHasFeedback>
+    <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
+      <input type="text" nz-input id="filter" [(ngModel)]="searchValue" (keyup)="applyFilter($event)" />
+    </nz-input-group>
+  </nz-form-control>
+</nz-form-item>
+<ng-template #suffixIconButton>
+  <button nz-button nzType="primary" nzSearch><i nz-icon nzType="search"></i></button>
+</ng-template>
+
+<nz-table nzBordered #headerTable [nzLoading]="loading" [nzData]="listOfData" nzShowPagination nzShowSizeChanger>
+  <thead>
+    <tr>
+      <th nzAlign="center"></th>
+      <th nzAlign="center">STT</th>
+      <th nzAlign="center">Trạng thái</th>
+      <th nzAlign="center">Domain</th>
+      <th nzAlign="center">Đơn vị</th>
+      <th nzAlign="center">AM</th>
+      <th nzAlign="center">MST</th>
+      <th nzAlign="center">Tên Khách hàng</th>
+      <th nzAlign="center">Ngày đăng ký</th>
+      <th nzAlign="center">Ngày hết hạn</th>
+      <th nzAlign="center">Doanh thu<br /><span style="font-style: italic;">(VNĐ)</span></th>
+      <th nzAlign="center">Thao tác</th>
+    </tr>
+  </thead>
+  <tbody>
+    <ng-container *ngFor="let data of headerTable.data ; index as i">
+      <tr>
+        <td [nzExpand]="expandSet.has(data._id)" (nzExpandChange)="onExpandChange(data._id, $event)"></td>
+        <td nzAlign="center">{{ i+1 }}</td>
+        <td nzAlign="center" *ngIf="data.status == '1'" style="color: green; font-weight: bold;">Mới</td>
+        <td nzAlign="center" *ngIf="data.status == '2'" style="color: orangered; font-weight: bold;">Gia hạn</td>
+        <td nzAlign="center" *ngIf="data.status == '3'" nz-tooltip
+          nzTooltipTitle="{{data.cancelDate | date:'dd/MM/yyyy'}}" style="color: red; font-weight: bold;">Thanh lý</td>
+        <td nzAlign="center">{{data.domain}}</td>
+        <td nzAlign="center">{{data.am.unit.unitCode}}</td>
+        <td>{{data.am.userName}}</td>
+        <td nzAlign="center">{{data.comTaxCode}}</td>
+        <td>{{data.comName}}</td>
+        <td nzAlign="center">{{data.registrationDate | date:'dd/MM/yyyy'}}</td>
+        <td nzAlign="center">{{data.expirationDate | date:'dd/MM/yyyy'}}</td>
+        <td style="text-align: right;" nz-tooltip nzTooltipTitle="Doanh thu: {{data.incomeDate |  date:'dd/MM/yyyy'}}">
+          {{data.income | currency: 'VND' :''}}</td>
+        <td nzAlign="center">
+          <a (click)="openExtendDetails(data._id)" nz-tooltip nzTooltipTitle="Gia hạn"><i nz-icon nzType="up-circle"
+              nzTheme="fill"></i></a>
+          <nz-divider nzType="vertical"></nz-divider>
+          <a (click)="editModal(data._id)" nz-tooltip nzTooltipTitle="Sửa"><i nz-icon nzType="edit"
+              nzTheme="twotone"></i></a>
+          <nz-divider nzType="vertical"></nz-divider>
+          <a nz-tooltip nzTooltipTitle="Xóa" nz-popconfirm nzPopconfirmTitle="Bạn thật sự muốn xóa?"
+            nzPopconfirmPlacement="topRight" (nzOnConfirm)="confirmDelete(data)" (nzOnCancel)="cancel()" nzOkText="OK"
+            nzCancelText="Hủy"><i nz-icon nzType="delete" [nzTheme]="'twotone'" [nzTwotoneColor]="'#eb2f96'"></i></a>
+        </td>
+      </tr>
+      <tr *ngIf="data.extend !== null || data.status === '1'" [nzExpand]="expandSet.has(data._id)">
+        <nz-table [nzHideOnSinglePage]="true" [nzShowPagination]="false" [nzTemplateMode]="true" nzSize="small"
+          nzBordered>
+          <thead>
+            <tr>
+              <th nzAlign="center">STT</th>
+              <th nzAlign="center">Lần gia hạn</th>
+              <th nzAlign="center">Ngày gia hạn</th>
+              <th nzAlign="center">Ngày kết thúc</th>
+              <th nzAlign="center">Doanh thu</th>
+              <th nzAlign="center">Ngày DT</th>
+              <th nzAlign="center">Ghi chú</th>
+              <th nzAlign="center">Xóa</th>
+            </tr>
+          </thead>
+  <tbody>
+    <tr *ngFor="let data2 of data.extend ; index as i">
+      <td nzAlign="center">{{ i+1 }}</td>
+      <td nzAlign="center">{{ data2.numberOfExtend }}</td>
+      <td nzAlign="center">{{ data2.fromDate | date:'dd/MM/yyyy' }}</td>
+      <td nzAlign="center">{{ data2.toDate | date:'dd/MM/yyyy'}}</td>
+      <td nzAlign="center" style="color: red;font-weight: bold;">{{ data2.income | currency: 'VND' :'' }}</td>
+      <td nzAlign="center">{{ data2.incomeDate | date:'dd/MM/yyyy'}}</td>
+      <td>{{ data2.remark }}</td>
+      <td nzAlign="center">
+        <a nzAlign="center" style="color: red;" (click)="deleteExtend(data._id, data2._id)"><i nz-icon nzType="delete"
+            nzTheme="outline"></i></a>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>
+</tr>
+</ng-container>
+</tbody>
+</nz-table>

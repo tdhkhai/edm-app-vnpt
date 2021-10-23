@@ -9,9 +9,26 @@
 
   <nz-page-header-extra>
     <button nz-button nzType="danger" nzType="dashed" (click)="importExcel()"><i nz-icon [nzType]="'upload'"
-        [nzTheme]="'outline'"></i>Import</button>
-    <button nz-button nzType="primary" nzType="dashed" (click)="exportExcel()"><i nz-icon [nzType]="'download'"
-        [nzTheme]="'outline'"></i>Export</button>
+        [nzTheme]="'outline'"></i>Nạp dữ liệu</button>
+    <button nz-button nzType="primary" nzType="dashed" nz-dropdown [nzDropdownMenu]="actions">
+      <i nz-icon [nzType]="'download'" [nzTheme]="'outline'"></i>Xuất dữ liệu
+    </button>
+    <nz-dropdown-menu #actions="nzDropdownMenu" >
+      <ul nz-menu>
+        <li nz-menu-item (click)="exportExcel('all')">
+          <a>Tất cả</a>
+        </li>
+        <li nz-menu-item (click)="exportExcel('1')">
+          <a>Đang sử dụng</a>
+        </li>
+        <li nz-menu-item (click)="exportExcel('1')">
+          <a>Sắp hết hạn</a>
+        </li>
+        <li nz-menu-item (click)="exportExcel('3')">
+          <a>Thanh lý</a>
+        </li>
+      </ul>
+    </nz-dropdown-menu>
     <button nz-button nzType="primary" (click)="showCreate()"><i nz-icon nzType="plus"
         nzTheme="outline"></i>Thêm</button>
   </nz-page-header-extra>
@@ -78,8 +95,8 @@
               nzTheme="twotone"></i></a>
           <nz-divider nzType="vertical"></nz-divider>
           <a nz-tooltip nzTooltipTitle="Xóa" nz-popconfirm nzPopconfirmTitle="Bạn thật sự muốn xóa?"
-          nzPopconfirmPlacement="topRight" (nzOnConfirm)="confirmDelete(data)" (nzOnCancel)="cancel()" nzOkText="OK"
-          nzCancelText="Hủy"><i nz-icon nzType="delete" [nzTheme]="'twotone'" [nzTwotoneColor]="'#eb2f96'"></i></a>
+            nzPopconfirmPlacement="topRight" (nzOnConfirm)="confirmDelete(data)" (nzOnCancel)="cancel()" nzOkText="OK"
+            nzCancelText="Hủy"><i nz-icon nzType="delete" [nzTheme]="'twotone'" [nzTwotoneColor]="'#eb2f96'"></i></a>
         </td>
       </tr>
       <tr *ngIf="data.extend !== null || data.status === '1'" [nzExpand]="expandSet.has(data._id)">

@@ -1,0 +1,67 @@
+<nz-page-header class="site-page-header">
+  <nz-page-header-title>SỐ LIỆU ĐẶT LỊCH QUA TỔNG ĐÀI 1080</nz-page-header-title>
+
+  <nz-breadcrumb nz-page-header-breadcrumb [nzAutoGenerate]="true">
+    <nz-breadcrumb-item>
+      <i nz-icon nzType="home"></i>
+    </nz-breadcrumb-item>
+  </nz-breadcrumb>
+
+  <nz-page-header-extra>
+    <button nz-button nzType="danger" nzType="dashed" (click)="importExcel()"><i nz-icon [nzType]="'upload'"
+        [nzTheme]="'outline'"></i>Import</button>
+    <button nz-button nzType="primary" nzType="dashed" (click)="exportExcel()"><i nz-icon [nzType]="'download'"
+        [nzTheme]="'outline'"></i>Export</button>
+    <button nz-button nzType="primary" (click)="showCreate()"><i nz-icon nzType="plus"
+        nzTheme="outline"></i>Thêm</button>
+  </nz-page-header-extra>
+</nz-page-header>
+<nz-form-item>
+  <nz-form-label nzFor="filter">Lọc</nz-form-label>
+  <nz-form-control nzHasFeedback>
+    <nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton">
+      <input type="text" nz-input id="filter" [(ngModel)]="searchValue" (keyup)="applyFilter($event)" />
+    </nz-input-group>
+  </nz-form-control>
+</nz-form-item>
+<ng-template #suffixIconButton>
+  <button nz-button nzType="primary" nzSearch><i nz-icon nzType="search"></i></button>
+</ng-template>
+
+<nz-table #headerTable [nzLoading]="loading" [nzData]="listOfData" nzBordered>
+  <thead>
+    <tr>
+      <th nzAlign="center">STT</th>
+      <th nzAlign="center">Đơn vị</th>
+      <th nzAlign="center">AM</th>
+      <th nzAlign="center">Trạng thái</th>
+      <th nzAlign="center">MST</th>
+      <th nzAlign="center">Tên Khách hàng</th>
+      <th nzAlign="center">Ngày đăng ký</th>
+      <th nzAlign="center">Thao tác</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of headerTable.data ; index as i">
+      <td nzAlign="center">{{ i+1 }}</td>
+      <td nzAlign="center">
+        {{data.am.unit.unitCode}}
+      </td>
+      <td>{{data.am.userName}}</td>
+      <td nzAlign="center" *ngIf="data.status == '1'" style="color: green; font-weight: bold;">Đang sử dụng</td>
+      <td nzAlign="center" *ngIf="data.status == '2'" nz-tooltip
+        nzTooltipTitle="{{data.cancelDate | date:'dd/MM/yyyy'}}" style="color: red; font-weight: bold;">Thanh lý</td>
+      <td nzAlign="center">{{data.comTaxCode}}</td>
+      <td>{{data.comName}}</td>
+      <td nzAlign="center">{{data.registrationDate | date:'dd/MM/yyyy'}}</td>
+      <td nzAlign="center">
+        <a (click)="editModal(data._id)" nz-tooltip nzTooltipTitle="Sửa"><i nz-icon nzType="edit"
+            nzTheme="twotone"></i></a>
+        <nz-divider nzType="vertical"></nz-divider>
+        <a nz-tooltip nzTooltipTitle="Xóa" nz-popconfirm nzPopconfirmTitle="Bạn thật sự muốn xóa?"
+          nzPopconfirmPlacement="topRight" (nzOnConfirm)="confirmDelete(data)" (nzOnCancel)="cancel()" nzOkText="OK"
+          nzCancelText="Hủy"><i nz-icon nzType="delete" [nzTheme]="'twotone'" [nzTwotoneColor]="'#eb2f96'"></i></a>
+      </td>
+    </tr>
+  </tbody>
+</nz-table>

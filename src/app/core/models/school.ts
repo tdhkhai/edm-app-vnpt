@@ -11,18 +11,20 @@ export interface School {
   id_moet: string;
   status: string;
   caphoc: string;
-  modules: [{
-    moduleName: string;
-    loaiHD_SLL?: string;
-    schoolYear?: string;
-    amountSLL?: number;
-    income: number;
-    incomeDate: Date;
-    fromDate_toDate: Date;
-    thoihanhopdong?: string;
-    am?: User;
-    remark: string;
-    status: string
-  }];
+  modules?: Modules;
   remark: string;
+}
+
+export interface Modules {
+  moduleName: string;
+  loaiHD_SLL?: string;
+  schoolYear?: string;
+  amountSLL?: number;
+  income: number;
+  incomeDate: Date;
+  fromDate_toDate: Date;
+  thoihanhopdong?: string;
+  am?: User;
+  remark: string;
+  status: string
 }

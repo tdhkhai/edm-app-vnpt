@@ -32,7 +32,7 @@ export class ExtendDetailsComponent implements OnInit {
     this.userAPI.GetUsersActivated().subscribe(
       (data) => {
         this.listOfUser = data;
-      } 
+      }
     );
   }
 

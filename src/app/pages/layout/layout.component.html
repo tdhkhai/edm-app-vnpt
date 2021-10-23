@@ -1,0 +1,185 @@
+<nz-layout class="app-layout">
+  <nz-sider class="menu-sidebar" nzCollapsible nzWidth="256px" nzBreakpoint="md" [(nzCollapsed)]="isCollapsed"
+    [nzTrigger]="null">
+    <div class="sidebar-logo">
+      <a href="https://ng.ant.design/components/button/en" target="_blank">
+        <img src="https://ng.ant.design/assets/img/logo.svg" alt="logo">
+        <h1>EDM - VNPT</h1>
+      </a>
+    </div>
+    <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+      <a routerLink="/welcome">
+        <li nz-menu-item>
+          <i nz-icon nzType="dashboard"></i>
+          <span>Dashboard</span>
+        </li>
+      </a>
+      <li nz-submenu nzOpen nzTitle="vnEdu EcoSystems" nzIcon="ordered-list">
+        <ul>
+          <li nz-menu-item nzMatchRouter nzIcon="dashboard">
+            <a routerLink="/homepage/edu-ecosystems/tong-quan-edu-ecosystems">Tổng quan</a>
+          </li>
+          <li nz-menu-item nzMatchRouter nzIcon="appstore">
+            <a routerLink="/homepage/edu-ecosystems/thong-ke-sl-truong-thuc-te">SL trường</a>
+          </li>
+          <li nz-menu-item nzMatchRouter nzIcon="appstore">
+            <a routerLink="/homepage/edu-ecosystems/chi-tiet">Chi tiết</a>
+          </li>
+          <li nz-menu-item nzMatchRouter nzIcon="appstore">
+            <a routerLink="/homepage/edu-ecosystems/import-module">Import Module</a>
+          </li>
+        </ul>
+      </li>
+
+      <li nz-submenu nzOpen nzTitle="Dịch vụ Đầu số" nzIcon="ordered-list">
+        <ul>
+          <li nz-menu-item nzMatchRouter nzIcon="dashboard">
+            <a routerLink="/homepage/dau-so/tong-quan-dau-so">Tổng quan</a>
+          </li>
+          <li nz-menu-item nzMatchRouter nzIcon="appstore">
+            <a routerLink="/homepage/dau-so/so-lieu-dau-so">Chi tiết</a>
+          </li>
+        </ul>
+      </li>
+
+      <li nz-submenu nzOpen nzTitle="SSL" nzIcon="ordered-list">
+        <ul>
+          <li nz-menu-item nzMatchRouter nzIcon="dashboard">
+            <a routerLink="/homepage/ssl/tong-quan-ssl">Tổng quan</a>
+          </li>
+          <li nz-menu-item nzMatchRouter nzIcon="appstore">
+            <a routerLink="/homepage/ssl/so-lieu-ssl">Chi tiết</a>
+          </li>
+        </ul>
+      </li>
+
+      <li nz-submenu nzOpen nzTitle="Đặt lịch qua 1080" nzIcon="ordered-list">
+        <ul>
+          <li nz-menu-item nzMatchRouter nzIcon="dashboard">
+            <a routerLink="/homepage/dat-lich-1080/tong-quan-1080">Tổng quan</a>
+          </li>
+          <li nz-menu-item nzMatchRouter nzIcon="appstore">
+            <a routerLink="/homepage/dat-lich-1080/so-lieu-1080">Chi tiết</a>
+          </li>
+        </ul>
+      </li>
+
+      <li nz-submenu nzOpen nzTitle="IDC" nzIcon="ordered-list">
+        <ul>
+          <li nz-menu-item nzMatchRouter nzIcon="dashboard">
+            <a routerLink="/homepage/idc/tong-quan-idc">Tổng quan</a>
+          </li>
+          <li nz-menu-item nzMatchRouter nzIcon="appstore">
+            <a routerLink="/homepage/idc/so-lieu-idc">Chi tiết</a>
+          </li>
+        </ul>
+      </li>
+
+      <li nz-submenu nzOpen nzTitle="Tên miền" nzIcon="ordered-list">
+        <ul>
+          <li nz-menu-item nzMatchRouter nzIcon="dashboard">
+            <a routerLink="/homepage/domain/tong-quan-domain">Tổng quan</a>
+          </li>
+          <li nz-menu-item nzMatchRouter nzIcon="appstore">
+            <a routerLink="/homepage/domain/so-lieu-domain">Chi tiết</a>
+          </li>
+        </ul>
+      </li>
+
+      <li nz-submenu nzOpen nzTitle="Webhosting" nzIcon="ordered-list">
+        <ul>
+          <li nz-menu-item nzMatchRouter nzIcon="dashboard">
+            <a routerLink="/homepage/webhosting/tong-quan-webhosting">Tổng quan</a>
+          </li>
+          <li nz-menu-item nzMatchRouter nzIcon="appstore">
+            <a routerLink="/homepage/webhosting/so-lieu-webhosting">Chi tiết</a>
+          </li>
+        </ul>
+      </li>
+
+      <li nz-submenu nzOpen nzTitle="SMS Brandname" nzIcon="ordered-list">
+        <ul>
+          <li nz-menu-item nzMatchRouter nzIcon="dashboard">
+            <a routerLink="/homepage/smsbrandname/tong-quan-smsbrandname">Tổng quan</a>
+          </li>
+          <li nz-menu-item nzMatchRouter nzIcon="appstore">
+            <a routerLink="/homepage/smsbrandname/so-lieu-smsbrandname">Chi tiết</a>
+          </li>
+        </ul>
+      </li>
+
+      <li nz-submenu nzOpen nzTitle="Hóa đơn điện tử" nzIcon="ordered-list">
+        <ul>
+          <li nz-menu-item nzMatchRouter nzIcon="dashboard">
+            <a routerLink="/homepage/vnpt-invoice/tong-quan-hddt">Tổng quan HDDT</a>
+          </li>
+          <li nz-submenu nzTitle="Doanh thu" nzIcon="appstore">
+            <ul>
+              <li nz-menu-item><a routerLink="/homepage/vnpt-invoice/bao-cao-doanh-thu-thang">Theo tháng</a></li>
+              <li nz-menu-item><a routerLink="/homepage/vnpt-invoice/bao-cao-doanh-thu-nam">Cả năm</a></li>
+            </ul>
+          </li>
+          <li nz-submenu nzTitle="Thống kê" nzIcon="appstore">
+            <ul>
+              <li nz-menu-item><a routerLink="/homepage/vnpt-invoice/so-lieu-site">Số lượng site theo tháng</a></li>
+              <li nz-menu-item><a routerLink="/homepage/vnpt-invoice/thong-ke-theo-loai-khach-hang">Theo loại khách hàng</a></li>
+            </ul>
+          </li>
+          <!-- <li nz-menu-item nzMatchRouter>
+            <a routerLink="/vnpt-invoice/bao-cao-doanh-thu">Báo cáo doanh thu</a>
+          </li> -->
+          <li nz-menu-item nzMatchRouter nzIcon="appstore">
+            <a routerLink="/homepage/vnpt-invoice/chi-tiet-hddt">Chi tiết</a>
+          </li>
+          <li nz-menu-item nzMatchRouter nzIcon="appstore">
+            <a routerLink="/homepage/vnpt-invoice/build-invoice-examples">Dựng mẫu HDDT</a>
+          </li>
+        </ul>
+      </li>
+
+      <li nz-submenu nzOpen nzTitle="Lịch công tác" nzIcon="form">
+        <ul>
+          <li nz-menu-item nzMatchRouter nzIcon="control">
+            <a routerLink="/homepage/lich-cong-tac/xin-xe">QL lịch công tác</a>
+          </li>
+        </ul>
+      </li>
+
+      <li nz-submenu nzOpen nzTitle="Administrator" nzIcon="form">
+        <ul>
+          <li nz-menu-item nzMatchRouter nzIcon="control">
+            <a routerLink="/homepage/units">Phòng - Ban</a>
+          </li>
+          <li nz-menu-item nzMatchRouter nzIcon="control">
+            <a routerLink="/homepage/typeofservices">Loại dịch vụ</a>
+          </li>
+          <li nz-menu-item nzMatchRouter nzIcon="control">
+            <a routerLink="/homepage/services">Dịch vụ</a>
+          </li>
+          <li nz-menu-item nzMatchRouter nzIcon="control">
+            <a routerLink="/homepage/users">Người dùng</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </nz-sider>
+  <nz-layout class="right-layout">
+    <nz-header>
+      <div class="app-header">
+        <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
+          <i class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></i>
+        </span>
+        <span class="header-trigger" >
+          <b>PHẦN MỀM ĐANG ĐƯỢC PHÁT TRIỂN BỞI TRẦN DƯƠNG HOÀNG KHẢI</b>
+        </span>
+      </div>
+    </nz-header>
+    <nz-content>
+      <!-- <div class="inner-content"> -->
+      <nz-card [nzBordered]="true">
+        <router-outlet></router-outlet>
+      </nz-card>
+      <!-- </div> -->
+    </nz-content>
+  </nz-layout>
+</nz-layout>

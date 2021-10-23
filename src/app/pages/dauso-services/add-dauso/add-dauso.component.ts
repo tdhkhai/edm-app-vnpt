@@ -58,7 +58,7 @@ export class AddDausoComponent implements OnInit {
 
   submitForm() {
     // console.log(this.dausoForm.value);
-    this.dausoForm.value.status = "1";
+    this.dausoForm.value.status = '1';
     this.dausoAPI.AddDauso(this.dausoForm.value).subscribe(res => {
       this.notification.create('success', 'Thành công', 'Bạn đã lưu thành công!');
       this.modal.destroy();

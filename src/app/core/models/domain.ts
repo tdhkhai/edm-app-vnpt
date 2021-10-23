@@ -12,16 +12,17 @@ export interface Domain {
   expirationDate: Date;
   incomeDate: Date;
   income: number;
-  extend: [{
-    _id: string,
-    am: User,
-    numberOfExtend: string,
-    fromDate: Date,
-    toDate: Date,
-    incomeDate: Date,
-    income: number,
-    remark: string
-  }];
+  extend?: Extend;
   cancelDate: Date;
+  remark: string;
+}
+export interface Extend {
+  _id: string;
+  am: User;
+  numberOfExtend: string;
+  fromDate: Date;
+  toDate: Date;
+  incomeDate: Date;
+  income: number;
   remark: string;
 }

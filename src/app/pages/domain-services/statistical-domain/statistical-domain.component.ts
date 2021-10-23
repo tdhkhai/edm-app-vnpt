@@ -19,6 +19,7 @@ import { ExtendDetailsDomainComponent } from '../extend-details-domain/extend-de
   styleUrls: ['./statistical-domain.component.scss']
 })
 export class StatisticalDomainComponent implements OnInit {
+  exportData: any = [];
   listOfData: any = [];
   listOfAllData: any = [];
   loading = false;
@@ -99,10 +100,43 @@ export class StatisticalDomainComponent implements OnInit {
   }
 
 
-  exportExcel() {
+  exportExcel(type: string) {
+    const year = new Date().getFullYear().toString();
+
+    switch (type) {
+      case 'all':
+        this.domainAPI.GetAllDomains().subscribe(
+          (data) => {
+            this.formatExport(data);
+          }
+        );
+        break;
+
+      case '1':
+        this.domainAPI.GetListbyStatus({ year, status: '1' }).subscribe(
+          (data) => {
+            this.formatExport(data);
+          }
+        );
+        break;
+
+      case '3':
+        this.domainAPI.GetListbyStatus({ year, status: '3' }).subscribe(
+          (data) => {
+            this.formatExport(data);
+          }
+        );
+        break;
+
+      default:
+        break;
+    }
+
+  }
+
+  formatExport(data) {
     const wb = new Excel.Workbook();
     const ws = wb.addWorksheet('Sheet1');
-    // const ws = wb.getWorksheet('Sheet1');
 
     const header = ['STT', 'Trạng thái', 'Đơn vị', 'AM', 'Domain', 'Tên Khách hàng', 'MST', 'Ngày đăng ký', 'Ngày hết hạn']
 
@@ -110,8 +144,9 @@ export class StatisticalDomainComponent implements OnInit {
 
     let i = 0;
     let status = '';
-    let expDate = new Date();
-    this.listOfData.forEach(element => {
+    // console.log(this.exportData);
+
+    data.forEach(element => {
       i += 1;
       switch (element.status) {
         case '1': { status = 'Mới'; break; }
@@ -120,13 +155,6 @@ export class StatisticalDomainComponent implements OnInit {
         default: break;
       }
 
-      // if (element.extend != null || element.extend !== [] || 'extend' in element === false) {
-      //   // expDate = element.extend[element.extend.length - 1];
-      //   console.log(element.extend[element.extend.length - 1]);
-
-      // } else {
-      //   expDate = element.expirationDate;
-      // }
       const rowValues = [
         i,
         status,
@@ -138,14 +166,13 @@ export class StatisticalDomainComponent implements OnInit {
         new Date(element.registrationDate),
         new Date(element.expirationDate),
       ];
-
       ws.addRow(rowValues);
     });
 
     // Format Cell
     ws.eachRow((row, rowNumber) => {
-      row.eachCell((cell, number) => {
-        if (rowNumber == 1) {
+      row.eachCell((cell) => {
+        if (rowNumber === 1) {
           cell.fill = {
             type: 'pattern',
             pattern: 'solid',
@@ -182,6 +209,33 @@ export class StatisticalDomainComponent implements OnInit {
           }
         };
       });
+    });
+
+    const sttCol = ws.getColumn('A');
+    sttCol.eachCell((cell) => {
+      cell.alignment = {
+        vertical: 'middle',
+        horizontal: 'center'
+      };
+    });
+
+    const statusCol = ws.getColumn('B');
+    statusCol.eachCell((cell) => {
+      cell.alignment = {
+        vertical: 'middle',
+        horizontal: 'center'
+      };
+    });
+
+    const domainCol = ws.getColumn('C');
+    domainCol.eachCell((cell) => {
+      cell.alignment = {
+        vertical: 'middle',
+        horizontal: 'center'
+      };
+      cell.font = {
+        bold: true
+      }
     });
 
     // AutoFit Columns

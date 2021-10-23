@@ -48,7 +48,7 @@ export class AddSchoolComponent implements OnInit {
       remark: new FormControl(),
       caphoc: new FormControl(),
       status: new FormControl('1'),
-      modules: new FormControl(null)
+      modules: new FormControl([])
     });
   }
 

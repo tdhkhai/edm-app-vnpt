@@ -49,7 +49,7 @@ export class AddWebhostingComponent implements OnInit {
       expirationDate: new FormControl(Date()),
       incomeDate: new FormControl(Date()),
       income: new FormControl(),
-      extend: new FormControl(),
+      extend: new FormControl([]),
       cancelDate: new FormControl(),
       am: new FormControl(),
       status: new FormControl(),

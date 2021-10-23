@@ -5,7 +5,7 @@ import { ExcelToFileService } from 'src/app/core/services/exceltofile.service';
 import * as XLSX from 'xlsx';
 import { AddDausoComponent } from '../add-dauso/add-dauso.component';
 import { DausoService } from 'src/app/core/services/dauso.service';
-import { EditDausoComponent } from '../edit-dauso/edit-dauso.component';
+import { EditDausoComponent } from '../add-dauso/edit-dauso/edit-dauso.component';
 import { Dauso } from 'src/app/core/models/dauso';
 import { UploadComponent } from '../../shared/upload/upload.component';
 

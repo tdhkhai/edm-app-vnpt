@@ -30,9 +30,11 @@ import { NzBadgeModule } from 'ng-zorro-antd/badge';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzTimelineModule } from 'ng-zorro-antd/timeline';
 import { NzPopoverModule } from 'ng-zorro-antd/popover';
+import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 
 @NgModule({
   imports: [
+    NzDropDownModule,
     NzIconModule,
     NzButtonModule,
     NzTableModule,
@@ -66,6 +68,7 @@ import { NzPopoverModule } from 'ng-zorro-antd/popover';
     NzPopoverModule,
   ],
   exports: [
+    NzDropDownModule,
     NzIconModule,
     NzButtonModule,
     NzTableModule,

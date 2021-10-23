@@ -3,7 +3,15 @@ import { Routes, RouterModule } from '@angular/router';
 import { WelcomeComponent } from './welcome.component';
 
 const routes: Routes = [
-  { path: '', component: WelcomeComponent },
+  {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'dashboard'
+  },
+  {
+    path:'dashboard',
+    component: WelcomeComponent
+  }
 ];
 
 @NgModule({

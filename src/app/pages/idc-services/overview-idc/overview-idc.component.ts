@@ -143,8 +143,8 @@ export class OverviewIdcComponent implements OnInit {
 
   viewListByStatus(year: string, status: string) {
     const payload = {
-      year: year,
-      status: status
+      year,
+      status
     };
     let tmp = ''
     switch (status) {

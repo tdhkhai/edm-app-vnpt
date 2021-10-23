@@ -12,18 +12,17 @@ export interface IDC {
   incomeDate: Date;
   income: number;
   bundle: string;
-  extend: [
-    {
-      _id: string,
-      numberOfExtend: string,
-      fromDate: Date,
-      toDate: Date,
-      incomeDate: Date,
-      income: number,
-      remark: string,
-      am: User,
-    }
-  ];
+  extend?: Extend;
   cancelDate: Date;
+  remark: string;
+}
+export interface Extend {
+  _id: string;
+  am: User;
+  numberOfExtend: string;
+  fromDate: Date;
+  toDate: Date;
+  incomeDate: Date;
+  income: number;
   remark: string;
 }

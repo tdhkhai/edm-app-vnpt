@@ -1,0 +1,26 @@
+<section class="login">
+  <div class="login_box">
+    <div class="left">
+      <div class="contact">
+        <form nz-form [formGroup]="loginForm" (ngSubmit)="submit()">
+          <h2>ĐĂNG NHẬP</h2>
+          <nz-form-item nzFlex>
+            <input nz-input type="text" placeholder="Tên đăng nhập" formControlName="userName" >
+          </nz-form-item>
+          <nz-form-item nzFlex>
+            <input nz-input type="text" placeholder="Mật khẩu" formControlName="passWord">
+          </nz-form-item>
+
+          <button class="submit">Đăng nhập</button>
+        </form>
+      </div>
+    </div>
+    <div class="right">
+      <div class="right-text">
+        <h3>DATA VISUALIZATION ANALYSIS - VNPT</h3>
+        <h5 style="font-weight: bold; color: white;">&#169;{{ currentYear }} - TRẦN DƯƠNG HOÀNG KHẢI</h5>
+        <h5 style="text-shadow:none;">PHÒNG KHÁCH HÀNG TỔ CHỨC - DOANH NGHIỆP</h5>
+      </div>
+    </div>
+  </div>
+</section>

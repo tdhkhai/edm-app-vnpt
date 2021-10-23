@@ -17,25 +17,25 @@ export class EditStaticticalInvoiceComponent implements OnInit {
   listOfUnit: any = [];
   listOfUser: any = [];
   listOfStatus = [
-    { status: 'Pending' },
-    { status: 'Demo' },
-    { status: 'Golive' },
-    { status: 'Extend' },
-    { status: 'Delete' },
+    'Pending',
+    'Demo',
+    'Golive',
+    'Extend',
+    'Delete',
   ];
 
   listTypeOfCustomer = [
-    { typeOfCustomer: 'Doanh nghiệp' },
-    { typeOfCustomer: 'Giáo dục' },
-    { typeOfCustomer: 'Tổ chức' },
+    'Doanh nghiệp',
+    'Giáo dục',
+    'Tổ chức',
   ];
 
   listDetailTypeOfCustomer = [
-    { detailTypeOfCustomer: 'Mầm non/Mẫu giáo' },
-    { detailTypeOfCustomer: 'Tiểu học' },
-    { detailTypeOfCustomer: 'THCS' },
-    { detailTypeOfCustomer: 'THPT' },
-    { detailTypeOfCustomer: 'THCS & THPT' },
+    'Mầm non/Mẫu giáo',
+    'Tiểu học',
+    'THCS',
+    'THPT',
+    'THCS & THPT',
   ];
   isEducation = false;
   invoiceForm: FormGroup;

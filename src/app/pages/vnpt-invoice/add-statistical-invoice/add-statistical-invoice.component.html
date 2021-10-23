@@ -32,7 +32,7 @@
         <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng chọn Loại khách hàng'">
           <nz-select nzAllowClear nzPlaceHolder="Chọn Loại khách hàng" formControlName="typeOfCustomer"
             id="TypeOfCustomer" (ngModelChange)="ngModelChange($event)">
-            <nz-option [nzValue]="item" *ngFor="let item of listTypeOfCustomer" [nzLabel]="item.typeOfCustomer">
+            <nz-option [nzValue]="item" *ngFor="let item of listTypeOfCustomer" [nzLabel]="item">
             </nz-option>
           </nz-select>
         </nz-form-control>
@@ -45,7 +45,7 @@
           <nz-select nzAllowClear nzPlaceHolder="Chọn Cấp học" formControlName="detailTypeOfCustomer"
             id="DetailTypeOfCustomer">
             <nz-option [nzValue]="item" *ngFor="let item of listDetailTypeOfCustomer"
-              [nzLabel]="item.detailTypeOfCustomer">
+              [nzLabel]="item">
             </nz-option>
           </nz-select>
         </nz-form-control>
@@ -69,7 +69,7 @@
         <nz-form-control nzHasFeedback [nzErrorTip]="'Vui lòng chọn Trạng thái'">
           <nz-select nzPlaceHolder="Chọn trạng thái" formControlName="status"
             (ngModelChange)="selectStatusChange($event)" id="Status">
-            <nz-option [nzValue]="item.status" *ngFor="let item of listOfStatus" [nzLabel]="item.status"></nz-option>
+            <nz-option [nzValue]="item" *ngFor="let item of listOfStatus" [nzLabel]="item"></nz-option>
           </nz-select>
         </nz-form-control>
       </nz-form-item>
